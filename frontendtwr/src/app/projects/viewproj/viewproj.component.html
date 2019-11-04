@@ -1,0 +1,121 @@
+<app-gantt></app-gantt>
+
+<div *ngIf="project!==undefined && userrole!==undefined">
+  <div>
+
+    <div>
+      <div>
+        <div></div>
+        <h1>{{project.name}}</h1>
+      </div>
+      <div>
+        <div></div>
+        <p>People Group:</p>
+        <h2>{{project.need.pgroup.pgroup}}</h2>
+      </div>
+      <div>
+        <div></div>
+        <p>Need</p>
+        <h2>{{project.need.need}}</h2>
+      </div>
+      <div>
+        <div></div>
+        <p>Total Budget</p>
+        <h1>{{budget}}</h1>
+        <p>Amount Raised Locally</p>
+        <h1>{{fundsraised}}</h1>
+
+      </div>
+      <div>
+        <div></div>
+        <p><strong>Description of People Group:</strong> {{project.need.pgroup.description}}</p>
+        <p><strong>Vision:</strong> {{project.vision}}</p>
+        <p><strong>Mission:</strong> {{project.mission}}</p>
+
+      </div>
+      <div>
+        <div>
+          <div></div>
+          <h2>{{project.programname}}</h2>
+          <p>Program Name</p>
+        </div>
+        <div>
+          <h2>{{project.duration}}min</h2>
+          <p>Program Duration</p>
+        </div>
+        <div>
+          <h2>{{project.productionformat}}</h2>
+          <p>Production Format</p>
+        </div>
+        <div>
+          <h2>{{project.contentformat}}</h2>
+          <p>Content Format</p>
+        </div>
+      </div>
+      <div>
+        <div></div>
+        <p>Distribution Methods</p>
+        <ul *ngFor="let x of project.distmethod">
+          <li>{{x}}</li>
+        </ul>
+      </div>
+      <div>
+        <div></div>
+        <h1 *ngFor="let x of project.marketingmethod">{{x}}</h1>
+        <p>Marketing Methods:</p>
+      </div>
+    </div>
+
+    <div *ngIf="kpis!==undefined">
+      <h1>KPIs</h1>
+      <div *ngFor="let c of chain">
+        <h2>{{c}}</h2>
+        <div *ngFor="let y of kpis | sort: c">
+          <div>
+            <div>
+              <div>
+                {{y.kpi}}
+              </div>
+              <div>
+                {{y.report}} to be submitted by {{y.pointperson}}: Cost = Rs.{{y.budget}}
+              </div>
+            </div>
+            <div>
+              <table>
+                <tr>
+                  <th>Tasks</th>
+                  <th>Point Person</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+                <tr *ngFor="let z of y.tasks">
+                  <td>
+                    <p>{{z.task}}</p>
+                  </td>
+                  <td>
+                    <p>{{z.pointperson}}</p>
+                  </td>
+                  <td>
+                    <p>{{z.duration}}</p>
+                  </td>
+                  <td>
+                    <p>{{z.enddate}}</p>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button *ngIf="userrole.includes('CEO')" (click)="submitproject()">Submit
+          Project</button>
+        <button *ngIf="userrole.includes('CEO')" (click)="goback()">Save as
+          Draft</button>
+        <button *ngIf="userrole.includes('ID')" (click)="goback()">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>

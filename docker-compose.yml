@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  db:
+    image: 'postgres:10-alpine'
+    container_name: 'postgresnew'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=4321
+      - POSTGRES_DB=twr
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  frontend:
+    build: ./frontendtwr
+    ports:
+      - 4001:4200
+    volumes: 
+      - ./frontendtwr:/app
+  backend: 
+    build: ./backendtwr
+    ports: 
+      - 4000:8080
+    volumes:
+      - ./backendtwr:/app
+volumes: 
+  pgdata:

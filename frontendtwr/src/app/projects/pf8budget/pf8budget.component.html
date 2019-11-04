@@ -1,0 +1,24 @@
+<app-proposalnav></app-proposalnav>
+<div *ngIf="project!==undefined">
+  <div>
+    <h2>Project Overview and Budget Entry</h2>
+    <div><strong>Vision:</strong> {{project.vision}}</div>
+    <div><strong>Mission:</strong> {{project.mission}}</div>
+
+    <div *ngFor="let x of project.kpis">
+      <h3>{{x.kpi}}</h3>
+      <div *ngFor="let y of x.tasks">
+        {{y.task}}
+      </div>
+      <p>Amount required</p>
+      <div>
+        <input type="text" placeholder="Budget Required" [(ngModel)]="x.budget" [attr.name]="x.id"
+          (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+      </div>
+    </div>
+    <button (click)="submit()">Submit</button>
+    <button (click)="save()">Save as Draft</button>
+    <button (click)="reviewproject()">Review Project</button>
+  </div>
+
+</div>

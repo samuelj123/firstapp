@@ -1,0 +1,24 @@
+<app-proposalnav></app-proposalnav>
+<app-gantt></app-gantt>
+<div *ngIf="kpi!==undefined && project!==undefined">
+  <h1>Tasks</h1>
+  <p>{{project.name}}</p>
+  <div>
+    <p><strong>Vision: </strong>{{project.vision}}</p>
+    <p><strong>Mission: </strong>{{project.mission}}</p>
+  </div>
+  <div *ngFor="let c of chain">
+    <h2>{{c}}</h2>
+    <div *ngFor="let y of kpi | sort: c">
+      <div>
+        <h3>{{y.kpi}}</h3>
+      </div>
+      <div *ngFor="let x of y.tasks"></div>
+      <button (click)="addTask(y.id)">Add Task</button>
+    </div>
+  </div>
+  <div>
+    <button (click)="submitproject()">Next</button>
+    <button (click)="onDraft()">Save as Draft</button>
+  </div>
+</div>

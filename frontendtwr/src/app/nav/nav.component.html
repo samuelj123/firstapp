@@ -1,0 +1,36 @@
+<div class="container" *ngIf="cuser!=undefined">
+  <div class="userprofile">
+    <p class="mat-h1 name">{{cuser.firstname}} {{cuser.lastname}}</p>
+    <p class="mat-small country">{{cuser.country}}</p>
+  </div>
+  <br>
+  <hr>
+  <div class="menu">
+    <ul>
+      <li class="mat-h4 clickable" (click)="dashboard()">
+        <i class="material-icons">assignment</i>
+        Dashboard [Todo]
+      </li>
+      <li class="mat-h4 clickable" (click)="pplgrp()">
+        <i class="material-icons">supervisor_account</i>
+        People Groups
+      </li>
+      <li class="mat-h4 clickable" (click)="prj()">
+        <i class="material-icons">description</i>
+        Projects
+      </li>
+      <li class="mat-h4 clickable" (click)="users()" *ngIf="cuser.position.includes('ADMIN')">
+        <i class="material-icons">face</i>
+        Users
+      </li>
+      <li class="mat-h4 clickable" (click)="prj()">
+        <i class="material-icons">people</i>
+        Personnel [Todo]
+      </li>
+      <li class="mat-h4 clickable" (click)="logout()">
+        <i class="material-icons">exit_to_app</i>
+        Log Out
+      </li>
+    </ul>
+  </div>
+</div>

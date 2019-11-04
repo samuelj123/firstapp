@@ -1,0 +1,55 @@
+Project
+{
+    "name": "India",
+    "vision": "India",
+    "mission": "India",
+    "projectduration": 345,
+    "intendedoutcome": "India",
+    "programname": "India",
+    "duration": 345,
+    "contentformat": "India",
+    "productionformat": "India",
+    "productionkpis": ["India", "Pakistan", "Bangladesh", "Srilanka"],
+    "primarydistmethod": "India",
+    "secondarydistmethod": "India",
+    "tertiarydistmethod": "India",
+    "distributionkpis": ["India", "Pakistan", "Bangladesh", "Srilanka"],
+    "marketingmethod": ["India", "Pakistan", "Bangladesh", "Srilanka"],
+    "marketingkpis": ["India", "Pakistan", "Bangladesh", "Srilanka"],
+    "audiencerelationskpis": ["India", "Pakistan", "Bangladesh", "Srilanka"],
+    "need": "39804f82-c6df-4de0-bace-3196895bf927"
+}
+
+Pgroup{
+    "pgroup": "A small People Group",
+    "agegrouplow": 234,
+    "agegrouphigh": 234,
+    "country": "India",
+    "population": 234,
+    "electricityaccess": 234,
+    "literacyrate": 234,
+    "averageincome": 234,
+    "needs": [
+        { "need": "A small need" },
+        { "need": "A second small need "},
+        { "need": "A third small need" },
+    ]
+}
+
+[
+    {
+        kpi: "This is a Kpi,
+        project: "0e8412a7-32b1-4d6e-8cec-3bbef1a078e7"
+        type: "Content Creation"
+    },
+    {
+        kpi: "This is a Second Kpi,
+        project: "0e8412a7-32b1-4d6e-8cec-3bbef1a078e7"
+        type: "Content Creation"
+    },
+    {
+        kpi: "This is a Third Kpi,
+        project: "0e8412a7-32b1-4d6e-8cec-3bbef1a078e7"
+        type: "Content Creation"
+    }
+]

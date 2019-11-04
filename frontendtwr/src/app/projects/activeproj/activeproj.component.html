@@ -1,0 +1,21 @@
+<div *ngIf="project!==undefined && project!==null && tasks!==null && tasks!==undefined">
+  <h3>{{project.name}}</h3>
+  <h4>Mission: </h4><p>{{project.mission}}</p>
+  <h4>Vision: </h4><p>{{project.vision}}</p>
+  <h3>Starting Date</h3><p>{{ndate | date}}</p>
+  <h3>Amount Completed</h3><p>{{taskscompleted.length}}/{{tasks.length}}</p>
+  <h2>Project Schedule</h2>
+  <div *ngFor="let x of project.kpis">
+  <h3>{{x.kpi}}</h3>
+  <table>
+    <tr><th>Task</th><th>Start Date</th><th>End Date</th><th>In-Charge</th></tr>
+      <tr *ngFor="let y of x.tasks | sort:x.tasks.duration">
+        <td>{{y.task}}</td>
+        <td>{{ndate | dateadd: y.duration | date }}</td>
+        <td>{{ndate | dateadd: y.enddate | date }}</td>
+        <td>{{y.pointperson}}</td>
+        <!-- <td>{{y.incharge}}</td> -->
+      </tr>
+    </table>
+  </div>
+</div>

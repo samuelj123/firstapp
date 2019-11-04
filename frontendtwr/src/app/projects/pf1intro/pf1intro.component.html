@@ -1,0 +1,44 @@
+<app-proposalnav></app-proposalnav>
+<div>
+  <h1>Introduction</h1>
+  <h3>Welcome to the 'Project-Proposal' form. Please take your time to fill up all the
+    input-forms before going to the next page. Your filled proposal, once submitted, will be sent to Singapore for
+    vetting. If your proposal doesn't clear, you will have to re-work your forms until they clear the vetting stage.
+  </h3>
+  <br>
+  <h3>Tip: Hover your mouse on the ? icons for more information on how to fill each
+    column
+  </h3>
+</div>
+<div *ngIf="project!==undefined || myForm !==undefined">
+  <form [formGroup]="myForm">
+    <label>People Group</label>
+    <select formControlName="pgroup" (change)="fixneeds($event.target.value)">
+      <option *ngFor="let x of pgroup; let i=index" value="{{x.id}}">{{x.pgroup}}</option>
+    </select>
+    <p>Select your People Group here. If you aren't able to see any People Groups in the
+      Drop-down, it means you haven't made a People Group yet. Please define your people groups by clicking on nav-bar
+      on the left</p>
+    <label>Needs</label>
+    <select formControlName="need">
+      <option *ngFor="let x of needs" value="{{x.id}}">{{x.need}}</option>
+    </select>
+    <p>Select the need that you want to target in your project. Each project can only cater to
+      one need</p>
+    <input placeholder="Project Name" type="text" formControlName="name">
+    <p>The Project Name doesn't need to be catchy; But it needs to convey in 2-3 words what
+      your project is about.</p>
+    <textarea placeholder="Project Vision" type="text" formControlName="vision"></textarea>
+    <p>Examples of a bad vision: 'to Present the Gospel of Christ', or 'to provide good Bible
+      Study tools'. A good vision could be; 'To see the next generation of this People Group grow with firm moral
+      values in this post-modern amoral world</p>
+    <textarea placeholder="Project Mission" type="text" formControlName="mission"></textarea>
+    <p>Explain what you're going to DO to achieve the vision you mentioned above</p>
+    <div>
+      <button *ngIf='projid===undefined' color="primary" (click)="onSubmit()">Next</button>
+      <button *ngIf='projid!==undefined' color="primary" (click)="onSave()">Next></button>
+      <button *ngIf='projid!==undefined' color="primary" (click)="onDraft()">Draft</button>
+      <button (click)="goback()">Go Back</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+<h1>Sure you want to Deny this Project?</h1>
+<div>
+  <p>Kindly mention below why you want to deny <strong>{{data.string}}</strong>
+  </p>
+        <input [(ngModel)]="data.associated">
+</div>
+<div>
+  <button (click)="onNoClick()">No Thanks</button>
+  <button (click)="onClick(data.associated)" >Deny!</button>
+</div>

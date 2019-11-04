@@ -1,0 +1,23 @@
+<app-proposalnav></app-proposalnav>
+<div *ngIf="fraisingform!=undefined">
+  <h1>Fundraising</h1>
+  <p>{{project.name}}</p>
+  <div>
+    <p><strong>Vision: </strong>{{project.vision}}</p>
+    <p><strong>Mission: </strong>{{project.mission}}</p>
+  </div>
+  <form [formGroup]="fraisingform">
+    <div formArrayName="fundraising">
+      <div *ngFor="let X of fraisingform['controls'].fundraising['controls']; let ix=index">
+        <div formGroupName="{{ix}}">
+          <input type="text" placeholder="Fundraising Method" formControlName="method">
+          <input type="number" placeholder="Amount" formControlName="amount" (keyup)="total()">
+          <input type="text" placeholder="Point Person" formControlName="pointperson">
+        </div>
+      </div>
+    </div>
+    <input type="button" (click)="addX()" value="Add Fundraising Method">
+    <p>Total Money Raised: {{totalfunds}}</p>
+  </form>
+  <input type="button" (click)="submit()" value="Next">
+  <button (click)="onDraft()">Save as Draft</button>

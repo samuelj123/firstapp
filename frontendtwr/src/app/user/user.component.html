@@ -1,0 +1,13 @@
+<div class="container">
+  <table>
+      <tr *ngFor='let x of allusers' class="row">
+        <td><p>{{x.firstname}} {{x.lastname}}</p></td>
+        <td><p>{{x.email}}</p></td>
+        <td><button (click)="delete(x.id)"><i>delete</i></button></td>
+      </tr>
+  </table>
+  <button (click)="toggleChild()">Add a New User</button>
+  <div>
+    <app-register [showMePartially]='showVar'></app-register>
+  </div>
+</div>

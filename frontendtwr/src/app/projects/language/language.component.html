@@ -1,0 +1,49 @@
+<div *ngIf="languages != undefined && myForm != undefined">
+  <table>
+    <tr>
+      <th>Iso</th>
+      <th>Language Name</th>
+      <th>Language Description</th>
+    </tr>
+    <tr *ngFor="let x of languages">
+      <td (click)="onedit(x.id)">{{x.iso}}</td>
+      <td (click)="onedit(x.id)">{{x.name}}</td>
+      <td (click)="onedit(x.id)">{{x.langdescription}}</td>
+    </tr>
+  </table>
+  <form [formGroup]="myForm">
+    <div>
+      <input type="text" placeholder="Name of Language" formControlName="name">
+    </div>
+    <div>
+      <input type="text" placeholder="ISO" formControlName="iso">
+    </div>
+    <div>
+      <textarea type="text" placeholder="Description" formControlName="langdescription"></textarea>
+    </div>
+    <div>
+      <input type="number" placeholder="Population" formControlName="population">
+    </div>
+    <div>
+      <textarea type="text" placeholder="Culture of Language Group" formControlName="culture"></textarea>
+    </div>
+    <div>
+      <textarea type="text" placeholder="Specific Need of Language Group" formControlName="specificneed"></textarea>
+    </div>
+    <div *ngFor="let x of countries['controls']; let i=index">
+      <div>
+        <input type="text" placeholder="Country" [formControlName]="i">
+      </div>
+    </div>
+    <input type="button" (click)="addcountries()" value="Add Country">
+    <div *ngFor="let x of religions['controls']; let i=index">
+      <input type="text" placeholder="Religion" [formControlName]="i">
+    </div>
+    <input type="button" (click)="addreligions()" value="Add Religion">
+
+    <div>
+      <input type="button" (click)="submit()" value="Add/Update Language">
+    </div>
+  </form>
+  <p>{{this.myForm.value | json}}</p>
+</div>

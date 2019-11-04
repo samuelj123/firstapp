@@ -1,0 +1,55 @@
+<div>
+  <div *ngIf="projects!==undefined && userrole!==undefined">
+    <button color="primary" *ngIf="userrole.includes('CEO')" (click)="newproj()">New
+      Project</button>
+    <div  *ngIf="userrole.includes('CEO')">
+      <h1><strong>Draft Projects</strong></h1>
+      <div *ngFor="let x of projects | approval0">
+        <hr>
+        <div></div>
+        <p *ngIf="x.denialmsg!==null">Project Denied: {{x.denialmsg}}</p>
+        <h2  (click)="viewproj(x.id)">{{x.name}}</h2>
+        <p>{{x.need}}</p>
+        <p>{{x.vision}}</p>
+
+        <div>
+          <button  (click)="deleteproj(x.id)" mat-icon-button>
+            <i>delete</i>
+          </button>
+          <button (click)="editproj(x.id)" mat-icon-button>
+            <i>edit</i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1><strong>Projects Pending Approval</strong></h1>
+      <div *ngFor="let x of projects | approval1">
+        <hr>
+        <div></div>
+        <h2  *ngIf="userrole.includes('ID')" (click)="viewproj(x.id)">{{x.country}}</h2>
+        <h2  *ngIf="userrole.includes('CEO')" (click)="viewproj(x.id)">{{x.name}}</h2>
+        <p  (click)="viewproj(x.id)">{{x.name}}</p>
+        <p>{{x.lastupdated | date }}</p>
+        <p  *ngIf="userrole.includes('ID')">{{x.need}}</p>
+        <p  *ngIf="userrole.includes('ID')">{{x.vision}}</p>
+        <div>
+          <button *ngIf="userrole.includes('ID')" (click)="starttoggle(x.id)" mat-icon-button><i
+             >thumb_up</i></button>
+          <button *ngIf="userrole.includes('ID')" (click)="denyproj(x.id)" mat-icon-button><i
+             >thumb_down</i></button>
+          <div><input type="date" *ngIf="approvetoggle===true" (keyup.enter)='approveproj(x.id, $event)'></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1><strong>Active Projects</strong></h1>
+      <div *ngFor="let x of projects | approval2">
+        <hr>
+        <div></div>
+        <h2 (click)="activeproj(x.id)">{{x.name}}</h2>
+        <p>{{x.vision}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div  *ngIf="allpgs!=undefined && userrole!=undefined">
+  <div>
+    <button  *ngIf="userrole.includes('CEO')" (click)="addpg()">Add New
+      People Group</button>
+    <h2>All People Groups</h2>
+  </div>
+  <div *ngFor="let x of allpgs">
+    <div></div>
+    <div>
+      <div (click)="delete(x.id)"><i>delete</i></div>
+      <div (click)="edit(x.id)"><i>edit</i></div>
+    </div>
+    <h2>
+      {{x.pgroup}}
+    </h2>
+    <div>
+      <div>
+        <h2><strong>{{x.population}}</strong></h2>
+        <p>Population:</p>
+      </div>
+      <div>
+        <h2><strong>{{x.agegrouplow}} - {{x.agegrouphigh}}</strong></h2>
+        <p>Age-Group</p>
+      </div>
+      <div>
+        <h2><strong>{{x.electricityaccess}}%</strong></h2>
+        <p>electricity access</p>
+      </div>
+      <div>
+        <h2><strong>{{x.projectnos}}</strong></h2>
+        <p>No Of Projects</p>
+      </div>
+      <div>
+        <h2><strong>{{x.literacyrate}}</strong></h2>
+        <p>literacyrate</p>
+      </div>
+      <div>
+        <h2><strong>{{x.averageincome}}</strong></h2>
+        <p>average Income Rs</p>
+      </div>
+    </div>
+    <h3><strong>About</strong></h3>
+    <p>{{x.description}}</p>
+    <div>
+      <h3><strong>Needs</strong></h3>
+      <div>
+        <p *ngFor="let y of x.needs; let i=index">
+          {{y.need}}
+        </p>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

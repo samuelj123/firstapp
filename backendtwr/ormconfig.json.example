@@ -1,0 +1,11 @@
+{
+    "type": "string",
+    "host": "string",
+    "port": number,
+    "username": "string",
+    "password": "string",
+    "database": "string",
+    "synchronize": boolean,
+    "logging": boolean,
+    "entities": ["./dist/**/*.entity.js", "./dist/**/**/*.entity.js", "./src/**/*.entity.ts", "./src/**/**/*.entity.ts"]
+}

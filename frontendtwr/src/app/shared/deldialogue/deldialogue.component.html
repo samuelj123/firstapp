@@ -1,0 +1,9 @@
+<h1>Sure you want to Delete?</h1>
+<div>
+  <p class="mat-body">If you Delete {{data.string}}, you will Lose all {{data.associated}} associated with it! Are you sure you want to do so?
+  </p>
+</div>
+<div>
+  <button (click)="onNoClick()">No Thanks</button>
+  <button (click)="close(data.id)" >Delete!</button>
+</div>

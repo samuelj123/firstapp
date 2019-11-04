@@ -1,0 +1,33 @@
+<div>
+  <!-- <p> this part is always visible</p> -->
+</div>
+
+<div *ngIf="showMePartially">
+  <form [formGroup]="userForm">
+    <div>
+      <input placeholder="First Name" type="text" formControlName="firstname" required>
+    </div>
+    <div>
+      <input placeholder="Last Name" type="text" formControlName="lastname" required>
+    </div>
+    <div>
+      <input placeholder="Email" type="text" formControlName="email" required>
+    </div>
+    <div>
+      <input placeholder="Password" type="text" formControlName="password" required>
+    </div>
+    <div>
+      <input placeholder="Country" type="text" formControlName="country" required>
+    </div>
+    <h4>Position</h4>
+    <label formArrayName="position" *ngFor="let c of userForm.controls.position.controls; let i = index">
+      <input type="checkbox" [formControlName]="i" value="{{position[i].name}}" name="{{position[i].name}}">
+      
+    </label>
+    <div>
+      {{userForm.value | json }}
+    </div>
+  </form>
+  <button (click)="register()">Register this User</button>
+  
+</div>
