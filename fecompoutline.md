@@ -1,9 +1,5 @@
 
- TSError: ⨯ Unable to compile TypeScript:
-backend_1   | error TS2321: Excessive stack depth comparing types 'FindConditions<?>' and 'FindConditions<?>'.
-backend_1   | src/project/project.module.ts(21,14): error TS2589: Type instantiation is excessively deep and possibly infinite.
-
-All Front-end Components
+All Front-end Methods
 ===============
 # LoginComponent
 # RegisterComponent
