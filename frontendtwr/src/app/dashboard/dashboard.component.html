@@ -1,28 +1,37 @@
 <h2>Dashboard</h2>
 <h3>At a Glance</h3>
-  <div *ngIf='userrole==="ID"'></div>
-  <div *ngIf='userrole==="CEO"'></div>
-  <div *ngIf='userrole==="EXECUTIVE"'></div>
-
-<h3>Tasks</h3>
-    <div *ngIf='user!==undefined'>
-      <div *ngFor='let x of user.tasks'>
-        <p>{{x.task}}</p>
-      </div>
+  <div *ngIf='userrole!==undefined'>
+    <div *ngIf='userrole.includes("ID")'>
+      <p>{{userrole}}</p>
     </div>
-
-<h3>Active Projects</h3>
-  <div *ngIf='userrole==="ID"'></div>
-  <div *ngIf='userrole==="CEO"'></div>
-  <div *ngIf='userrole==="EXECUTIVE"'></div>
-
-<h3>People Groups</h3>
-  <div *ngIf='userrole==="ID"'></div>
-  <div *ngIf='userrole==="CEO"'></div>
-  <div *ngIf='userrole==="EXECUTIVE"'></div>
-
-<h3>Planned Projects</h3>
-  <div *ngIf='userrole==="ID"'></div>
-  <div *ngIf='userrole==="CEO"'></div>
-  <div *ngIf='userrole==="EXECUTIVE"'></div>
-
+   
+    <div *ngIf='userrole.includes("CEO")'>
+      <p>{{userrole}}</p>
+    </div>
+    <div *ngIf='userrole.includes("EXECUTIVE")'>
+      <p>{{userrole}}</p>
+    </div>
+  
+  <h3>Tasks</h3>
+      <div *ngIf='user!==undefined'>
+        <div *ngFor='let x of user.tasks'>
+          <p>{{x.task}}</p>
+        </div>
+      </div>
+  
+  <h3>Active Projects</h3>
+    <div *ngIf='userrole.includes("ID")'></div>
+    <div *ngIf='userrole.includes("CEO")'></div>
+    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+  
+  <h3>People Groups</h3>
+    <div *ngIf='userrole.includes("ID")'></div>
+    <div *ngIf='userrole.includes("CEO")'></div>
+    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+  
+  <h3>Planned Projects</h3>
+    <div *ngIf='userrole.includes("ID")'></div>
+    <div *ngIf='userrole.includes("CEO")'></div>
+    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+  
+  </div>

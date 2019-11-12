@@ -1,3 +1,5 @@
+import { User } from '../user/user.model';
+
 export interface PGroup {
     id: string;
     pgroup: string;
@@ -71,7 +73,7 @@ export interface Task {
     duration: number; // The back-end name for Start-Date
     enddate: number;
     completed?: boolean;
-    pointperson: string;
+    taskhandler: User;
     kpi?: KPI;
 }
 

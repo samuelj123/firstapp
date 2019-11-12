@@ -30,10 +30,10 @@ export class TaskController {
         return this.taskservice.newtask(data, kpiid);
     }
 
-    @Put(':id')
+    @Put(':taskid')
     @UseGuards(new AuthGuard())
-    updateTask(@Body() data: TaskEntity, @Param('id') id: string) {
-        return this.taskservice.updatetask(data, id);
+    updateTask(@Body() data: TaskEntity, @Param('taskid') taskid: string) {
+        return this.taskservice.updatetask(data, taskid);
     }
 
 

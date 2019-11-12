@@ -25,6 +25,7 @@ export class ProjectsComponent implements OnInit {
       this.projservice.getfilteredproj(country).subscribe(val => this.projects = val);
     }
     this.userrole = await this.uservice.currentuserrole();
+    console.log(this.projects);
   }
 
   deleteproj(id) {

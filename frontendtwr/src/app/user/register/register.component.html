@@ -21,6 +21,7 @@
     </div>
     <h4>Position</h4>
     <label formArrayName="position" *ngFor="let c of userForm.controls.position.controls; let i = index">
+      <p>{{position[i].name}}</p>
       <input type="checkbox" [formControlName]="i" value="{{position[i].name}}" name="{{position[i].name}}">
       
     </label>

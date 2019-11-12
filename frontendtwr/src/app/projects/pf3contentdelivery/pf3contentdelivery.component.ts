@@ -57,13 +57,13 @@ export class Pf3contentdeliveryComponent implements OnInit {
     this.myForm.setControl('distmethod', this.setdmethod(this.project.distmethod));
   }
 
+  get distmethod() {
+    return this.myForm.get('distmethod') as FormArray;
+  }
   get distributionkpis() {
     return this.myForm.get('distributionkpis') as FormArray;
   }
 
-  get distmethod() {
-    return this.myForm.get('distmethod') as FormArray;
-  }
   // Distribution KPI Getter
 
   setkpis(kpi: KPI[]): FormArray {
@@ -71,8 +71,6 @@ export class Pf3contentdeliveryComponent implements OnInit {
     kpi.forEach(k => { if (k.type === 'Content Delivery') { fa.push(this.fb.control(k.kpi)) } });
     return fa;
   }
-
-
   addDistributionkpi() {
     this.distributionkpis.push(this.fb.control(''));
   }
@@ -84,12 +82,12 @@ export class Pf3contentdeliveryComponent implements OnInit {
     this.distributionkpis.controls.splice(i, 1);
   }
 
+  
   setdmethod(dmethod: string[]): FormArray {
     const fa = new FormArray([]);
     dmethod.forEach(k => fa.push(this.fb.control(k)));
     return fa;
   }
-
   addDmethod() {
     this.distmethod.push(this.fb.control(''));
     console.log()

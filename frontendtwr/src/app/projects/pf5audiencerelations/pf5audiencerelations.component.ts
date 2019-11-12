@@ -78,7 +78,7 @@ export class Pf5audiencerelationsComponent implements OnInit {
   }
   async onDraft() {
     await this.savefile();
-    // await this.router.navigateByUrl('/projects');
+    await this.router.navigateByUrl('/projects');
     
   }
   async onSubmit() {

@@ -9,7 +9,8 @@
         <div></div>
         <p *ngIf="x.denialmsg!==null">Project Denied: {{x.denialmsg}}</p>
         <h2  (click)="viewproj(x.id)">{{x.name}}</h2>
-        <p>{{x.need}}</p>
+        <p>{{x.need.need}}</p>
+        <p>{{x.need.pgroup.pgroup}}</p>
         <p>{{x.vision}}</p>
 
         <div>

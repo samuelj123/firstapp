@@ -1,9 +1,10 @@
-import { Controller, Post, Get, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Post, Get, Put, Delete, Body, Param, UseGuards, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 import { AuthDTO } from './auth.dto';
 import { AuthGuard } from '../shared/auth.guard';
 import { User } from './user.decorator';
+import { UserDTO } from './user.dto';
 
 @Controller('api/user')
 export class UserController {
@@ -25,6 +26,13 @@ export class UserController {
     userProfile(@Param('id') id: string) {
         return this.uservice.userProfile(id);
     }
+
+    @Get('userid')
+    // @UseGuards(new AuthGuard())
+    usersbyfilter(@Query('p') userid: string) {
+        return this.uservice.subordinates(userid);
+    }
+
 
     @Put(':id')
     // @UseGuards(new AuthGuard())

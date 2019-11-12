@@ -3,17 +3,24 @@ import { TaskEntity } from './task.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { KpiEntity } from '../kpi/kpi.entity';
+import { UserEntity } from 'user/user.entity';
 
 @Injectable()
 export class TaskService {
 
     constructor(
         @InjectRepository(TaskEntity) private trepository: Repository<TaskEntity>,
-        @InjectRepository(KpiEntity) private kpirepository: Repository<KpiEntity>
+        @InjectRepository(KpiEntity) private kpirepository: Repository<KpiEntity>,
+        @InjectRepository(UserEntity) private userepository: Repository<UserEntity>
     ) { }
 
     async getall() {
-        return await this.trepository.find({ relations: ['kpi'] });
+        return await this.trepository
+            .createQueryBuilder('tasks')
+            .leftJoinAndSelect('tasks.kpi', 'kpi')
+            .leftJoinAndSelect('tasks.pointperson', 'pointperson')
+            .getMany();
+        // .find({ relations: ['kpi'] });
     }
 
     async getallbykpi(kpiid: string) {
@@ -23,14 +30,31 @@ export class TaskService {
 
     async newtask(data: TaskEntity, kpiid: string) {
         const kpi = await this.kpirepository.findOne(kpiid);
-        const task = await this.trepository.create({ ...data, kpi });
+        const taskhandler = await this.userepository.findOne(data.taskhandler)
+        const task = await this.trepository.create({ ...data, kpi, taskhandler });
         await this.trepository.save(task);
         return { ...task, project: task.kpi };
     }
-    async updatetask(data: TaskEntity, id: string) {
-        let task = await this.trepository.findOne({ where: { id } });
-        await this.trepository.update({ id }, data);
-        task = await this.trepository.findOne({ where: { id } });
+    async updatetask(data: TaskEntity, taskid: string) {
+        let task = await this.trepository
+            .createQueryBuilder('task')
+            .where('task.id = :id', {id: taskid})
+            .getOne();
+        const taskhandler = await this.userepository
+            .createQueryBuilder('user')
+            .where('user.id = :id', {id: data.taskhandler})
+            .getOne();
+        const kpi = await this.kpirepository
+            .createQueryBuilder('kpi')
+            .where('kpi.id = :id', {id: data.kpi})
+            .getOne();
+        await this.trepository.update(task, {...data, taskhandler, kpi});
+        task = await this.trepository
+            .createQueryBuilder('task')
+            .where('task.id = :id', {id: taskid})
+            .leftJoinAndSelect('task.taskhandler', 'taskhandler')
+            .leftJoinAndSelect('task.kpi', 'kpi')
+            .getOne();
         return task;
     }
     async deltask(id: string) {
@@ -43,7 +67,7 @@ export class TaskService {
             .leftJoinAndSelect('tasks.kpi', 'kpi')
             .leftJoin('kpi.project', 'project')
                 .where('kpi.project = :id', { id })
-            // .where('project = :id', {id})
+            .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
             .getMany();
     }
 }

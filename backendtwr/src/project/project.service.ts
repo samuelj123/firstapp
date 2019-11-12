@@ -16,7 +16,12 @@ export class ProjectService {
         @InjectRepository(FundraisingEntity) private frepository: Repository<FundraisingEntity>,
     ) { }
     async getall() {
-        return this.projrepository.find({ relations: ['need', 'creator'] });
+        // return this.projrepository.find({ relations: ['need', 'creator'] });
+        return this.projrepository
+            .createQueryBuilder('project')
+            .leftJoinAndSelect('project.need','need')
+            .leftJoinAndSelect('need.pgroup','pgroup')
+            .getMany();
     }
     async new(data: ProjectDTO) {
         const nd = await this.needrepository.findOne({ where: { id: data.need } });
@@ -54,6 +59,9 @@ export class ProjectService {
         return this.projrepository
             .createQueryBuilder('project')
             .leftJoin('project.creator', 'user')
-            .where('user.country = :country', { country }).getMany();
+            .where('user.country = :country', { country })
+            .leftJoinAndSelect('project.need', 'need')
+            .leftJoinAndSelect('need.pgroup', 'pgroup')
+            .getMany();
     }
 }

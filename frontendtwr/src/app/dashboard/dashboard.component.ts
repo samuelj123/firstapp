@@ -34,5 +34,6 @@ export class DashboardComponent implements OnInit {
     this.activeprojects = this.projects.filter(x => x.startdate!==null);
     this.pendingprojects = this.projects.filter(x=>x.startdate===null);
     this.user = await this.uservice.currentuser().toPromise() as User;
+    console.log(this.user);
   }
 }

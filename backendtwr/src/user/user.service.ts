@@ -11,7 +11,11 @@ export class UserService {
     constructor(@InjectRepository(UserEntity) private userRepository: Repository<UserEntity>) { }
 
     async Allusers() {
-        return await this.userRepository.find();
+        // return await this.userRepository.find();
+        return await this.userRepository
+            .createQueryBuilder('user')
+            .leftJoinAndSelect('user.tasks', 'tasks')
+            .getMany();
     }
 
     async register(data: UserEntity) {
@@ -26,7 +30,12 @@ export class UserService {
     }
 
     async userProfile(id: string) {
-        return await this.userRepository.findOne({ where: { id } });
+        return await this.userRepository
+            .createQueryBuilder('user')
+            .where('user.id = :id', {id})
+            .leftJoinAndSelect('user.tasks', 'tasks')
+            .getOne();
+        // return await this.userRepository.findOne({ where: { id } });
     }
 
     async updateUser(id: string, data: Partial<UserEntity>) {
@@ -52,5 +61,19 @@ export class UserService {
         } else {
             return 'Wrong Password';
         }
+    }
+
+    async subordinates(data: string) {
+        const user = await this.userProfile(data) as UserEntity;
+        const country:string = user.country;
+        return await this.userRepository
+            .createQueryBuilder('users')
+            .where('users.country = :country',{country})
+            .having('users.position = :position', {position: 'RO' })
+            .orHaving('users.position = :position',{position: 'COORDINATOR'})
+            .orHaving('users.position = :position',{position: 'MANAGER'})
+            .orHaving('users.position = :position',{position: 'EXECUTIVE'})
+            .getMany();
+
     }
 }

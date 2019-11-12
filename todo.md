@@ -14,21 +14,21 @@
   * UX Design - Buy UI Components (12 days)
 
 # Immediate Tasks
-  * Get a nice UI to add/edit tasks quickly
   * Fill up the dashboard for all levels
     * ID
     * CEO
     * Executive
-  * Fix the Task-List Module
   * Do the UX UI Design
   * Upload to AWS
 
 # To Be Done
   * Clean up the API (Make more sensible paths and names)
   * Document the API properly 
+  * 'Deny Projects' Modal (and other modals) to be re-fixed
 
 # BugFixes
   * None of the @Query's are working in their current avatars
+  * Pf6Tasks: Doesn't refresh after saving/deleting. 
 
 
 <!---

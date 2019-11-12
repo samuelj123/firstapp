@@ -1,24 +1,35 @@
 <app-proposalnav></app-proposalnav>
 <app-gantt></app-gantt>
-<div *ngIf="kpi!==undefined && project!==undefined">
+<div *ngIf="kpi!==undefined && project!==undefined && taskform!==undefined">
   <h1>Tasks</h1>
   <p>{{project.name}}</p>
   <div>
     <p><strong>Vision: </strong>{{project.vision}}</p>
     <p><strong>Mission: </strong>{{project.mission}}</p>
   </div>
-  <div *ngFor="let c of chain">
-    <h2>{{c}}</h2>
-    <div *ngFor="let y of kpi | sort: c">
-      <div>
-        <h3>{{y.kpi}}</h3>
+  <div [formGroup]="taskform">
+    <div formArrayName="task" *ngFor="let x of taskform.get('task').controls; let i = index;">
+      <div [formGroupName]="i">
+        <input formControlName="taskname" placeholder="Task Name">
+        <select formControlName="category">
+          <option *ngFor="let y of chain" value="{{y.name}}">{{y.object}}</option>
+        </select>
+        <input formControlName="duration" placeholder="Starting Day">
+        <input formControlName="enddate" placeholder="Ending Day">
+        <select formControlName="taskhandler">
+          <option  *ngFor="let y of pplresponsible" value="{{y.id}}">{{y.firstname}}</option>
+        </select>
+        <select formControlName="kpiid">
+          <option  *ngFor="let kpi of kpi" value="{{kpi.id}}">{{kpi.kpi}}</option>
+        </select>
+        <button (click)="deletetask(i)">Delete Task</button>
       </div>
-      <div *ngFor="let x of y.tasks"></div>
-      <button (click)="addTask(y.id)">Add Task</button>
     </div>
   </div>
+  <button (click)="addtask()">Add Task</button>
+  <button (click)="savetasks()">Save Tasks</button>
   <div>
-    <button (click)="submitproject()">Next</button>
+    <button (click)="next()">Next</button>
     <button (click)="onDraft()">Save as Draft</button>
   </div>
 </div>

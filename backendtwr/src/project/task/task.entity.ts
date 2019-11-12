@@ -1,5 +1,6 @@
 import { PrimaryGeneratedColumn, Entity, CreateDateColumn, UpdateDateColumn, Column, ManyToOne } from 'typeorm';
 import { KpiEntity } from '../kpi/kpi.entity';
+import { UserEntity } from 'user/user.entity';
 
 @Entity('task')
 export class TaskEntity {
@@ -10,7 +11,7 @@ export class TaskEntity {
     @Column({ type: 'text' }) task: string;
     @Column({ type: 'int' }) duration: number; // Start Date (Bad naming)
     @Column({ type: 'int', nullable: true }) enddate: number;
-    @Column({ type: 'text' }) pointperson: string;
+    @ManyToOne(type => UserEntity, taskhandler => taskhandler.tasks) taskhandler: UserEntity;
     @ManyToOne(type => KpiEntity, kpi => kpi.tasks, { onDelete: 'CASCADE' }) kpi: KpiEntity;
 }
 
