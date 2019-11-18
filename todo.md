@@ -17,9 +17,15 @@
   * Fill up the dashboard for all levels
     * ID
     * CEO
+        * At a Glance
+        * Tasks
+        * Active Projects
+        * Planned Projects
     * Executive
   * Do the UX UI Design
   * Upload to AWS
+  * Fix the Report -incharge thing
+  * Fix the pf6todolist. THere is a 'Category Option' that's really not required
 
 # To Be Done
   * Clean up the API (Make more sensible paths and names)

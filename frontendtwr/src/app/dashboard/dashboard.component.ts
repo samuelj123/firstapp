@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private projservice: ProjectsService, private uservice: UserService, private router: Router) { }
   projects:Project[];
+  draftprojects: Project[];
   pendingprojects: Project[];
   activeprojects: Project[];
   pgroups: PGroup[];
@@ -31,9 +32,10 @@ export class DashboardComponent implements OnInit {
        this.pgroups = await this.projservice.getfilteredpg(this.country).toPromise() as PGroup[];
     }
     this.userrole = await this.uservice.currentuserrole();
-    this.activeprojects = this.projects.filter(x => x.startdate!==null);
-    this.pendingprojects = this.projects.filter(x=>x.startdate===null);
+    this.activeprojects = this.projects.filter(x => x.approvallevel===2);
+    this.draftprojects = this.projects.filter(x=>x.approvallevel===0);
+    this.pendingprojects = this.projects.filter(x=>x.approvallevel===1);
     this.user = await this.uservice.currentuser().toPromise() as User;
-    console.log(this.user);
+    this.usertasks = this.user.tasks.filter(x=>x.kpi.project.approvallevel===2);
   }
 }

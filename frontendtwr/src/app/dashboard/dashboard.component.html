@@ -1,37 +1,62 @@
 <h2>Dashboard</h2>
 <h3>At a Glance</h3>
-  <div *ngIf='userrole!==undefined'>
-    <div *ngIf='userrole.includes("ID")'>
-      <p>{{userrole}}</p>
-    </div>
-   
-    <div *ngIf='userrole.includes("CEO")'>
-      <p>{{userrole}}</p>
-    </div>
-    <div *ngIf='userrole.includes("EXECUTIVE")'>
-      <p>{{userrole}}</p>
-    </div>
-  
-  <h3>Tasks</h3>
-      <div *ngIf='user!==undefined'>
-        <div *ngFor='let x of user.tasks'>
-          <p>{{x.task}}</p>
-        </div>
-      </div>
-  
-  <h3>Active Projects</h3>
-    <div *ngIf='userrole.includes("ID")'></div>
-    <div *ngIf='userrole.includes("CEO")'></div>
-    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
-  
-  <h3>People Groups</h3>
-    <div *ngIf='userrole.includes("ID")'></div>
-    <div *ngIf='userrole.includes("CEO")'></div>
-    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
-  
-  <h3>Planned Projects</h3>
-    <div *ngIf='userrole.includes("ID")'></div>
-    <div *ngIf='userrole.includes("CEO")'></div>
-    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
-  
+<div *ngIf='userrole!==undefined'>
+  <div *ngIf='userrole.includes("ID")'>
+    <p>{{userrole}}</p>
   </div>
+
+  <div *ngIf='userrole.includes("CEO")'>
+    <p>Late Reports</p>
+    <p>Tasks that missed Deadline</p>
+    <p>Progress of Each Active Project wrt tasks</p>
+    <p>Number of tasks per member in Country</p>
+    <p>Upcoming Tasks</p>
+    <p>Upcoming Reports</p>
+
+  </div>
+  <div *ngIf='userrole.includes("EXECUTIVE")'>
+    <p>{{userrole}}</p>
+  </div>
+
+  <h3>My Tasks</h3>
+  <div *ngIf='user!==undefined'>
+    <div *ngFor='let x of usertasks'>
+      <p>{{x.task}}</p>
+      <p>Deadline: {{(x.duedate*1000 * 60 * 60 * 24) + x.kpi.project.startdate | date}}</p>
+    </div>
+  </div>
+
+  <h3>Active Projects</h3>
+  <div *ngIf='userrole.includes("ID")'></div>
+  <div *ngIf='userrole.includes("CEO")'>
+    <div *ngFor='let x of activeprojects'>
+      {{x.name}}
+      {{x.startdate}}
+    </div>
+  </div>
+  <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+
+  <h3>People Groups</h3>
+  <div *ngIf='userrole.includes("ID")'></div>
+  <div *ngIf='userrole.includes("CEO")'></div>
+  <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+
+  <h3>Planned Projects</h3>
+  <div *ngIf='userrole.includes("ID")'></div>
+  <div *ngIf='userrole.includes("CEO")'>
+    <div *ngFor='let x of pendingprojects'>
+      <p>{{x.name}}</p>
+      <p>{{x.startdate}}</p>
+    </div>
+  </div>
+  <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+  <div *ngIf='userrole.includes("CEO")'>
+    <h3>Draft Projects</h3>
+    <div *ngFor='let x of draftprojects'>
+      <p>{{x.name}}</p>
+      <p>{{x.startdate}}</p>
+    </div>
+  </div>
+  <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+
+</div>

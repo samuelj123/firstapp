@@ -75,6 +75,7 @@ export interface Task {
     completed?: boolean;
     taskhandler: User;
     kpi?: KPI;
+    project: Project;
 }
 
 export interface KPI {

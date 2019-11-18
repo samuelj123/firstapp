@@ -34,6 +34,8 @@ export class UserService {
             .createQueryBuilder('user')
             .where('user.id = :id', {id})
             .leftJoinAndSelect('user.tasks', 'tasks')
+            .leftJoinAndSelect('tasks.kpi', 'kpi')
+            .leftJoinAndSelect('kpi.project', 'project')
             .getOne();
         // return await this.userRepository.findOne({ where: { id } });
     }
