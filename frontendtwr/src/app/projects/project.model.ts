@@ -68,11 +68,14 @@ export interface Language {
 }
 
 export interface Task {
+  realdeadline: number;
+    projstartdate?: number;
     id?: string;
     task: string;
     duration: number; // The back-end name for Start-Date
     enddate: number;
     completed?: boolean;
+    deadline?: Date;
     taskhandler: User;
     kpi?: KPI;
     project: Project;
@@ -84,11 +87,7 @@ export interface KPI {
     project?: Project;
     budget: number;
     id: string;
-    tasks: [{
-        id: string;
-        pointperson: string;
-        task: string;
-    }];
+    tasks: Task[];
     report: string;
     pointperson: string;
 }

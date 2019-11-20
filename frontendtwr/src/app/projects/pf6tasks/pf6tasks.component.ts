@@ -104,10 +104,10 @@ export class Pf6tasksComponent implements OnInit {
     })
     fv2.forEach(async x => {
       const obj = {
-        task: x.value.taskname,
-        duration: x.value.duration,
-        enddate: x.value.enddate,
-        taskhandler: x.value.taskhandler,
+        task: x.value.taskname as string,
+        duration: x.value.duration as number,
+        enddate: x.value.enddate as number,
+        taskhandler: x.value.taskhandler as string,
       };
       console.log(x.value.kpiid);
         await this.projservice.newtask(x.value.kpiid, obj).toPromise();

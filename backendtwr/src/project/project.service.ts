@@ -61,6 +61,8 @@ export class ProjectService {
             .leftJoin('project.creator', 'user')
             .where('user.country = :country', { country })
             .leftJoinAndSelect('project.need', 'need')
+            .leftJoinAndSelect('project.kpis', 'kpis')
+            .leftJoinAndSelect('kpis.tasks', 'task')
             .leftJoinAndSelect('need.pgroup', 'pgroup')
             .getMany();
     }

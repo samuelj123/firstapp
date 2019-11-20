@@ -99,7 +99,7 @@ export class ProjectsService {
     return this.http.get(this.task + '?p=' + id)
   }
 
-  newtask(kpiid: string, value: Task) {
+  newtask(kpiid: string, value: any) {
     return this.http.post(this.task + '/' + kpiid, value);
   }
 

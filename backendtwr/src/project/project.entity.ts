@@ -28,6 +28,7 @@ export class ProjectEntity {
     @Column({ type: 'simple-array', nullable: true }) marketingmethod?: string[];
     @Column({ type: 'text', nullable: true }) country?: string;
     @Column({ type: 'text', nullable: true }) denialmsg?: string;
+    @Column({ type: 'date', nullable: true }) startdate?: Date;
     @ManyToOne(type => NeedEntity, need => need.project, { onDelete: 'CASCADE' }) need: NeedEntity;
     @OneToMany(type => KpiEntity, kpi => kpi.project, { onDelete: 'CASCADE' }) kpis?: KpiEntity[];
     @ManyToOne(type => UserEntity, user => user.projects) creator: UserEntity;

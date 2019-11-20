@@ -16,11 +16,6 @@
 # Immediate Tasks
   * Fill up the dashboard for all levels
     * ID
-    * CEO
-        * At a Glance
-        * Tasks
-        * Active Projects
-        * Planned Projects
     * Executive
   * Do the UX UI Design
   * Upload to AWS

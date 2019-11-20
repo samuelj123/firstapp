@@ -2,27 +2,59 @@
 <h3>At a Glance</h3>
 <div *ngIf='userrole!==undefined'>
   <div *ngIf='userrole.includes("ID")'>
-    <p>{{userrole}}</p>
   </div>
 
   <div *ngIf='userrole.includes("CEO")'>
-    <p>Late Reports</p>
-    <p>Tasks that missed Deadline</p>
-    <p>Progress of Each Active Project wrt tasks</p>
-    <p>Number of tasks per member in Country</p>
+    <div>
+      <p>Late Reports</p>
+    </div>
+    <div *ngIf='latetasks!==null'>
+        <div *ngFor='let x of latetasks'>
+        <p>Tasks that missed Deadline</p>
+        <p>{{x.task}}</p>
+      </div>
+    </div>
+    <div *ngIf='activeprojects!==undefined'>
+      <p>Number of Active Projects</p>
+      <p>{{activeprojects.length}}/{{projects.length}}</p>
+      <p>Progress of Each Active Project wrt tasks</p>
+      <div *ngFor='let x of activeprojects'>
+        <p>{{x.name}}</p>
+        <div *ngFor='let y of x.kpis'>
+          <div *ngFor='let z of y.tasks'>
+            <p>{{z.task}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf='activeprojects!==undefined'>
+      <p>Users in Country and their Tasks</p>
+      <div *ngFor='let x of countryusers'>
+        <p>{{x.firstname}} {{x.lastname}}</p>
+        <div *ngFor='let y of x.tasks'>
+          <p>{{y.task}}</p>
+        </div>
+      </div>
+
+    </div>
+
     <p>Upcoming Tasks</p>
-    <p>Upcoming Reports</p>
+    <div *ngIf='upcomingtasks!==undefined'>
+      <div *ngFor='let x of upcomingtasks'>
+        <p>{{x.task}} - {{x.projectstartdate+x.enddate | date}}</p>
+      </div>
+    </div>
+    <!-- <p>Upcoming Reports</p> -->
 
   </div>
   <div *ngIf='userrole.includes("EXECUTIVE")'>
-    <p>{{userrole}}</p>
   </div>
 
   <h3>My Tasks</h3>
   <div *ngIf='user!==undefined'>
     <div *ngFor='let x of usertasks'>
       <p>{{x.task}}</p>
-      <p>Deadline: {{(x.duedate*1000 * 60 * 60 * 24) + x.kpi.project.startdate | date}}</p>
+      <p>Deadline: {{x.realdeadline | date}}</p>
     </div>
   </div>
 
