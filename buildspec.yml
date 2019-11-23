@@ -1,0 +1,14 @@
+phases:
+  prebuild:
+    commands:
+      - echo 'Loggin in to Amazon ECR'
+      - REPOSITORY=746210880682.dkr.ecr.us-east-2.amazonaws.com/twrapp
+      - COMMIT=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+  build:
+    commands:
+      - echo 'Build Started on `date`'
+      - echo 'Building Docker Image'
+      - docker build -t $REPOSITORY:latest
+      - docker-compose up -d
+  postbuild:
