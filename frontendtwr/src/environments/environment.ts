@@ -2,14 +2,15 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const x = 'http://localhost:4000';
 export const environment = {
   production: false,
-  API_USERSERVICE: "http://localhost:4000/api/user",
-  API_PROJECTSERVICE: "http://localhost:4000/api/project",
-  API_TASKSERVICE: "http://localhost:4000/api/task",
-  API_PGROUPSERVICE: "http://localhost:4000/api/pgroup",
-  API_KPISERVICE: "http://localhost:4000/api/kpi",
-  API_FUNDRAISINGSERVICE: "http://localhost:4000/api/fundraising"
+  API_USERSERVICE: x + "/api/user",
+  API_PROJECTSERVICE: x + "/api/project",
+  API_TASKSERVICE: x + "/api/task",
+  API_PGROUPSERVICE: x + "/api/pgroup",
+  API_KPISERVICE: x + "/api/kpi",
+  API_FUNDRAISINGSERVICE: x + "/fundraising"
 
 };
 
