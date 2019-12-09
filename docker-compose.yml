@@ -15,11 +15,15 @@ services:
       - 4001:4200
     volumes: 
       - ./frontendtwr:/app
+      - /app/node_modules/
   backend: 
     build: ./backendtwr
     ports: 
       - 4000:8080
     volumes:
       - ./backendtwr:/app
+      - /app/node_modules/
+    env_file:
+      - .env
 volumes: 
   pgdata:
