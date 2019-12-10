@@ -1,29 +1,37 @@
-/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
-html, body {
-    height: 100%;
-    margin: 0;
-    background-image: linear-gradient(to right, var(--secondary), var(--primary));
-}
-
+@import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
 :root {
-    --primary: #26c6da;
-    --secondary: #5BCFA4;
-    --black: #092e33;
-    --white: #effbfc;
-    --darkgrey: #38354A;
-    --lightgrey: #e4e8e9;
-    --warn: red;
-    --success: green;
-    --primaryp1: #20a8b9;
-    --primarym1: #45cedf;
-    --primaryp2: #1a8a98;
-    --primarym2: #81dee9;
-    --pplgrp: rgb(175, 232, 240);
-    --need: #45BE89;
-    --proj: #ff4081;
+    --white: #FEFDFF;
+    --black: #2E014E;
+    --grey: #625869;
+    --lgrey: #BAB3BF;
+    --dgrey: #29252C;
+    --p: #31f1a1;
+    --plight: #B6FBDE;
+    --pdark: #0BB970;
+    --s: #B34DFC; 
+    --slight: #D8A4FE;
+    --sdark: #48027B;
 }
 
-p.mat-body, h1.mat-h1, h2.mat-h2, h3.mat-h3, p.mat-small, h1.mat-display-4, h1.mat-display-3, h1.mat-display-2, h1.mat-display-1 {
+body {
+    background-color: var(--white);
+}
+h1, h2, h3, h4, h5, h6, small, strong, p, li, button {
+    font-family: lato;
     color: var(--black);
-} */
+}
+
+button {
+    border: none;
+    padding: 0.5em 1.5em;
+    background-color: var(--slight);
+    color: var(--black);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: var(--s);
+    color: var(--white);
+}
