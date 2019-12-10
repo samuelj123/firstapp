@@ -1,0 +1,39 @@
+.container {
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--black);
+    overflow-x: hidden;
+    padding-top: 2%;
+    color: var(--white);
+  }
+p, li {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--white);
+    display: block;
+  }
+.userprofile {
+    margin-left: 10%;
+    align-content: center;
+}
+.name {
+    font-size: 25px;
+    margin-bottom: 0;
+}
+.country {
+    margin-top: 0;
+    font-size: 15px;
+}
+ul {
+    padding-top: 10%;
+}
+li {
+    font-size: 1em;
+    padding: 0;
+    margin: .5em 0;
+  }

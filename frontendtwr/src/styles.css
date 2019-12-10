@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
 :root {
     --white: #FEFDFF;
     --black: #2E014E;
@@ -23,15 +23,16 @@ h1, h2, h3, h4, h5, h6, small, strong, p, li, button {
 
 button {
     border: none;
-    padding: 0.5em 1.5em;
-    background-color: var(--slight);
-    color: var(--black);
+    padding: 1em 1.75em;
+    background-color: var(--s);
+    color: var(--white);
     text-align: center;
+    font-weight: bold;
     text-decoration: none;
     display: inline-block;
 }
 
 button:hover {
-    background-color: var(--s);
+    background-color: var(--slight);
     color: var(--white);
 }
