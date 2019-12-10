@@ -1,15 +1,14 @@
 <div class="container">
   <div class="heading">
-    <h2 class="mat-h2">Welcome to TWR Project Proposal App</h2>
-    <p class="mat-small">Alpha Release</p>
+    <h2>TWR Project Management App</h2>
+    <p class='version'>Version 2 Alpha</p>
   </div>
   <form [formGroup]="loginForm" class="form">
-    <p class="mat-body">Enter your Login Details here!</p>
       <input placeholder="Email" type="text" formControlName="email" required>
       <input placeholder="Password" type="password" formControlName="password" required>
-    <div class="error mat-small" >{{error}}</div>
-    <button color="primary" (click)="onLogin()">Login</button>
+    <div class='error'>{{error}}</div>
+    <button (click)="onLogin()">Login</button>
   </form>
   
-  <p class="mat-body contactinfo">Contact your boss if you want your own login information =)</p>
+  <p class="contactinfo">Contact your boss for your login information or Lost credentials</p>
 </div>

@@ -1,0 +1,27 @@
+.container {
+    width: 30%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 0;
+}
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 0;
+}
+p.version{
+    margin-top: 0;
+    margin-bottom: 3em;
+}
+button {
+    margin: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+.error{
+    color: red;
+    font: Lato;
+}
+p.contactinfo {
+    margin-top: 3em;
+    text-align: center;
+}

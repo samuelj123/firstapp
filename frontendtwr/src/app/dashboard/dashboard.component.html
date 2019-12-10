@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Dashboard</h2>
-  <h3>At a Glance</h3>
+  <h3>Immediate Attention</h3>
   <div *ngIf='userrole!==undefined'>
     <div *ngIf='userrole.includes("ID")'>
     </div>
@@ -14,9 +14,9 @@
         </div>
       </div>
       <div class='card activeprojects' *ngIf='activeprojects!==undefined'>
-        <p>Active Projects</p>
+        <h3>Active Projects</h3>
         <h2><strong>{{activeprojects.length}}</strong>/{{projects.length}}</h2>
-        <p>Progress of Each Active Project wrt tasks</p>
+        <!-- <p>Progress of Each Active Project wrt tasks</p>
         <div *ngFor='let x of activeprojects'>
           <p>{{x.name}}</p>
           <div *ngFor='let y of x.kpis'>
@@ -24,15 +24,20 @@
               <p>{{z.task}}</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class='card' *ngIf='activeprojects!==undefined'>
-        <p>Users in Country and their Tasks</p>
+      <div class='card registeredusers' *ngIf='activeprojects!==undefined'>
+        <h3>Staff Overview</h3>
         <div *ngFor='let x of countryusers'>
-          <p>{{x.firstname}} {{x.lastname}}</p>
-          <div *ngFor='let y of x.tasks'>
+          <p [class.notask]='x.tasks.length===0' 
+            [class.threetask]="x.tasks.length<=3 && x.tasks.length>0" 
+            [class.fivetask]='x.tasks.length<=5 && x.tasks.length>3' 
+            [class.seventask]='x.tasks.length<=7 && x.tasks.length>5'
+          [class.fivetask]='x.tasks.length>7'>
+          {{x.firstname}} {{x.lastname}}</p>
+          <!-- <div *ngFor='let y of x.tasks'>
             <p>{{y.task}}</p>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -53,8 +58,7 @@
     <h3>My Tasks</h3>
     <div *ngIf='user!==undefined'>
       <div *ngFor='let x of usertasks'>
-        <p>{{x.task}}</p>
-        <p>Deadline: {{x.realdeadline | date}}</p>
+        <p>{{x.task}} | Deadline: {{x.realdeadline | date}}</p>
       </div>
     </div>
 

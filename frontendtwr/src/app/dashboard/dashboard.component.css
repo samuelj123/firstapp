@@ -1,10 +1,12 @@
 /* General */
 .container {
     margin-left: 20%;
+    margin-right: 5%;
+    margin-top: 5%;
 }
 .grid {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
 
 }
 .card {
@@ -15,13 +17,51 @@
 p{
     color: var(--dp);
 }
+h3{
+    color: var(--grey);
+}
 
+/* Title */
+h2 {
+    font-size: 3em;
+}
 /* Late Reports */
 
 /* Active Projects */
+.activeprojects h3 {
+    color: var(--black);
+}
 .activeprojects strong{
     font-size: 5rem;
+    color: var(--s);
 }
 .activeprojects h2 {
     font-size: 3rem;
+    color: var(--s);
+}
+
+/* Registered Users  */
+.registeredusers p {
+    margin: 0;
+    font-weight: 500;
+}
+.registeredusers .notask {
+    color: var(--grey);
+    font-size: 1rem;
+}
+.registeredusers .threetask {
+    color: var(--dp);
+    font-size: 1.25rem;
+}
+.registeredusers .fivetask {
+    color: var(--p);
+    font-size: 1.5rem;
+}
+.registeredusers .seventask {
+    color: var(--lp);
+    font-size: 1.75rem;
+}
+.registeredusers .ninetask {
+    color: var(--s);
+    font-size: 2rem;
 }
