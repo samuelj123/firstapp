@@ -1,3 +1,27 @@
+/* General */
 .container {
     margin-left: 20%;
+}
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+.card {
+    margin: .5em;
+    background-color: var(--white);
+    padding: 2em 3em;
+}
+p{
+    color: var(--dp);
+}
+
+/* Late Reports */
+
+/* Active Projects */
+.activeprojects strong{
+    font-size: 5rem;
+}
+.activeprojects h2 {
+    font-size: 3rem;
 }

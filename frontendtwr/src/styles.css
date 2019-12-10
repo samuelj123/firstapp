@@ -3,18 +3,18 @@
     --white: #FEFDFF;
     --black: #2E014E;
     --grey: #625869;
-    --lgrey: #BAB3BF;
-    --dgrey: #29252C;
+    --lg: #ECEAED;
+    --d: #29252C;
     --p: #31f1a1;
-    --plight: #B6FBDE;
-    --pdark: #0BB970;
+    --lp: #B6FBDE;
+    --dp: #0BB970;
     --s: #B34DFC; 
-    --slight: #D8A4FE;
-    --sdark: #48027B;
+    --ls: #D8A4FE;
+    --ds: #48027B;
 }
 
 body {
-    background-color: var(--white);
+    background-color: var(--lg);
 }
 h1, h2, h3, h4, h5, h6, small, strong, p, li, button {
     font-family: lato;
@@ -33,6 +33,7 @@ button {
 }
 
 button:hover {
-    background-color: var(--slight);
+    background-color: var(--ls);
     color: var(--white);
 }
+
