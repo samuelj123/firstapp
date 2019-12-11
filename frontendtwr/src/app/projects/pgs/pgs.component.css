@@ -1,3 +1,10 @@
 .container {
     margin-left: 23%;
 }
+.pgcontainer {
+    padding-right: 10%;
+}
+.pggrid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+}

@@ -9,11 +9,7 @@
     grid-template-columns: auto auto auto auto;
 
 }
-.card {
-    margin: .5em;
-    background-color: var(--white);
-    padding: 2em 3em;
-}
+
 p{
     color: var(--dp);
 }
@@ -41,27 +37,19 @@ h2 {
 }
 
 /* Registered Users  */
-.registeredusers p {
-    margin: 0;
-    font-weight: 500;
+.registeredusers > .grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
-.registeredusers .notask {
-    color: var(--grey);
-    font-size: 1rem;
+
+/* My Tasks */
+.longcard {
+    padding: 1.5em 2em;
+    background-color: var(--white);
 }
-.registeredusers .threetask {
-    color: var(--dp);
-    font-size: 1.25rem;
+.mytask {
+    border-bottom: dotted 1px var(--lg);
+    padding: .75em 0 .75em 0;
 }
-.registeredusers .fivetask {
-    color: var(--p);
-    font-size: 1.5rem;
-}
-.registeredusers .seventask {
-    color: var(--lp);
-    font-size: 1.75rem;
-}
-.registeredusers .ninetask {
-    color: var(--s);
-    font-size: 2rem;
-}
+
+/* Active Projects */

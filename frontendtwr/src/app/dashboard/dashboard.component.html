@@ -29,12 +29,15 @@
       <div class='card registeredusers' *ngIf='activeprojects!==undefined'>
         <h3>Staff Overview</h3>
         <div *ngFor='let x of countryusers'>
-          <p [class.notask]='x.tasks.length===0' 
-            [class.threetask]="x.tasks.length<=3 && x.tasks.length>0" 
-            [class.fivetask]='x.tasks.length<=5 && x.tasks.length>3' 
-            [class.seventask]='x.tasks.length<=7 && x.tasks.length>5'
-          [class.fivetask]='x.tasks.length>7'>
-          {{x.firstname}} {{x.lastname}}</p>
+          <div class="grid">
+            <div>
+              <p>{{x.firstname}} {{x.lastname}}</p>
+            </div>
+            <div>
+              <p>| {{x.tasks.length}} tasks</p>
+            </div>
+          </div>
+
           <!-- <div *ngFor='let y of x.tasks'>
             <p>{{y.task}}</p>
           </div> -->
@@ -56,30 +59,33 @@
     </div>
 
     <h3>My Tasks</h3>
-    <div *ngIf='user!==undefined'>
+    <div class='longcard' *ngIf='user!==undefined'>
       <div *ngFor='let x of usertasks'>
-        <p>{{x.task}} | Deadline: {{x.realdeadline | date}}</p>
+        <p class="mytask">{{x.task}} | {{x.realdeadline | date}}</p>
       </div>
     </div>
 
     <h3>Active Projects</h3>
-    <div *ngIf='userrole.includes("ID")'></div>
-    <div *ngIf='userrole.includes("CEO")'>
+    <div class='longcard' *ngIf='userrole.includes("ID")'></div>
+    <div class='longcard' *ngIf='userrole.includes("CEO")'>
       <div *ngFor='let x of activeprojects'>
-        {{x.name}}
-        {{x.startdate}}
+        <p>
+          {{x.name}} | started on: {{x.startdate}}
+        </p>
       </div>
     </div>
     <div *ngIf='userrole.includes("EXECUTIVE")'></div>
 
     <h3>People Groups</h3>
-    <div *ngIf='userrole.includes("ID")'></div>
-    <div *ngIf='userrole.includes("CEO")'></div>
-    <div *ngIf='userrole.includes("EXECUTIVE")'></div>
+    <div class="longcard" *ngIf='userrole.includes("ID")'></div>
+    <div class="longcard" *ngIf='userrole.includes("CEO")'></div>
+    <div class="longcard" *ngIf='userrole.includes("EXECUTIVE")'></div>
 
-    <h3>Planned Projects</h3>
-    <div *ngIf='userrole.includes("ID")'></div>
+    <div *ngIf='userrole.includes("ID")'>
+      <h3>Planned Projects</h3>
+e    </div>
     <div *ngIf='userrole.includes("CEO")'>
+      <h3>Planned Projects</h3>
       <div *ngFor='let x of pendingprojects'>
         <p>{{x.name}}</p>
         <p>{{x.startdate}}</p>
@@ -88,9 +94,8 @@
     <div *ngIf='userrole.includes("EXECUTIVE")'></div>
     <div *ngIf='userrole.includes("CEO")'>
       <h3>Draft Projects</h3>
-      <div *ngFor='let x of draftprojects'>
+      <div class='longcard' *ngFor='let x of draftprojects'>
         <p>{{x.name}}</p>
-        <p>{{x.startdate}}</p>
       </div>
     </div>
     <div *ngIf='userrole.includes("EXECUTIVE")'></div>

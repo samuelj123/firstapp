@@ -1,4 +1,34 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Thin.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Light.ttf) format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Bold.ttf) format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Black.ttf) format("truetype");
+    font-weight: 900;
+
+}
+
 :root {
     --white: #FEFDFF;
     --black: #2E014E;
@@ -8,7 +38,7 @@
     --p: #31f1a1;
     --lp: #B6FBDE;
     --dp: #086f44;
-    --s: #B34DFC; 
+    --s: #B34DFC;
     --ls: #D8A4FE;
     --ds: #48027B;
 }
@@ -16,10 +46,11 @@
 body {
     background-color: var(--lg);
 }
+
 h1, h2, h3, h4, h5, h6, small, strong, p, li, button {
     font-family: lato;
     color: var(--black);
-    font-weight:300;
+    font-weight: 300;
 }
 
 button {
@@ -38,10 +69,18 @@ button:hover {
     color: var(--white);
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], textarea, select, input[type=number] {
     border: none;
     width: 100%;
     padding: .5em;
     margin: .5em 0;
     color: var(--ds);
+}
+
+input[type=text]
+  
+.card {
+    margin: .5em;
+    background-color: var(--white);
+    padding: 2em 3em;
 }

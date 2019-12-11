@@ -38,9 +38,9 @@ li {
     font-size: 1em;
     padding: .5em 10%;
     margin: 0;
+    font-weight: 500;
 }
 li:hover {
     background-color: var(--s);
-    font-weight: 500;
     cursor: pointer;
 }
