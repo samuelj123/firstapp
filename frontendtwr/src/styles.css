@@ -47,7 +47,7 @@ body {
     background-color: var(--lg);
 }
 
-h1, h2, h3, h4, h5, h6, small, strong, p, li, button {
+h1, h2, h3, h4, h5, h6, small, strong, p, li, button, label, textarea {
     font-family: lato;
     color: var(--black);
     font-weight: 300;
@@ -64,6 +64,20 @@ button {
     display: inline-block;
 }
 
+button.secondary {
+   background-color: var(--lgrey);
+   border: 1.5px solid black;
+   border-color:var(--s);
+   color:var(--s);
+   border-radius: 5px;
+   font-weight: 300;
+}
+
+button.delete {
+    padding: .5em;
+    background-color: var(--lgrey);
+    color: var(--s);
+}
 button:hover {
     background-color: var(--ls);
     color: var(--white);
@@ -75,10 +89,9 @@ input[type=text], input[type=password], textarea, select, input[type=number] {
     padding: .5em;
     margin: .5em 0;
     color: var(--ds);
+    margin-bottom: 2em;
 }
 
-input[type=text]
-  
 .card {
     margin: .5em;
     background-color: var(--white);

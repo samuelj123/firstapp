@@ -17,6 +17,7 @@ export class PGsComponent implements OnInit {
   showVar: boolean;
   allpgs: PGroup[];
   userrole: string;
+  deletediag: string[] = [];
   async ngOnInit() {
     const country = await this.uservice.currentusercountry() as string;
     if(country === 'Singapore') {
@@ -37,19 +38,19 @@ export class PGsComponent implements OnInit {
     this.router.navigateByUrl('/addpg');
   }
 
-  async delete(value: string) {
-    // const pgroup = await this.projservice.getonepg(value).toPromise() as PGroup;
-    // // console.log(pgroup.pgroup);
-    // const dialogRef = this.dialog.open(DeldialogueComponent, {
-    //   width: '250px',
-    //   data: { id: pgroup.id, string: pgroup.pgroup, associated: 'the Needs and the Projects' }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === undefined) { } else {
-    //     this.projservice.deletepg(value).subscribe();
-    //     this.ngOnInit();
-    //   }
-    // });
+  async deletediager(x:string) {
+    console.log(this.deletediag);
+    this.deletediag.push(x);
+    console.log(this.deletediag);
+  }
+  async deleter(x:string) {
+    this.projservice.deletepg(x).toPromise();
+    this.deletediag=[];
+    this.ngOnInit();
+  }
+
+  close() {
+    this.deletediag=[];
   }
 
   edit(value: string) {

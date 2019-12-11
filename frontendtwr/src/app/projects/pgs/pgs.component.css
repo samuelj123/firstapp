@@ -8,3 +8,23 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
 }
+.deletediag {
+    display: none;
+}
+.activedel {
+    display: absolute;
+    color: var(--p);
+}
+strong {
+    font-weight: 400;
+}
+
+.smalldelete {
+    background-color: var(--white);
+    padding: 0 2em;
+    margin: 0 2em;
+    border-radius: 5px;
+    border: .5px solid var(--s);
+    font-size: 1em;
+    color: var(--s);
+}

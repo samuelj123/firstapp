@@ -1,3 +1,26 @@
 .container {
     margin-left: 20%;
+    margin-right: 30%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 3em;
+}
+
+.need {
+    position: relative;
+}
+
+button.delete {
+    position: absolute;
+    top: 5%;
+    right: 19%;
+}
+button.secondary {
+    float: left;
+}
+button.submit {
+    float: right;
 }

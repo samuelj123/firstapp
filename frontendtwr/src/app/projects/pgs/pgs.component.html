@@ -7,9 +7,13 @@
     </div>
     <div class="pgcontainer">
       <div class='card' *ngFor="let x of allpgs">
-        <div>
-          <button (click)="delete(x.id)">Delete</button>
-          <button (click)="edit(x.id)">Edit</button>
+        <div [class.deletediag]='deletediag.length===0' [class.activedel]='deletediag.includes(x.id)'><p>Are you sure you want to Delete this? You will delete <strong>{{x.projectnos}} Projects </strong> along with this People Group</p>
+          <button class='smalldelete' (click)='deleter(x.id)'>Yes</button>
+          <button class='smalldelete' (click)='close()'>No</button>
+        </div>
+        <div style='float:right;'>
+          <button class='delete' (click)="deletediager(x.id)"><i class="material-icons">delete</i></button>
+          <button class='delete' (click)="edit(x.id)"><i class="material-icons">edit</i></button>
         </div>
         <h2>{{x.pgroup}}</h2>
         <div class='pggrid'>
