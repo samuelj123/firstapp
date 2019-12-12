@@ -27,7 +27,7 @@ export class Pf6fundraisingComponent implements OnInit {
   async ngOnInit() {
     this.route.params.subscribe(params => this.projid = (params.id));
     this.project = await this.projservice.getoneproj(this.projid).toPromise() as Project;
-    // this.fraising = await this.projservice.getfraisingbyproj(this.projid).toPromise() as Fundraising[];
+    this.fraising = await this.projservice.getfraisingbyproj(this.projid).toPromise() as Fundraising[];
 
     this.fraisingform = this.fb.group({
       'fundraising': this.fb.array([
@@ -88,7 +88,6 @@ export class Pf6fundraisingComponent implements OnInit {
       vl.push(val);
     }
     await this.projservice.newfundraising(vl).toPromise();
-    this.router.navigateByUrl('/projects');
   }
 
 }

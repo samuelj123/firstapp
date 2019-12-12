@@ -1,58 +1,60 @@
-<app-proposalnav></app-proposalnav>
-<div *ngIf="myForm!==undefined">
+<div class="container">
+  <app-proposalnav></app-proposalnav>
+  <div *ngIf="myForm!==undefined" class='seccontainer'>
 
-  <!-- Start of Content Distribution-->
-  <form [formGroup]="myForm">
-    <div>
-      <h1>Content Distribution</h1>
-      <p>{{project.name}}</p>
+    <!-- Start of Content Distribution-->
+    <form [formGroup]="myForm">
       <div>
-        <p><strong>Vision: </strong>{{project.vision}}</p>
-        <p><strong>Mission: </strong>{{project.mission}}</p>
-      </div>
-
-
-      <h2>Distribution Methods</h2>
-      <div formArrayName="distmethod">
-        <div *ngFor="let address of distmethod.controls; let i=index">
-          <!-- The repeated alias template -->
-          <div>
-            <label>Distribution Type</label>
-            <select (change)="onChange($event.target, i)">
-              <option *ngFor="let y of disttype" [value]="y">{{y}}</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Distribution Method</label>
-            <select [formControlName]="i">
-              <option *ngFor="let z of dmethod[i]" [value]="z">{{z}}</option>
-            </select>
-          </div>
-          <button (click)="deleteDmethod(i)" tabindex="2"><i>delete</i></button>
-        </div>
-        <button (click)="addDmethod()">Add Distribution Method</button>
-      </div>
-
-
-      <h3>Distribution KPI</h3>
-      <div formArrayName="distributionkpis">
-        <div *ngFor="let address of distributionkpis.controls; let i=index">
-          <!-- The repeated alias template -->
-
-          <div>
-            <textarea placeholder="Distribution KPI:" type="text" [formControlName]="i"></textarea>
-            <button (click)="deletedistributionkpi(i)" tabindex="2"><i>delete</i></button>
-          </div>
-        </div>
-        <button color="primary" (click)="addDistributionkpi()">Add Distribution KPI</button>
+        <h1>Content Distribution</h1>
+        <p>{{project.name}}</p>
         <div>
-          <button (click)="onSubmit()">Next</button>
-          <button (click)="onDraft()">Save as Draft</button>
+          <p><strong>Vision: </strong>{{project.vision}}</p>
+          <p><strong>Mission: </strong>{{project.mission}}</p>
+        </div>
+
+
+        <h2>Distribution Methods</h2>
+        <div formArrayName="distmethod">
+          <div *ngFor="let address of distmethod.controls; let i=index">
+            <!-- The repeated alias template -->
+            <div>
+              <label>Distribution Type</label>
+              <select (change)="onChange($event.target, i)">
+                <option *ngFor="let y of disttype" [value]="y">{{y}}</option>
+              </select>
+            </div>
+
+            <div class=dmethod>
+              <label>Distribution Method</label>
+              <select [formControlName]="i">
+                <option *ngFor="let z of dmethod[i]" [value]="z">{{z}}</option>
+              </select>
+              <button (click)="deleteDmethod(i)" tabindex="2" class='delete'><i class='material-icons'>delete</i></button>
+            </div>
+          </div>
+          <button class='secondary' (click)="addDmethod()">Add Distribution Method</button>
+        </div>
+
+
+        <h3 class='distkpi'>Distribution KPI</h3>
+        <div formArrayName="distributionkpis">
+          <div *ngFor="let address of distributionkpis.controls; let i=index">
+            <!-- The repeated alias template -->
+
+            <div>
+              <textarea placeholder="Distribution KPI:" type="text" [formControlName]="i"></textarea>
+              <button (click)="deletedistributionkpi(i)" tabindex="2"><i>delete</i></button>
+            </div>
+          </div>
+          <button class="secondary" (click)="addDistributionkpi()">Add Distribution KPI</button>
+          <div class='submline'>
+            <button class='submit' (click)="onSubmit()">Next</button>
+            <button class='secondary' (click)="onDraft()">Save as Draft</button>
+          </div>
         </div>
       </div>
-    </div>
 
-  </form>
-  <!-- End of Content Distribution -->
+    </form>
+    <!-- End of Content Distribution -->
+  </div>
 </div>

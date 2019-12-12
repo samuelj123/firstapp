@@ -29,7 +29,7 @@ export class ActiveprojComponent implements OnInit {
   budget: number;
   toadd2: number[] =[];
   fundsraised: number;
-  ndate: Date;
+  ndate: Date; // Project Start Date (in language Angular can understand)
   tasks: Task[]
   taskscompleted: Task[];
 
@@ -45,8 +45,8 @@ export class ActiveprojComponent implements OnInit {
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
     if(this.project.startdate!==undefined){
       this.startdate = this.project.startdate.toString();
-      const newdate = this.startdate.split("-",3);
-      this.ndate = new Date(+newdate[0], +newdate[1], +newdate[2]);
+      const datestring = this.startdate.split("-",3);
+      this.ndate = new Date(+datestring[0], +datestring[1] -1, +datestring[2]);
     }
     this.tasks=await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
     this.taskscompleted=this.tasks.filter(x=>x.completed===true);

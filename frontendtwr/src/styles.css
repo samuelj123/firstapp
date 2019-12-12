@@ -47,7 +47,7 @@ body {
     background-color: var(--lg);
 }
 
-h1, h2, h3, h4, h5, h6, small, strong, p, li, button, label, textarea {
+h1, h2, h3, h4, h5, h6, small, strong, p, li, button, label, textarea, th, td {
     font-family: lato;
     color: var(--black);
     font-weight: 300;
@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6, small, strong, p, li, button, label, textarea {
 
 button {
     border: none;
-    padding: 1em 1.75em;
+    padding: .75em 1.75em;
     background-color: var(--s);
     color: var(--white);
     text-align: center;
@@ -69,7 +69,7 @@ button.secondary {
    border: 1.5px solid black;
    border-color:var(--s);
    color:var(--s);
-   border-radius: 5px;
+   /* border-radius: 5px; */
    font-weight: 300;
 }
 

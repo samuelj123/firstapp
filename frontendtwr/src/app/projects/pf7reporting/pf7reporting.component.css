@@ -1,0 +1,15 @@
+.container {
+    margin-left: 20%;
+}
+
+.seccontainer {
+    margin-right: 40%;
+    margin-top: 3em;
+}
+
+.kpi {
+    font-weight: 500;
+}
+button.submit {
+    float: right;
+}

@@ -1,32 +1,32 @@
-<app-proposalnav></app-proposalnav>
+<div class="container"><app-proposalnav></app-proposalnav>
 <div  *ngIf="myForm!==undefined">
-  <!-- Beginning of AR -->
-  <form [formGroup]="myForm">
-    <div>
-      <h2>Audience Relations</h2>
-      <p>{{project.name}}</p>
-      <p>New Project Proposal form (5/6) </p>
-      <div>
-        <p><strong>Vision: </strong>{{project.vision}}</p>
-        <p><strong>Mission: </strong>{{project.mission}}</p>
-      </div>
-      <div formArrayName="audiencerelationskpis">
-        <div *ngFor="let address of audiencerelationskpis['controls']; let i=index">
-          <!-- The repeated alias template -->
-
-          <div>
-            <textarea placeholder="Audience Relations KPI:" type="text" [formControlName]="i"></textarea>
-            <button (click)="deleteaudiencerelationskpi(i)" tabindex="2"><i>delete</i></button>
-          </div>
-        </div>
-        <button (click)="addAudiencerelationskpi()">Add Audience Relations
-          KPI</button>
-      </div>
-      <div>
-        <button (click)="onSubmit()">Next</button>
-        <button (click)="onDraft()">Save as Draft</button>
-      </div>
-    </div>
-
-  </form>
+<!-- Beginning of AR -->
+<form [formGroup]="myForm">
+<div class='seccontainer'>
+<h2>Audience Relations</h2>
+<p>{{project.name}}</p>
+<p>New Project Proposal form (5/6) </p>
+<div>
+<p><strong>Vision: </strong>{{project.vision}}</p>
+<p><strong>Mission: </strong>{{project.mission}}</p>
 </div>
+<div formArrayName="audiencerelationskpis">
+<div *ngFor="let address of audiencerelationskpis['controls']; let i=index">
+<!-- The repeated alias template -->
+
+<div class='arkpi'>
+<textarea placeholder="Audience Relations KPI:" type="text" [formControlName]="i"></textarea>
+<button class='delete' (click)="deleteaudiencerelationskpi(i)" tabindex="2"><i class='material-icons'>delete</i></button>
+</div>
+</div>
+<button class='secondary' (click)="addAudiencerelationskpi()">Add Audience Relations
+KPI</button>
+</div>
+<div class='submline'>
+  <button class='submit' (click)="onSubmit()">Next</button>
+  <button class='secondary' (click)="onDraft()">Save as Draft</button>
+</div>
+</div>
+
+</form>
+</div></div>

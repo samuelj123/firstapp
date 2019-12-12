@@ -132,7 +132,7 @@ export class Pf6tasksComponent implements OnInit {
 
   async next() {
     this.savetasks();
-    await this.router.navigateByUrl('/pf7reporting/' + this.projid);
+    await this.router.navigateByUrl('/pf6fundrdaising/' + this.projid);
   }
 
   async draft() {

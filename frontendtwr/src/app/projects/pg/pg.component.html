@@ -45,10 +45,12 @@
       <h3>Needs</h3>
       <div *ngFor="let address of pgForm.get('needs')['controls']; let i=index">
         <!-- The repeated alias template -->
-        <div class='need'><div [formGroupName]="i" style="width: 80%">
-        <input placeholder="needs" type="text" formControlName="need" tabindex="10">
+        <div class='need'>
+          <div [formGroupName]="i" style="width: 80%">
+            <input placeholder="needs" type="text" formControlName="need" tabindex="10">
+          </div>
+          <button (click)="delNeed(i)" class="delete"><i class="material-icons">delete</i></button>
         </div>
-        <button (click)="delNeed(i)" class="delete"><i class="material-icons">delete</i></button></div>
       </div>
       <button class="secondary" color="primary" (click)="addNeed()" tabindex="11">Add Need</button>
     </div>

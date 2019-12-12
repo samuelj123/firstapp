@@ -1,24 +1,28 @@
-<app-proposalnav></app-proposalnav>
-<div *ngIf="project!==undefined">
-  <div>
-    <h2>Project Overview and Budget Entry</h2>
-    <div><strong>Vision:</strong> {{project.vision}}</div>
-    <div><strong>Mission:</strong> {{project.mission}}</div>
-
-    <div *ngFor="let x of project.kpis">
-      <h3>{{x.kpi}}</h3>
-      <div *ngFor="let y of x.tasks">
-        {{y.task}}
-      </div>
-      <p>Amount required</p>
+<div class="container">
+  <app-proposalnav></app-proposalnav>
+  <div class="seccontainer">
+    <div *ngIf="project!==undefined">
       <div>
-        <input type="text" placeholder="Budget Required" [(ngModel)]="x.budget" [attr.name]="x.id"
-          (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
-      </div>
-    </div>
-    <button (click)="submit()">Submit</button>
-    <button (click)="save()">Save as Draft</button>
-    <button (click)="reviewproject()">Review Project</button>
-  </div>
+        <h2>Budget Entry</h2>
+        <p><strong>Vision:</strong> {{project.vision}}</p>
+        <p><strong>Mission:</strong> {{project.mission}}</p>
 
+        <div *ngFor="let x of project.kpis">
+          <h3>{{x.kpi}}</h3>
+          <div *ngFor="let y of x.tasks">
+            {{y.task}}
+          </div>
+          <p>Amount required</p>
+          <div>
+            <input type="text" placeholder="Budget Required" [(ngModel)]="x.budget" [attr.name]="x.id"
+              (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+          </div>
+        </div>
+        <div class="submline"><button class='submit' (click)="submit()">Submit</button>
+          <button class='secondary' (click)="save()">Save as Draft</button>
+          <button class='secondary' (click)="reviewproject()">Review Project</button></div>
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -1,41 +1,46 @@
-<app-proposalnav></app-proposalnav>
-<div  *ngIf="myForm!==undefined">
-  <!-- Start of Marketing -->
-  <form [formGroup]="myForm">
+<div class="container">
+  <app-proposalnav></app-proposalnav>
+  <div *ngIf="myForm!==undefined">
+    <!-- Start of Marketing -->
+    <div class="seccontainer">
+      <form [formGroup]="myForm">
 
-    <div>
-      <h2>Marketing</h2>
-      <p>{{project.name}}</p>
-      <p>New Project Proposal form (4/6) </p>
-      <div>
-        <p><strong>Vision: </strong>{{project.vision}}</p>
-        <p><strong>Mission: </strong>{{project.mission}}</p>
-      </div>
-
-      <h3>Methods of Marketing</h3>
-      <div>
-        <select formControlName="marketingmethod" multiple>
-          <option *ngFor="let x of mmethods" value="{{x}}">{{x}}</option>
-        </select>
-      </div>
-
-      <h3>Marketing KPI</h3>
-      <div formArrayName="marketingkpis">
-        <div *ngFor="let address of marketingkpis.controls; let i=index">
-          <!-- The repeated alias template -->
+        <div>
+          <h2>Marketing</h2>
+          <p>{{project.name}}</p>
+          <p>New Project Proposal form (4/6) </p>
           <div>
-            <textarea placeholder="Marketing KPI" type="text" [formControlName]="i"></textarea>
-            <button (click)="deletemarketingkpi(i)" tabindex="2"><i>delete</i></button>
+            <p><strong>Vision: </strong>{{project.vision}}</p>
+            <p><strong>Mission: </strong>{{project.mission}}</p>
+          </div>
+
+          <h3 class='mmethod'>Methods of Marketing</h3>
+          <div>
+            <select formControlName="marketingmethod" multiple>
+              <option *ngFor="let x of mmethods" value="{{x}}">{{x}}</option>
+            </select>
+          </div>
+
+          <h3>Marketing KPI</h3>
+          <div formArrayName="marketingkpis">
+            <div *ngFor="let address of marketingkpis.controls; let i=index">
+              <!-- The repeated alias template -->
+              <div class='mkpi'>
+                <textarea placeholder="Marketing KPI" type="text" [formControlName]="i"></textarea>
+                <button class='delete' (click)="deletemarketingkpi(i)" tabindex="2"><i class='material-icons'>delete</i></button>
+              </div>
+            </div>
+            <button class='secondary' (click)="addMarketingkpi()">Add Marketing KPI</button>
+          </div>
+          <div class='submline'>
+            <button class='secondary' (click)="onSubmit()">Next</button>
+            <button class='secondary' (click)="onDraft()">Save as Draft</button>
+            <button class='submit' (click)="onSubmit()">Next</button>
           </div>
         </div>
-        <button (click)="addMarketingkpi()">Add Marketing KPI</button>
-      </div>
-      <div>
-        <button (click)="onSubmit()">Next</button>
-        <button (click)="onDraft()">Save as Draft</button>
-      </div>
-    </div>
 
-  </form>
-  <!-- End of Marketing -->
+      </form>
+      <!-- End of Marketing -->
+    </div>
+  </div>
 </div>

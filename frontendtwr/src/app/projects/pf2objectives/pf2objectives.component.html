@@ -1,58 +1,89 @@
-<app-proposalnav></app-proposalnav>
-<div *ngIf="myForm!==undefined">
-	<div>
-		<form [formGroup]="myForm">
-			<div>
-				<div *ngIf="project!==undefined">
-					<h1>Content Creation</h1>
-					<p>{{project.name}}</p>
-					<div>
-						<p><strong>Vision: </strong>{{project.vision}}</p>
-						<p><strong>Mission: </strong>{{project.mission}}</p>
-					</div>
-				</div>
-				<div><input placeholder="Program Name" type="text" formControlName="programname">
-				</div>
-				<div><input placeholder="Duration in Minutes" type="number" formControlName="duration">
-				</div>
-				<div><input placeholder="Number of Programs" type="number" formControlName="programsno">
-				</div>
-
+<div class="container">
+	<app-proposalnav></app-proposalnav>
+	<div *ngIf="myForm!==undefined">
+		<div>
+			<form [formGroup]="myForm">
 				<div>
-					<label>Content Format</label>
-					<select formControlName="contentformat">
-						<option *ngFor="let x of contentformat" [value]="x">{{x}}</option>
-					</select>
-				</div>
-
-				<div>
-					<label>Production Format</label>
-					<select formControlName="productionformat">
-						<option *ngFor="let y of productionformat" [value]="y">{{y}}</option>
-					</select>
-				</div>
-
-				<h3>Content Creation KPI</h3>
-				<div formArrayName="productionkpis">
-					<div *ngFor="let address of productionkpis.controls; let i=index">
-						<!-- The repeated alias template -->
+					<div *ngIf="project!==undefined">
+						<h1 class='projname'>{{project.name}}</h1>
+						<h3>Content Creation</h3>
 						<div>
-							<textarea type="text" placeholder="Production KPI" [formControlName]="i"></textarea>
-							<button (click)="deleteproductionkpi(i)" tabindex="2"><i>delete</i></button>
+							<p><strong>Vision: </strong>{{project.vision}}</p>
+							<p><strong>Mission: </strong>{{project.mission}}</p>
 						</div>
 					</div>
-					<button color="primary" (click)="addProductionkpi()" tabindex="0">Add Content Creation
-						KPI</button>
+					<div class="seccontainer">
+						<label class="pgname">Program Name <p class="rightpgname">This is the Name of the Program that
+								will be aired/broadcast/published. Try and make it as catchy and relevant as possible
+								for the Target Audience. This Program name is different from the entire Project</p>
+						</label>
+						<input placeholder="Program Name" type="text" formControlName="programname">
+
+						<label class="duration">Duration of the Program <p class="rightduration">Mention how long each
+								Episode/program/youtube video will last. An usual radio broadcast would go for around
+								22minutes. </p></label>
+						<input placeholder="Duration in Minutes" type="number" formControlName="duration">
+
+						<label class="no">Number of Episodes<p class="rightno">How many episodes/programs are you
+								planning to record and produce for this project? Usually, one would require 52 programs
+								if it's your intention to produce a weekly program for a full year. </p></label>
+						<input placeholder="Number of Programs" type="number" formControlName="programsno">
+
+
+						<div>
+							<label class="cformat">Content Format<p class="rightcformat">This should be well thought
+									through with the Creative Team before deciding. If you can't find one that fits your
+									format, please click on Drama.</p>
+							</label>
+							<select formControlName="contentformat">
+								<option *ngFor="let x of contentformat" [value]="x">{{x}}</option>
+							</select>
+						</div>
+
+						<div>
+							<label class='pformat'>Production Format <p class="rightpformat">There are only two options.
+									A third will not be provided</p></label>
+							<select formControlName="productionformat">
+								<option *ngFor="let y of productionformat" [value]="y">{{y}}</option>
+							</select>
+						</div>
+
+
+						<div class='cckpi'><h3>
+							Content Creation KPI
+						</h3> <p class="rightcckpi">KPI, or Key Performance Index, is a
+								very important part
+								of any Project Strategy. <br>Your KPI informs you, your staff, and your partners what
+								you consider as the measurement of success. <br> For example. If my Vision Statement 
+								'to lose weight', and my Mission is 'to diet and exercise everyday', My KPIs would look something like this. 
+								<br> '1. Eat less than 1500 calories every day' <br> '2. To do Low Intensity Aerobic Workouts
+								4 days a week'. <br>Once the project starts, 'losing weight' will not motivate me to eat
+								right and exercise, but my KPIs will show me whether I am working toward my vision. <br> 
+								Writing excellent KPIs are the bread-and-butter of all upper-management.
+							</p>
+						</div>
+						<div formArrayName="productionkpis">
+							<div *ngFor="let address of productionkpis.controls; let i=index">
+								<!-- The repeated alias template -->
+								<div class='prodkpi'>
+									<textarea type="text" placeholder="Production KPI" [formControlName]="i"></textarea>
+									<button (click)="deleteproductionkpi(i)" class='delete' tabindex="2"><i
+											class='material-icons'>delete</i></button>
+								</div>
+							</div>
+							<button class='secondary' (click)="addProductionkpi()" tabindex="0">Add Content Creation
+								KPI</button>
+						</div>
+					</div>
+					<div class='lastbuttons'>
+						<button class="secondary" (click)="onDraft()">Save asDraft</button>
+						<button class='submit' (click)="onSubmit()">Next</button>
+					</div>
 				</div>
-			</div>
-			<div>
-				<button color="primary" (click)="onSubmit()">Next</button>
-				<button color="secondary" (click)="onDraft()">Save as
-					Draft</button>
-			</div>
 
-			<!-- End of Content Production-->
+				<!-- End of Content Production-->
 
-		</form>
+			</form>
+		</div>
 	</div>
 </div>

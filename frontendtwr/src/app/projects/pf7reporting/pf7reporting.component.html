@@ -1,17 +1,20 @@
-<app-proposalnav></app-proposalnav>
-<div *ngIf="project!==undefined">
-  <div>
-    <h1>Reporting</h1>
-    <p>{{project.name}}</p>
-    <p>New Project Proposal Form (7/8)</p>
-    <div *ngFor="let x of project.kpis" >
-      <p>{{ x.kpi }}</p>
-        <input type="text" placeholder="Report" [(ngModel)]="x.report" [attr.name]="x.id"
-          (keydown)="uploadr($event)" (blur)="uploadblr($event)">
+<div class="container">
+  <app-proposalnav></app-proposalnav>
+  <div class='seccontainer' *ngIf="project!==undefined">
+    <div>
+      <h1>{{project.name}}</h1>
+      <p>Reporting</p>
+      <div *ngFor="let x of project.kpis">
+        <p class='kpi'>{{ x.kpi }}</p>
+        <label for="" class="report">Title and Contents of Report</label>
+        <input type="text" placeholder="Report" [(ngModel)]="x.report" [attr.name]="x.id" (keydown)="uploadr($event)"
+          (blur)="uploadblr($event)">
+          <label class="pperson">Point person for Report generation and Submission</label>
         <input type="text" placeholder="Point Person" [(ngModel)]="x.pointperson" [attr.name]="x.id"
           (keydown)="uploadpp($event)" (blur)="uploadblpp($event)">
+      </div>
+      <button class='submit' (click)="submit()">Next</button>
+      <button class="secondary" (click)="draft()">Save as Draft</button>
     </div>
-    <button color="primary" (click)="submit()">Next</button>
-    <button color="primary" (click)="draft()">Save as Draft</button>
   </div>
 </div>

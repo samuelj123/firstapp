@@ -1,23 +1,30 @@
-<app-proposalnav></app-proposalnav>
-<div *ngIf="fraisingform!=undefined">
-  <h1>Fundraising</h1>
-  <p>{{project.name}}</p>
-  <div>
-    <p><strong>Vision: </strong>{{project.vision}}</p>
-    <p><strong>Mission: </strong>{{project.mission}}</p>
-  </div>
-  <form [formGroup]="fraisingform">
-    <div formArrayName="fundraising">
-      <div *ngFor="let X of fraisingform['controls'].fundraising['controls']; let ix=index">
-        <div formGroupName="{{ix}}">
-          <input type="text" placeholder="Fundraising Method" formControlName="method">
-          <input type="number" placeholder="Amount" formControlName="amount" (keyup)="total()">
-          <input type="text" placeholder="Point Person" formControlName="pointperson">
-        </div>
+<div class="container">
+  <app-proposalnav></app-proposalnav>
+  <div class="seccontainer">
+    <div *ngIf="fraisingform!=undefined">
+      <h1>Fundraising</h1>
+      <p>{{project.name}}</p>
+      <div>
+        <p><strong>Vision: </strong>{{project.vision}}</p>
+        <p><strong>Mission: </strong>{{project.mission}}</p>
       </div>
+      <form [formGroup]="fraisingform">
+        <div formArrayName="fundraising">
+          <div *ngFor="let X of fraisingform['controls'].fundraising['controls']; let ix=index">
+            <div formGroupName="{{ix}}">
+              <label class="amount">Amount Promised</label>
+              <input type="number" placeholder="Amount" formControlName="amount" (keyup)="total()">
+              <label class="pperson">Person in-charge</label>
+              <input type="text" placeholder="Point Person" formControlName="pointperson">
+              <label class="name">Fundraising Method <p class="rightname">In this field, please mention clearly HOW  you would raise the amount promised</p></label>
+              <input type="text" placeholder="Fundraising Method" formControlName="method">
+            </div>
+          </div>
+        </div>
+        <button class='addfrmethod' (click)="addX()">"Add Fundraising Method"</button>
+        <p>Total Money Raised: {{totalfunds}}</p>
+      </form>
+      <button class='submit' (click)="submit()">Next</button>
+      <button class='secondary' (click)="onDraft()">Save as Draft</button>
     </div>
-    <input type="button" (click)="addX()" value="Add Fundraising Method">
-    <p>Total Money Raised: {{totalfunds}}</p>
-  </form>
-  <input type="button" (click)="submit()" value="Next">
-  <button (click)="onDraft()">Save as Draft</button>
+  </div>

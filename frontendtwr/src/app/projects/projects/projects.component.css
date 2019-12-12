@@ -1,3 +1,18 @@
 .container {
-    margin-left: 22%;
+    margin-left: 20%;
+}
+
+strong {
+    font-weight: 500;
+}
+
+button.small {
+    padding: .5em 2em;
+    margin-right: 2em;
+    border-bottom: 1px solid var(--s);
+    border-top: 1px solid var(--s);
+}
+.denied {
+    color: red;
+    font-weight: 500;
 }

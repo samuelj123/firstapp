@@ -1,0 +1,47 @@
+.container {
+    margin-left: 20%;
+}
+
+.seccontainer {
+    margin-right: 45%;
+}
+
+small {
+    margin-top: 0;
+}
+
+.onrightintro, .onrightpg, .onrightneeds, .onrightpjname, .onrightpjvision, .onrightpjmission {
+    position: absolute;
+    left: 70%;
+    margin-right: 10%;
+    display: none;
+}
+
+.intro:hover, .pg:hover, .needs:hover, .pjname:hover, .pjvision:hover, .pjmission:hover {
+    cursor: pointer;
+}
+
+.intro:hover .onrightintro {
+    display: block;
+}
+.pg:hover .onrightpg {
+    display: block;
+}
+.needs:hover .onrightneeds {
+    display: block;
+}
+.pjname:hover .onrightpjname {
+    display: block;
+}
+.pjvision:hover .onrightpjvision {
+    display: block;
+}
+.pjmission:hover .onrightpjmission {
+    display: block;
+}
+button.primary {
+    float: right;
+}
+button.secondary {
+    float: left;
+}

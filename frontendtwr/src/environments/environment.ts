@@ -10,7 +10,7 @@ export const environment = {
   API_TASKSERVICE: x + "/api/task",
   API_PGROUPSERVICE: x + "/api/pgroup",
   API_KPISERVICE: x + "/api/kpi",
-  API_FUNDRAISINGSERVICE: x + "/fundraising"
+  API_FUNDRAISINGSERVICE: x + "/api/fundraising"
 
 };
 

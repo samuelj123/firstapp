@@ -2,23 +2,22 @@
   <div *ngIf="projects!==undefined && userrole!==undefined">
     <button color="primary" *ngIf="userrole.includes('CEO')" (click)="newproj()">New
       Project</button>
-    <div  *ngIf="userrole.includes('CEO')">
+    <div *ngIf="userrole.includes('CEO')">
       <h1><strong>Draft Projects</strong></h1>
       <div *ngFor="let x of projects | approval0">
         <hr>
-        <div></div>
-        <p *ngIf="x.denialmsg!==null">Project Denied: {{x.denialmsg}}</p>
-        <h2  (click)="viewproj(x.id)">{{x.name}}</h2>
+        <p class='denied' *ngIf="x.denialmsg!==null">Project Denied: {{x.denialmsg}}</p>
+        <h2 (click)="viewproj(x.id)">{{x.name}}</h2>
         <p>{{x.need.need}}</p>
         <p>{{x.need.pgroup.pgroup}}</p>
         <p>{{x.vision}}</p>
 
         <div>
-          <button  (click)="deleteproj(x.id)" mat-icon-button>
-            <i>delete</i>
+          <button (click)="deleteproj(x.id)" class='delete'>
+            <i class='material-icons'>delete</i>
           </button>
-          <button (click)="editproj(x.id)" mat-icon-button>
-            <i>edit</i>
+          <button (click)="editproj(x.id)" class='delete'>
+            <i class='material-icons'>edit</i>
           </button>
         </div>
       </div>
@@ -28,18 +27,26 @@
       <div *ngFor="let x of projects | approval1">
         <hr>
         <div></div>
-        <h2  *ngIf="userrole.includes('ID')" (click)="viewproj(x.id)">{{x.country}}</h2>
-        <h2  *ngIf="userrole.includes('CEO')" (click)="viewproj(x.id)">{{x.name}}</h2>
-        <p  (click)="viewproj(x.id)">{{x.name}}</p>
+        <h2 *ngIf="userrole.includes('ID')" (click)="viewproj(x.id)">{{x.country}}</h2>
+        <h2 *ngIf="userrole.includes('CEO')" (click)="viewproj(x.id)">{{x.name}}</h2>
         <p>{{x.lastupdated | date }}</p>
-        <p  *ngIf="userrole.includes('ID')">{{x.need}}</p>
-        <p  *ngIf="userrole.includes('ID')">{{x.vision}}</p>
+        <p *ngIf="userrole.includes('ID')">{{x.need.need}}</p>
+        <p *ngIf="userrole.includes('ID')"><strong>Vision: </strong>{{x.vision}}</p>
+        <p *ngIf="userrole.includes('ID')"><strong>Mission: </strong>{{x.mission}}</p>
         <div>
-          <button *ngIf="userrole.includes('ID')" (click)="starttoggle(x.id)" mat-icon-button><i
-             >thumb_up</i></button>
-          <button *ngIf="userrole.includes('ID')" (click)="denyproj(x.id)" mat-icon-button><i
-             >thumb_down</i></button>
-          <div><input type="date" *ngIf="approvetoggle===true" (keyup.enter)='approveproj(x.id, $event)'></div>
+          <button *ngIf="userrole.includes('ID')" (click)="starttoggle(x.id)" class='delete small'>Approve</button>
+          <button *ngIf="userrole.includes('ID')" (click)="denyproj(x.id)" class='delete small'>Deny</button>
+          <div *ngIf="approvetoggle===true">
+            <p>Confirm the Approval of the Project, and Provide a Start Date</p>
+            <input style='margin-right: 2em;' type="date" (keyup.enter)='approveproj(x.id, $event)'>
+            <button class='delete small' (click)='cancel()'>Cancel</button>
+          </div>
+          <div *ngIf='denytoggle===true'>
+            <p>Please add a message, pointing to areas for improvement for this Proposal, along with reasons for Denial
+            </p>
+            <input type="text" [(ngModel)]='denymessage' (keyup.enter)='denyproj2()'>
+            <button class='delete small' (click)='cancel()'>Cancel</button>
+          </div>
         </div>
       </div>
     </div>

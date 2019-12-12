@@ -16,7 +16,10 @@ export class ProjectsComponent implements OnInit {
 
   projects: any;
   userrole: string;
-  approvetoggle: boolean =false;
+  approvetoggle: boolean = false;
+  denytoggle: boolean = false;
+  denymessage: string;
+  denyid: string;
   async ngOnInit() {
     const country = await this.uservice.currentusercountry() as string;
     if (country === 'Singapore') {
@@ -40,14 +43,20 @@ export class ProjectsComponent implements OnInit {
 
   }
   async approveproj(id, e) {
-    const day = e.target.value.split("-",3);
+    const day = e.target.value.split("-", 3);
     const date: Date = new Date(day[0], day[1], day[2])
     const object = { approvallevel: 2, startdate: date };
     await this.projservice.updateproj(object, id).subscribe();
-    console.log(object);
     this.ngOnInit();
   }
+  cancel() {
+    this.approvetoggle = false;
+    this.denytoggle = false;
+  }
   async denyproj(id) {
+    this.denytoggle = true;
+    this.denyid=id;
+
     // const project = await this.projservice.getoneproj(id).toPromise() as Project;
     // openmodal
     // const dialogRef = this.dialog.open(DenydialogueComponent, {
@@ -56,13 +65,15 @@ export class ProjectsComponent implements OnInit {
     // });
     // dialogRef.afterClosed().subscribe(result => {
     //   if (result === undefined) { } else {
-    //     const res = {denialmsg: result};
-    //     const obj = { approvallevel: 0 };
-    //     const object = {...res, ...obj};
-    //     this.projservice.updateproj(object, id).subscribe();
-    //     this.ngOnInit();
     //   }
     // });
+  }
+  async denyproj2() {
+    const res = { denialmsg: this.denymessage };
+    const obj = { approvallevel: 0 };
+    const object = { ...res, ...obj };
+    this.projservice.updateproj(object, this.denyid).subscribe();
+    this.ngOnInit();
   }
 
 
