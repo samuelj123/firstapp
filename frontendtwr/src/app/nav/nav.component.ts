@@ -29,6 +29,9 @@ export class NavComponent implements OnInit {
   users() {
     this.router.navigateByUrl('users');
   }
+  task() {
+    this.router.navigateByUrl('/tasks');
+  }
   dashboard() {
     const id = this.cuser.id;
     this.router.navigateByUrl('/dashboard/' + id)

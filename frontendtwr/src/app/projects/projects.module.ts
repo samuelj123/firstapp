@@ -13,6 +13,7 @@ import { Approval0Pipe } from '../pipes/approval0.pipe';
 import { Approval1Pipe } from '../pipes/approval1.pipe';
 import { Approval2Pipe } from '../pipes/approval2.pipe';
 import { Dateadd } from '../pipes/dateadd.pipe';
+import { Dateadd2 } from '../pipes/dateadd2.pipe';
 import { FirstLetter } from '../pipes/firstletter.pipe';
 import { sortPipe } from '../pipes/sort.pipe';
 import { ViewprojComponent } from './viewproj/viewproj.component';
@@ -40,6 +41,7 @@ import { GanttComponent } from '../shared/gantt/gantt.component';
     Approval1Pipe,
     Approval2Pipe,
     Dateadd,
+    Dateadd2,
     FirstLetter,
     sortPipe,
     ViewprojComponent,

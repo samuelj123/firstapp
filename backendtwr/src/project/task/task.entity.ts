@@ -11,11 +11,8 @@ export class TaskEntity {
     @Column({ type: 'text' }) task: string;
     @Column({ type: 'int' }) duration: number; // Start Date (Bad naming)
     @Column({ type: 'int', nullable: true }) enddate: number;
-    @Column({ type: 'boolean', nullable: true, default: false }) complete: boolean;
+    @Column({ type: 'boolean', nullable: true}) complete: boolean;
     @ManyToOne(type => UserEntity, taskhandler => taskhandler.tasks) taskhandler: UserEntity;
     @ManyToOne(type => KpiEntity, kpi => kpi.tasks, { onDelete: 'CASCADE' }) kpi: KpiEntity;
 }
 
-// {"task": "first task",
-// "duration": 23,
-// "pointperson": "first task"}

@@ -91,6 +91,10 @@ export class ProjectsService {
     return this.http.get(this.task);
   }
 
+  gettasksbyuser(id) {
+    return this.http.get(this.task + '/user?u=' + id)
+  }
+
   gettasksinkpi(id: string) {
     return this.http.get(this.task + '/' + id);
   }

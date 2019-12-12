@@ -45,7 +45,7 @@ const routes = [
   { path: 'pf8budget/:id', component: Pf8budgetComponent, canActivate: [LoggedinGuard] },
   { path: 'viewproj/:id', component: ViewprojComponent, canActivate: [LoggedinGuard] },
   { path: 'activeproj/:id', component: ActiveprojComponent, canActivate: [LoggedinGuard] },
-  { path: 'tasks/:id', component: TasksComponent, canActivate: [LoggedinGuard] },
+  { path: 'tasks', component: TasksComponent, canActivate: [LoggedinGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [LoggedinGuard] },
 ];
 

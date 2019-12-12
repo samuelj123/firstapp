@@ -123,6 +123,7 @@ export class Pf6tasksComponent implements OnInit {
         enddate: x.value.enddate,
         taskhandler: x.value.taskhandler,
       };
+      console.log(obj);
       await this.projservice.updatetask(fv4[i].id, obj).toPromise();
     })
 
@@ -131,8 +132,8 @@ export class Pf6tasksComponent implements OnInit {
   }
 
   async next() {
-    this.savetasks();
-    await this.router.navigateByUrl('/pf6fundrdaising/' + this.projid);
+    await this.savetasks();
+    await this.router.navigateByUrl('pf6fundraising/' + this.projid);
   }
 
   async draft() {

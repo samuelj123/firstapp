@@ -12,6 +12,13 @@ export class TaskController {
     TaskbyProject(@Query('p') projid: string) {
         return this.taskservice.getbyproj(projid);
     }
+
+    @Get('/user')
+    @UseGuards(new AuthGuard())
+    TaskbyUser(@Query('u') userid: string) {
+        return this.taskservice.getbyuser(userid);
+    }
+
     @Get()
     @UseGuards(new AuthGuard())
     AllTasks() {

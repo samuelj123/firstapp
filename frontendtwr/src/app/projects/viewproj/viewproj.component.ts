@@ -40,6 +40,7 @@ export class ViewprojComponent implements OnInit {
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
     this.project.fundraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
+    console.log(this.project);
   }
 
   goback() {

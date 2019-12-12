@@ -1,1 +1,6 @@
-<p>tasks works!</p>
+<div class="container" *ngIf='tasks!==undefined'>
+    <div *ngFor='let x of tasks'>
+        <p> {{x.task}} |  {{x.kpi.project.startdate |dateadd2: x.duration | date }} {{x.kpi.project.startdate | dateadd2: x.enddate | date}}</p>
+        <input type="checkbox" [(ngModel)]='x.complete' (click)='tick(x.id, $event)'>
+    </div>
+</div>

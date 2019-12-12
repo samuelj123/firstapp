@@ -18,9 +18,8 @@ export class TaskService {
         return await this.trepository
             .createQueryBuilder('tasks')
             .leftJoinAndSelect('tasks.kpi', 'kpi')
-            .leftJoinAndSelect('tasks.pointperson', 'pointperson')
+            .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
             .getMany();
-        // .find({ relations: ['kpi'] });
     }
 
     async getallbykpi(kpiid: string) {
@@ -68,6 +67,16 @@ export class TaskService {
             .leftJoin('kpi.project', 'project')
                 .where('kpi.project = :id', { id })
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
+            .getMany();
+    }
+    async getbyuser(id: string) {
+        return this.trepository
+            .createQueryBuilder('tasks')
+            .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
+            .where('tasks.taskhandler = :id', {id})
+            .leftJoinAndSelect('tasks.kpi', 'kpi')
+            .leftJoinAndSelect('kpi.project', 'project')
+            .andWhere('project.approvallevel = 2')
             .getMany();
     }
 }
