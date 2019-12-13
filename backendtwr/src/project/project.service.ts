@@ -51,6 +51,7 @@ export class ProjectService {
         .leftJoinAndSelect('need.pgroup', 'pgroup')
         .leftJoinAndSelect('project.kpis', 'kpi')
         .leftJoinAndSelect('kpi.tasks', 'tasks')
+        .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
         .leftJoinAndSelect('project.fundraising', 'fundraising')
         .getOne();
     }
@@ -62,7 +63,8 @@ export class ProjectService {
             .where('user.country = :country', { country })
             .leftJoinAndSelect('project.need', 'need')
             .leftJoinAndSelect('project.kpis', 'kpis')
-            .leftJoinAndSelect('kpis.tasks', 'task')
+            .leftJoinAndSelect('kpis.tasks', 'tasks')
+            .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
             .leftJoinAndSelect('need.pgroup', 'pgroup')
             .getMany();
     }

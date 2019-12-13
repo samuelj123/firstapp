@@ -20,7 +20,7 @@
           <td>{{y.task}}</td>
           <td>{{ndate | dateadd: y.duration | date }}</td>
           <td>{{ndate | dateadd: y.enddate | date }}</td>
-          <td>{{y.taskhandler}}</td>
+          <td>{{y.taskhandler.firstname}} {{y.taskhandler.lastname}}</td>
         </tr>
       </table>
     </div>

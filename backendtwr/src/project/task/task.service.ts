@@ -35,22 +35,34 @@ export class TaskService {
         return { ...task, project: task.kpi };
     }
     async updatetask(data: TaskEntity, taskid: string) {
+        if (!data.taskhandler && !data.kpi) {
+            await this.trepository.update(taskid, data);
+        } else if (data.taskhandler && !data.kpi) {
+            const taskhandler = await this.userepository
+                .createQueryBuilder('user')
+                .where('user.id = :id', { id: data.taskhandler })
+                .getOne();
+        } else if (!data.taskhandler && data.kpi) {
+            const taskhandler = await this.userepository
+                .createQueryBuilder('user')
+                .where('user.id = :id', { id: data.taskhandler })
+                .getOne();
+            const kpi = await this.kpirepository
+                .createQueryBuilder('kpi')
+                .where('kpi.id = :id', { id: data.kpi })
+                .getOne();
+            await this.trepository.update(taskid, { ...data, taskhandler, kpi })
+        } else if (!data.taskhandler && data.kpi) {
+            const kpi = await this.kpirepository
+                .createQueryBuilder('kpi')
+                .where('kpi.id = :id', { id: data.kpi })
+                .getOne();
+            await this.trepository.update(taskid, { ...data, kpi })
+
+        }
         let task = await this.trepository
             .createQueryBuilder('task')
-            .where('task.id = :id', {id: taskid})
-            .getOne();
-        const taskhandler = await this.userepository
-            .createQueryBuilder('user')
-            .where('user.id = :id', {id: data.taskhandler})
-            .getOne();
-        const kpi = await this.kpirepository
-            .createQueryBuilder('kpi')
-            .where('kpi.id = :id', {id: data.kpi})
-            .getOne();
-        await this.trepository.update(task, {...data, taskhandler, kpi});
-        task = await this.trepository
-            .createQueryBuilder('task')
-            .where('task.id = :id', {id: taskid})
+            .where('task.id = :id', { id: taskid })
             .leftJoinAndSelect('task.taskhandler', 'taskhandler')
             .leftJoinAndSelect('task.kpi', 'kpi')
             .getOne();
@@ -65,7 +77,7 @@ export class TaskService {
             .createQueryBuilder('tasks')
             .leftJoinAndSelect('tasks.kpi', 'kpi')
             .leftJoin('kpi.project', 'project')
-                .where('kpi.project = :id', { id })
+            .where('kpi.project = :id', { id })
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
             .getMany();
     }
@@ -73,7 +85,7 @@ export class TaskService {
         return this.trepository
             .createQueryBuilder('tasks')
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
-            .where('tasks.taskhandler = :id', {id})
+            .where('tasks.taskhandler = :id', { id })
             .leftJoinAndSelect('tasks.kpi', 'kpi')
             .leftJoinAndSelect('kpi.project', 'project')
             .andWhere('project.approvallevel = 2')

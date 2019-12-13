@@ -47,7 +47,7 @@ export class ActiveprojComponent implements OnInit {
       this.startdate = this.project.startdate.toString();
       const datestring = this.startdate.split("-",3);
       this.ndate = new Date(+datestring[0], +datestring[1] -1, +datestring[2]);
-      console.log(this.project.kpis);
+      console.log(this.project.id);
     }
     this.tasks=await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
     this.taskscompleted=this.tasks.filter(x=>x.completed===true);
