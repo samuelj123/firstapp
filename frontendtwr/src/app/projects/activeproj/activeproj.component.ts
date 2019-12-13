@@ -50,7 +50,7 @@ export class ActiveprojComponent implements OnInit {
       console.log(this.project.id);
     }
     this.tasks=await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
-    this.taskscompleted=this.tasks.filter(x=>x.completed===true);
+    this.taskscompleted=this.tasks.filter(x=>x.complete===true);
   }
 
 

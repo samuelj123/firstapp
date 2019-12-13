@@ -74,7 +74,7 @@ export interface Task {
     task: string;
     duration: number; // The back-end name for Start-Date
     enddate: number;
-    completed?: boolean;
+    complete?: boolean;
     deadline?: Date;
     taskhandler: User;
     kpi?: KPI;

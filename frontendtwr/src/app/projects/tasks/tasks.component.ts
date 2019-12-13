@@ -25,17 +25,15 @@ export class TasksComponent implements OnInit {
   }
 
   async tick(id, e) {
-    // if (e.target.value==='on') {
-    //   const bleh = await this.projservice.updatetask(id, {complete: true}).toPromise() as Task;
-      // const bleh = await this.projservice.gettasksbyuser(this.cuser.id).toPromise() as Task[]
-      // console.log(bleh)
-      console.log(e);
-    // } else {
-    //   await this.projservice.updatetask(id, {complete: true}).toPromise() as Task;
-    //   const bleh = await this.projservice.gettasksbyuser(this.cuser.id).toPromise() as Task[]
-    //   console.log(bleh)
-    // }
-    
+    if (e.target.checked) {
+      await this.projservice.updatetask(id, {complete: true}).toPromise() as Task;
+      const bleh = await this.projservice.gettasksbyuser(this.cuser.id).toPromise() as Task[]
+      console.log(e.target.checked);
+    } else {
+      await this.projservice.updatetask(id, {complete: false}).toPromise() as Task;
+      const bleh = await this.projservice.gettasksbyuser(this.cuser.id).toPromise() as Task[]
+      console.log('bleh')
+    }
   }
 
 }
