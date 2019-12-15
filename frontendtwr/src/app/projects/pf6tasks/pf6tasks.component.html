@@ -1,7 +1,7 @@
 <div class="container">
   <app-proposalnav></app-proposalnav>
   <div class="seccontainer">
-    <app-gantt></app-gantt>
+    <app-gantt class='onside'></app-gantt>
     <div *ngIf="kpi!==undefined && project!==undefined && taskform!==undefined">
       <h1>Tasks</h1>
       <p>{{project.name}}</p>
@@ -14,31 +14,31 @@
           <div class='task' [formGroupName]="i">
 
             <label class="taskname">Task Name</label>
-            <input type='text' formControlName="taskname" placeholder="Task Name">
+            <input type='text' formControlName="taskname" placeholder="Task Name" >
 
             <div class="grid">
               <div><label class="startdate">Start Date</label>
-                <input type='number' formControlName="duration" placeholder="Starting Day"></div>
+                <input type='number' formControlName="duration" placeholder="Starting Day" ></div>
               <div><label class="enddate">End Date</label>
-                <input type='number' formControlName="enddate" placeholder="Ending Day"></div>
+                <input type='number' formControlName="enddate" placeholder="Ending Day" ></div>
               <div><label class="taskhandler">Person Responsible for Task</label>
-                <select formControlName="taskhandler">
+                <select formControlName="taskhandler" >
                   <option *ngFor="let y of pplresponsible" value="{{y.id}}">{{y.firstname}}</option>
                 </select></div>
               <div><label for="" class="kpis">Kpi that this task seeks to fulfill</label>
-                <select formControlName="kpiid">
-                  <option *ngFor="let kpi of kpi" value="{{kpi.id}}">{{kpi.kpi}}</option>
+                <select formControlName="kpiid" >
+                  <option *ngFor="let kpi of kpi" value="{{kpi.id}}"> {{kpi.kpi}}</option>
                 </select></div>
             </div>
             <button class='delete' (click)="deletetask(i)"><i class="material-icons">delete</i></button>
           </div>
         </div>
       </div>
-      <button class='addtask secondary' (click)="addtask()">Add Task</button>
+      <button class='addtask secondary' (click)="addtask()" >Add Task</button>
       <div class='submline'>
         <button class=' secondary savetask' (click)="savetasks()">Save Tasks</button>
-        <button class='submit' (click)="next()">Next</button>
-        <button class='secondary' (click)="onDraft()">Save as Draft</button>
+        <button class='submit' (click)="next()" >Next</button>
+        <button class='secondary' (click)="onDraft()" >Save as Draft</button>
       </div>
     </div>
   </div>

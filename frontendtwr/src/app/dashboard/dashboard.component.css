@@ -1,15 +1,17 @@
 /* General */
 .container {
-    margin-left: 20%;
     margin-right: 5%;
-    margin-top: 5%;
 }
 .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
 
 }
-
+.grid2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
 p{
     color: var(--dp);
 }
@@ -18,7 +20,7 @@ h3{
 }
 
 /* Title */
-h2 {
+h2.title {
     font-size: 3em;
 }
 /* Late Reports */
@@ -29,10 +31,6 @@ h2 {
 }
 .activeprojects strong{
     font-size: 5rem;
-    color: var(--s);
-}
-.activeprojects h2 {
-    font-size: 3rem;
     color: var(--s);
 }
 

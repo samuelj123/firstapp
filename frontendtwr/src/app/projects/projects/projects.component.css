@@ -1,7 +1,7 @@
-.container {
-    margin-left: 20%;
+.seccontainer {
+    margin-right: 20%;
 }
-
+button.newproject{width: 100%;}
 strong {
     font-weight: 500;
 }
@@ -12,7 +12,18 @@ button.small {
     border-bottom: 1px solid var(--s);
     border-top: 1px solid var(--s);
 }
+
 .denied {
     color: red;
     font-weight: 500;
+}
+
+.relative {
+    position: relative;
+}
+
+.buttonline {
+    position: absolute;
+    bottom: 118px;
+    left: 70%;
 }

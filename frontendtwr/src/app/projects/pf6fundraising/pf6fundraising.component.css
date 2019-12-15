@@ -1,6 +1,3 @@
-.container {
-    margin-left: 20%;
-}
 
 .seccontainer {
     margin-right: 40%;
@@ -10,9 +7,6 @@ button.addfrmethod {
     width: 100%;
 }
 
-button.submit {
-    float: right;
-}
 
 .rightname {
     position: absolute;

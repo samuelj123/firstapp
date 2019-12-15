@@ -32,8 +32,8 @@ export class ActiveprojComponent implements OnInit {
   ndate: Date; // Project Start Date (in language Angular can understand)
   tasks: Task[]
   taskscompleted: Task[];
-
-
+  displaydeactivate: boolean = false;
+  enddate: number;
 
   async ngOnInit() {
     await this.route.params.subscribe(params => this.projid = (params.id));
@@ -43,19 +43,27 @@ export class ActiveprojComponent implements OnInit {
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
     this.project.fundraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
-    if(this.project.startdate!==undefined){
-      this.startdate = this.project.startdate.toString();
-      const datestring = this.startdate.split("-",3);
-      this.ndate = new Date(+datestring[0], +datestring[1] -1, +datestring[2]);
-      console.log(this.project.id);
-    }
     this.tasks=await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
+    this.tasks.sort((a,b)=>{return a.duration - b.duration})
     this.taskscompleted=this.tasks.filter(x=>x.complete===true);
+    this.getenddate();
   }
 
+  getenddate() {
+    let allenddates = [];
+    this.tasks.forEach (x=>{
+      allenddates.push(x.enddate);
+    })
+    this.enddate = Math.max(...allenddates);
+  }
 
-
-
+  show() {this.displaydeactivate = true;}
+  hide() {this.displaydeactivate=false;}
+  async deactivate() {
+    const pe = {"approvallevel": 1, "startdate":null};
+    await this.projservice.updateproj(pe, this.projid).toPromise() as Project;
+    this.goback();
+  }
   goback() {
     this.router.navigateByUrl('/projects');
   }

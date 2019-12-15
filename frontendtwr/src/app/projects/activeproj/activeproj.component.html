@@ -1,28 +1,82 @@
 <div class="container">
-  <div *ngIf="project!==undefined && project!==null && tasks!==null && tasks!==undefined">
-    <h1>{{project.name}}</h1>
-    <p><strong>Vision:</strong> {{project.vision}}</p>
-    <h3>Starting Date</h3>
-    <p>{{ project.startdate | date }}</p>
-    <h3>Amount Completed</h3>
-    <p>{{taskscompleted.length}}/{{tasks.length}}</p>
-    <h2>Project Schedule</h2>
-    <div *ngFor="let x of project.kpis">
-      <h3>{{x.kpi}}</h3>
-      <table>
-        <tr>
-          <th>Task</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>In-Charge</th>
-        </tr>
-        <tr *ngFor="let y of x.tasks | sort:x.tasks.duration">
-          <td>{{y.task}}</td>
-          <td>{{ndate | dateadd: y.duration | date }}</td>
-          <td>{{ndate | dateadd: y.enddate | date }}</td>
-          <td>{{y.taskhandler.firstname}} {{y.taskhandler.lastname}}</td>
-        </tr>
-      </table>
+  <div class="seccontainer">
+    <div *ngIf="project!==undefined && project!==null && tasks!==null && tasks!==undefined">
+      <div class="title card">
+        <h1 style='font-size:4em; margin-bottom: 0; padding-bottom: 0'>{{project.name}}</h1>
+        <p style='margin-top:0; padding-top: 0;'>{{project.vision}}</p>
+      </div>
+
+
+      <div class="grid card initialoverview">
+        <div>
+          <p>Starting Date</p>
+          <h2>{{ project.startdate | date }}</h2>
+        </div>
+        <div>
+          <p>Ending Date</p>
+          <h2>{{project.startdate |dateadd2: enddate | date }}</h2>
+        </div>
+        <div>
+          <p>Tasks Completed</p>
+          <h2>{{taskscompleted.length}}/{{tasks.length}}</h2>
+        </div>
+      </div>
+      <div class="card">
+        <h2>KPIs</h2>
+        <div>
+          <table class="fl-table">
+            <thead>
+              <tr>
+                <th>KPI Name</th>
+                <th>KPI Category</th>
+                <th>Budget</th>
+                <th>Report</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let x of project.kpis'>
+                <td>{{x.kpi}}</td>
+                <td>{{x.type}}</td>
+                <td>{{x.budget}}</td>
+                <td>{{x.report | slice:0:15}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Project Schedule</h2>
+        <table class="fl-table">
+          <thead>
+            <tr>
+              <th>Completed?</th>
+              <th>Task</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>In-Charge</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let y of tasks | sort:tasks.duration">
+            <td *ngIf='y.complete' ><i class="material-icons" style='color:var(--s)'>check_box</i></td>
+            <td *ngIf='!y.complete'><i class="material-icons" style='color:var(--s)'>check_box_outline_blank</i></td>
+            <td>{{y.task | slice:0:15}}...</td>
+            <td>{{project.startdate | dateadd2: y.duration | date }}</td>
+            <td>{{project.startdate | dateadd2: y.enddate | date }}</td>
+            <td>{{y.taskhandler.firstname}} {{y.taskhandler.lastname}}</td>
+          </tr>
+        </table>
+      </div>
+      
+      
+      <div *ngIf='this.userrole.includes("ID")'>
+        <button class='emergency' (click)='show()'>DeActivate Project</button>
+        <div [class.displaydeactivate]='displaydeactivate' [class.hide]='!displaydeactivate'>
+          <p>Are you sure you want to De-activate Project? </p>
+          <button class='delete' (click)='deactivate()'>Yes</button>
+          <button class='delete' (click)='hide()'>No</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

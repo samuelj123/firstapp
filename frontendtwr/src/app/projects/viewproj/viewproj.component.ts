@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../projects.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project, KPI } from '../project.model';
+import { Project, KPI, Task } from '../project.model';
 import { UserService } from 'src/app/user/user.service';
 import { SavedialogueComponent } from 'src/app/shared/deldialogue/savedialogue.component';
 
@@ -28,6 +28,7 @@ export class ViewprojComponent implements OnInit {
   budget: number;
   toadd2: number[] =[];
   fundsraised: number;
+  tasks: Task[];
 
 
 
@@ -40,7 +41,7 @@ export class ViewprojComponent implements OnInit {
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
     this.project.fundraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
-    console.log(this.project);
+    this.tasks = await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
   }
 
   goback() {

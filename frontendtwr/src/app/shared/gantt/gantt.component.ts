@@ -96,7 +96,7 @@ export class GanttComponent implements OnInit {
       .attr('width', d => { return x(d.enddate - d.duration) + 'px' })
       .attr("y", (d, i) => { return y(i+1)+ 'px' })
       .attr('height', height/length - 1 + 'px')
-      .style("fill", d => {return "rgb(0, 50, " + (d.enddate) + ")";})
+      .style("fill", d => {return "rgb(179, 77, "+ (d.enddate) + 252+")";})
       .style("opacity", 0.5);
     // Text for the Bar
     var txt = bars

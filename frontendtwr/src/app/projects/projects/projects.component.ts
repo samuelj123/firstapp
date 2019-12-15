@@ -56,17 +56,6 @@ export class ProjectsComponent implements OnInit {
   async denyproj(id) {
     this.denytoggle = true;
     this.denyid=id;
-
-    // const project = await this.projservice.getoneproj(id).toPromise() as Project;
-    // openmodal
-    // const dialogRef = this.dialog.open(DenydialogueComponent, {
-    //   width: '500px',
-    //   data: { id: id, string: project.name, associated: 'Your Reason Here...' }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === undefined) { } else {
-    //   }
-    // });
   }
   async denyproj2() {
     const res = { denialmsg: this.denymessage };

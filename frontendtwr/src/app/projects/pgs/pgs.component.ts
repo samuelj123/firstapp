@@ -4,6 +4,7 @@ import { PGroup } from '../project.model';
 import { DeldialogueComponent } from '../../shared/deldialogue/deldialogue.component';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
+import { User } from 'src/app/user/user.model';
 
 
 @Component({
@@ -15,10 +16,12 @@ export class PGsComponent implements OnInit {
 
   constructor(private projservice: ProjectsService, private uservice: UserService, private router: Router) { }
   showVar: boolean;
+  cuser: User;
   allpgs: PGroup[];
   userrole: string;
   deletediag: string[] = [];
   async ngOnInit() {
+    this.cuser = await this.uservice.currentuser().toPromise() as User;
     const country = await this.uservice.currentusercountry() as string;
     if(country === 'Singapore') {
     this.allpgs = await this.projservice.getallpg().toPromise() as PGroup[];

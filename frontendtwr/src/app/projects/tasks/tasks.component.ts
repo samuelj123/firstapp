@@ -21,6 +21,7 @@ export class TasksComponent implements OnInit {
   async ngOnInit() {
     this.cuser = await this.uservice.currentuser().toPromise() as User;
     this.tasks = await this.projservice.gettasksbyuser(this.cuser.id).toPromise() as Task[];
+    this.tasks.sort(function(a,b){return (a.complete===b.complete)?0: a.complete? 1: -1});
     console.log(this.tasks);
   }
 

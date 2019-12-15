@@ -1,60 +1,64 @@
 <div class="container">
-  <form [formGroup]="pgForm" class="formsection">
-    <div class="flag"></div>
-    <h1 class="mat-h1">Add a New People Group</h1>
-    <label for="name">Name of People Group</label>
-    <textarea id='name' placeholder="Name of People Group" type="text" formControlName="pgroup" required tabindex="1">
-      </textarea>
+  <div class="seccontainer">
+    <form [formGroup]="pgForm" class="formsection">
+      <div class="flag"></div>
+      <h1 class="mat-h1">Add a New People Group</h1>
+      <label for="name">Name of People Group</label>
+      <textarea id='name' placeholder="Name of People Group" type="text" formControlName="pgroup" required tabindex="1">
+  </textarea>
 
-    <label for="desc">People Group Description</label>
-    <textarea id='desc' placeholder="People Group Description" type="text" formControlName="description" required
-      tabindex="2">
-      </textarea>
+      <label for="desc">People Group Description</label>
+      <textarea id='desc' placeholder="People Group Description" type="text" formControlName="description" required
+        tabindex="2">
+  </textarea>
 
-    <div class="grid">
-      <div><label for="population">Population</label>
-      <input id='population' placeholder="Population" type="number" formControlName="population" required tabindex="3"></div>
+      <div class="grid">
+        <div><label for="population">Population</label>
+          <input id='population' placeholder="Population" type="number" formControlName="population" required
+            tabindex="3"></div>
 
-      <div><label for="electricity">Access to Electricity</label>
-      <input id='electricity' placeholder="Access to Electricity" type="number" formControlName="electricityaccess"
-      required tabindex="4"></div>
+        <div><label for="electricity">Access to Electricity</label>
+          <input id='electricity' placeholder="Access to Electricity" type="number" formControlName="electricityaccess"
+            required tabindex="4"></div>
 
-      <div><label for="lagelimit">Lower Age Limit</label>
-      <input id='lagelimit' placeholder="Lower Age Limit" type="number" formControlName="agegrouplow" required
-      tabindex="5"></div>
+        <div><label for="lagelimit">Lower Age Limit</label>
+          <input id='lagelimit' placeholder="Lower Age Limit" type="number" formControlName="agegrouplow" required
+            tabindex="5"></div>
 
-      <div><label for="uagelimit">Upper Age Limit</label>
-      <input id='uagelimit' placeholder="Upper Age Limit" type="number" formControlName="agegrouphigh" required
-      tabindex="6"></div>
+        <div><label for="uagelimit">Upper Age Limit</label>
+          <input id='uagelimit' placeholder="Upper Age Limit" type="number" formControlName="agegrouphigh" required
+            tabindex="6"></div>
 
 
-      <div><label for="lrate">Literacy Rate</label>
-      <input id='lrate' placeholder="Literacy Rate" type="number" formControlName="literacyrate" required tabindex="7"></div>
+        <div><label for="lrate">Literacy Rate</label>
+          <input id='lrate' placeholder="Literacy Rate" type="number" formControlName="literacyrate" required
+            tabindex="7"></div>
 
-      <div><label for='ltype'>Location Type</label>
-      <select id='ltype' tabindex="8">
-      <option *ngFor="let x of location" [value]="x">{{x}}</option>
-      </select></div>
+        <div><label for='ltype'>Location Type</label>
+          <select id='ltype' tabindex="8">
+            <option *ngFor="let x of location" [value]="x">{{x}}</option>
+          </select></div>
 
-      <div><label for='avginc'> Average Income in Rs. </label>
-      <input id='avginc' placeholder="Average Income" type="number" formControlName="averageincome" tabindex="9"
-      required></div>
-    </div>
-
-    <div formArrayName="needs">
-      <h3>Needs</h3>
-      <div *ngFor="let address of pgForm.get('needs')['controls']; let i=index">
-        <!-- The repeated alias template -->
-        <div class='need'>
-          <div [formGroupName]="i" style="width: 80%">
-            <input placeholder="needs" type="text" formControlName="need" tabindex="10">
-          </div>
-          <button (click)="delNeed(i)" class="delete"><i class="material-icons">delete</i></button>
-        </div>
+        <div><label for='avginc'> Average Income in Rs. </label>
+          <input id='avginc' placeholder="Average Income" type="number" formControlName="averageincome" tabindex="9"
+            required></div>
       </div>
-      <button class="secondary" color="primary" (click)="addNeed()" tabindex="11">Add Need</button>
-    </div>
-    <button class="submit" (click)="onSubmit()" tabindex="12">Submit</button>
-  </form>
+
+      <div formArrayName="needs">
+        <h3>Needs</h3>
+        <div *ngFor="let address of pgForm.get('needs')['controls']; let i=index">
+          <!-- The repeated alias template -->
+          <div class='need'>
+            <div [formGroupName]="i" style="width: 80%">
+              <input placeholder="needs" type="text" formControlName="need" tabindex="10">
+            </div>
+            <button (click)="delNeed(i)" class="delete"><i class="material-icons">delete</i></button>
+          </div>
+        </div>
+        <button class="secondary" color="primary" (click)="addNeed()" tabindex="11">Add Need</button>
+      </div>
+      <button class="submit" (click)="onSubmit()" tabindex="12">Submit</button>
+    </form>
+  </div>
   <!-- Values: {{pgForm.value | json }} -->
 </div>

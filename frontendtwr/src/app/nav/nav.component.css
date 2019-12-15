@@ -1,4 +1,4 @@
-.container {
+.navcontainer {
     height: 100%;
     width: 15%;
     position: fixed;
@@ -43,4 +43,11 @@ li {
 li:hover {
     background-color: var(--s);
     cursor: pointer;
+}
+
+@media print 
+{
+    * {
+        display: none;
+    }
 }

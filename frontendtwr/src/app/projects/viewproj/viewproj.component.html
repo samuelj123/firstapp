@@ -1,117 +1,118 @@
 <div class="container">
-  <app-gantt></app-gantt>
-  <div *ngIf="project!==undefined && userrole!==undefined">
-    <div>
+  <!-- <app-gantt class='onright'></app-gantt> -->
+  <div class='seccontainer' *ngIf="project!==undefined && userrole!==undefined">
+    <h1 class='bold'>{{project.name}}</h1>
+    <p><strong>Vision:</strong> {{project.vision}}</p>
+    <p><strong>Mission:</strong> {{project.mission}}</p>
+
+    <div class="grid card">
       <div>
-        <div></div>
-        <h1>{{project.name}}</h1>
-      </div>
-      <div>
-        <div></div>
-        <p>People Group:</p>
-        <h2>{{project.need.pgroup.pgroup}}</h2>
-      </div>
-      <div>
-        <div></div>
-        <p>Need</p>
-        <h2>{{project.need.need}}</h2>
-      </div>
-      <div>
-        <div></div>
         <p>Total Budget</p>
         <h1>{{budget}}</h1>
+      </div>
+      <div>
         <p>Amount Raised Locally</p>
         <h1>{{fundsraised}}</h1>
-
       </div>
       <div>
-        <div></div>
-        <p><strong>Description of People Group:</strong> {{project.need.pgroup.description}}</p>
-        <p><strong>Vision:</strong> {{project.vision}}</p>
-        <p><strong>Mission:</strong> {{project.mission}}</p>
-
-      </div>
-      <div>
-        <div>
-          <div></div>
-          <h2>{{project.programname}}</h2>
-          <p>Program Name</p>
-        </div>
-        <div>
-          <h2>{{project.duration}}min</h2>
-          <p>Program Duration</p>
-        </div>
-        <div>
-          <h2>{{project.productionformat}}</h2>
-          <p>Production Format</p>
-        </div>
-        <div>
-          <h2>{{project.contentformat}}</h2>
-          <p>Content Format</p>
-        </div>
-      </div>
-      <div>
-        <div></div>
-        <p>Distribution Methods</p>
-        <ul *ngFor="let x of project.distmethod">
-          <li>{{x}}</li>
-        </ul>
-      </div>
-      <div>
-        <div></div>
-        <h1 *ngFor="let x of project.marketingmethod">{{x}}</h1>
-        <p>Marketing Methods:</p>
+        <p>Amount Requested</p>
+        <h1>{{budget - fundsraised}}</h1>
       </div>
     </div>
-
+    <div class='grid card'>
+      <div>
+        <h3>People Group:</h3>
+        <p>{{project.need.pgroup.pgroup}}</p>
+      </div>
+      <div>
+        <h3>Need</h3>
+        <p>{{project.need.need}}</p>
+      </div>
+      <div>
+        <h3>People Group Description </h3>
+        <p>{{project.need.pgroup.description}}</p>
+      </div>
+    </div>
+    <div class='grid card'>
+      <div>
+        <div></div>
+        <h3>Program Name</h3>
+        <p>{{project.programname}}</p>
+      </div>
+      <div>
+        <h3>Program Duration</h3>
+        <p>{{project.duration}}min</p>
+      </div>
+      <div>
+        <h3>Production Format</h3>
+        <p>{{project.productionformat}}</p>
+      </div>
+      <div>
+        <h3>Content Format</h3>
+        <p>{{project.contentformat}}</p>
+      </div>
+      <div>
+        <div></div>
+        <h3>Distribution Methods</h3>
+        <div *ngFor="let x of project.distmethod">
+          <p>{{x}}</p>
+        </div>
+      </div>
+      <div>
+        <div></div>
+        <h3>Marketing Methods:</h3>
+        <p *ngFor="let x of project.marketingmethod">{{x}}</p>
+      </div>
+    </div>
     <div *ngIf="kpis!==undefined">
-      <h1>KPIs</h1>
-      <div *ngFor="let c of chain">
-        <h2>{{c}}</h2>
-        <div *ngFor="let y of kpis | sort: c">
-          <div>
-            <div>
-              <div>
-                {{y.kpi}}
-              </div>
-              <div>
-                {{y.report}} to be submitted by {{y.pointperson}}: Cost = Rs.{{y.budget}}
-              </div>
-            </div>
-            <div>
-              <table>
-                <tr>
-                  <th>Tasks</th>
-                  <th>Point Person</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                </tr>
-                <tr *ngFor="let z of y.tasks">
-                  <td>
-                    <p>{{z.task}}</p>
-                  </td>
-                  <td>
-                    <p>{{z.taskhandler.firstname}} {{z.taskhandler.lastname}}</p>
-                  </td>
-                  <td>
-                    <p>{{z.duration}}</p>
-                  </td>
-                  <td>
-                    <p>{{z.enddate}}</p>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button *ngIf="userrole.includes('CEO')" (click)="submitproject()">Submit
-          Project</button>
-        <button *ngIf="userrole.includes('CEO')" (click)="goback()">Save as
-          Draft</button>
-        <button *ngIf="userrole.includes('ID')" (click)="goback()">Go Back</button>
+      <div class="card">
+        <h2>KPIs (Strategy)</h2>
+        <table class="fl-table">
+          <thead>
+            <tr>
+              <th>KPI Name</th>
+              <th>KPI Category</th>
+              <th>Budget</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let x of kpis'>
+              <td>{{x.kpi}}</td>
+              <td>{{x.type}}</td>
+              <td>{{x.budget}}</td>
+              <td>{{x.report | slice:0:15}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+    <div class='card' *ngIf='tasks!==undefined && tasks.length!==0'>
+      <h2>Tasks For Project</h2>
+      <table class="fl-table">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let x of tasks'>
+            <td>{{x.task}}</td>
+            <td>{{x.duration }}</td>
+            <td>{{x.enddate}}</td>
+          </tr>
+        <tbody>
+      </table>
+    </div>
+
+    <div class="submline">
+      <button *ngIf="userrole.includes('CEO')" class='submit' (click)="submitproject()">Submit Project</button>
+      <button *ngIf="userrole.includes('CEO')" class='secondary' (click)="goback()">Save as
+        Draft</button>
+      <button *ngIf="userrole.includes('ID')" class='secondary' (click)="goback()">Go Back</button></div>
+
+
   </div>
 </div>
