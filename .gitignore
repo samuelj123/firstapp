@@ -1,6 +1,4 @@
 frontendtwr/node_modules
 backendtwr/node_modules
 backendtwr/.env
-ormconfig.json
-ormconfig.json.production
 ormconfig.ubuntu.json
