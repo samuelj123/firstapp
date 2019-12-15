@@ -1,4 +1,5 @@
 const x = 'http://localhost:4000'
+// const x = '52.221.201.9:4000';
 
 export const environment = {
   production: true,
