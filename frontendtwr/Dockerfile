@@ -15,3 +15,4 @@ COPY . .
 
 # start app
 CMD ng serve --host 0.0.0.0 --disableHostCheck true
+# CMD ng serve --host 0.0.0.0
