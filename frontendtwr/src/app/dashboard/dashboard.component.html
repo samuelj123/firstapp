@@ -2,7 +2,7 @@
   <h2 class='title'>Dashboard</h2>
   <h3>Immediate Attention</h3>
   <div *ngIf='userrole!==undefined'>
-    <div *ngIf='userrole.includes("ID")'>
+    <div *ngIf='userrole.includes("ID")||userrole.includes("CEO")'>
     </div>
 
     <div class='grid' *ngIf='userrole.includes("CEO")'>

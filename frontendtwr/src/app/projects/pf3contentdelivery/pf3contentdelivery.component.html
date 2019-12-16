@@ -41,9 +41,9 @@
           <div *ngFor="let address of distributionkpis.controls; let i=index">
             <!-- The repeated alias template -->
 
-            <div>
+            <div style='position:relative;'>
               <textarea placeholder="Distribution KPI:" type="text" [formControlName]="i"></textarea>
-              <button (click)="deletedistributionkpi(i)" tabindex="2"><i>delete</i></button>
+              <button class='delete' (click)="deletedistributionkpi(i)" tabindex="2"><i class='material-icons'>delete</i></button>
             </div>
           </div>
           <button class="secondary" (click)="addDistributionkpi()">Add Distribution KPI</button>

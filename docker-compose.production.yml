@@ -1,7 +1,7 @@
 version: "3"
 services:
   frontend:
-    build: ./frontendtwr/Dockerfile.production
+    build: ./frontendtwr
     ports:
       - 80:4200
     links: 
@@ -12,7 +12,7 @@ services:
     depends_on: 
       - backend
   backend: 
-    build: ./backendtwr/Dockerfile.production
+    build: ./backendtwr
     ports: 
       - 4000:8080
     volumes:

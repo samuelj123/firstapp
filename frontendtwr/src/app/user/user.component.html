@@ -3,6 +3,7 @@
       <tr *ngFor='let x of allusers' class="row">
         <td><p>{{x.firstname}} {{x.lastname}}</p></td>
         <td><p>{{x.email}}</p></td>
+        <td><p>{{x.position}}</p></td>
         <td><button (click)="delete(x.id)"><i>delete</i></button></td>
       </tr>
   </table>

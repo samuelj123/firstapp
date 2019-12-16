@@ -1,5 +1,5 @@
-#base image
-FROM node:8-alpine3.9 as build
+# base image
+FROM node:12.2.0
 # set working directory
 WORKDIR /app
 
@@ -9,8 +9,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json /app
 RUN npm install
+
+# add app
 COPY . .
 
-EXPOSE ${BACKEND_PORT}
 # start app
-CMD npm run start:dev
+CMD ng serve --host 0.0.0.0
