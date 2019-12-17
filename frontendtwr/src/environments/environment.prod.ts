@@ -1,5 +1,5 @@
-const x = 'http://localhost:4000'
-// const x = 'EC2-13-250-44-92.ap-southeast-1.compute.amazonaws.com:4000'
+const x = 'http://localhost:8080';
+// const x = ''
 
 export const environment = {
   production: true,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../projects.service';
 import { PGroup } from '../project.model';
-import { DeldialogueComponent } from '../../shared/deldialogue/deldialogue.component';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
 import { User } from 'src/app/user/user.model';

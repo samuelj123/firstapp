@@ -3,8 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 // const x = 'EC2-13-250-44-92.ap-southeast-1.compute.amazonaws.com:4000'
-const x = 'http://localhost:4000';
-// const x = 'http://twrapp_backend_1:4000'
+// const x = 'http://localhost:8080';
 export const environment = {
   production: false,
   API_USERSERVICE: x + "/api/user",

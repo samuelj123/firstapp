@@ -11,17 +11,11 @@ import { AppComponent } from './app.component';
 import { TokenInterceptorService } from './user/token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
-import { DeldialogueComponent } from './shared/deldialogue/deldialogue.component';
-import { SavedialogueComponent } from './shared/deldialogue/savedialogue.component';
-import { DenydialogueComponent } from './shared/deldialogue/denydialogue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    DeldialogueComponent,
-    SavedialogueComponent,
-    DenydialogueComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +28,6 @@ import { DenydialogueComponent } from './shared/deldialogue/denydialogue.compone
     FormsModule,
   ],
   entryComponents: [
-    DeldialogueComponent,
-    SavedialogueComponent,
-    DenydialogueComponent,
   ],
   providers: [
     {

@@ -3,7 +3,6 @@ import { ProjectsService } from '../projects.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project, KPI, Task } from '../project.model';
 import { UserService } from 'src/app/user/user.service';
-import { SavedialogueComponent } from 'src/app/shared/deldialogue/savedialogue.component';
 
 @Component({
   selector: 'app-viewproj',

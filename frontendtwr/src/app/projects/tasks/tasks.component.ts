@@ -3,7 +3,6 @@ import { ProjectsService } from '../projects.service';
 import { Project, Task } from '../project.model';
 import { UserService } from '../../user/user.service';
 import { Router } from '@angular/router';
-import { DenydialogueComponent } from 'src/app/shared/deldialogue/denydialogue.component';
 import { User } from 'src/app/user/user.model';
 
 @Component({
