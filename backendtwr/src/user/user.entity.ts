@@ -1,8 +1,6 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, CreateDateColumn, Column, UpdateDateColumn, BeforeInsert, OneToMany, ManyToOne } from 'typeorm';
-// import * as bcrypt from 'bcryptjs';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// import * as jwt from 'jsonwebtoken';
 import { ProjectEntity } from '../project/project.entity';
 import { LanguageEntity } from 'pgroup/language/language.entity';
 import { TaskEntity } from 'project/task/task.entity';

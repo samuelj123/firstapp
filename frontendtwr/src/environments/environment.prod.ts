@@ -1,5 +1,5 @@
-const x = 'http://localhost:8080';
-// const x = ''
+// const x = 'http://localhost:8080';
+const x = '/api'
 
 export const environment = {
   production: true,
