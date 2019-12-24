@@ -1,31 +1,6 @@
-# App version 2
-  * Add Gantt Chart for Operational Inputs (10 days)
-  * Add A Dashboard page (4 days)
-    * At a Glance
-    * Projects 
-    * People Groups
-    * Tasks 
-    * Active Projects
-  * Produce user-ids and passwords for all executive staff (3 days)
-  * Task-list Module (frontend) (1 day)
-  <DONE>* Active Projects Module (frontend) (10 days)
-    <DONE>* Individual Active Project View with progress and report status
-  * Personnel Management Module (2 days)
-  * UX Design - Buy UI Components (12 days)
-
-# Immediate Tasks
-  * Fill up the dashboard for all levels
-    * ID
-    * Executive
-  * Do the UX UI Design
-  * Upload to AWS
-  * Fix the Report -incharge thing
-  * Fix the pf6todolist. THere is a 'Category Option' that's really not required
-
 # To Be Done
   * Clean up the API (Make more sensible paths and names)
   * Document the API properly 
-  * 'Deny Projects' Modal (and other modals) to be re-fixed
 
 # BugFixes
   * None of the @Query's are working in their current avatars
