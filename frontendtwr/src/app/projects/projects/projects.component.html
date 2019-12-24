@@ -19,6 +19,7 @@
           <div *ngIf="approvetoggle===true">
             <p>Confirm the Approval of the Project, and Provide a Start Date</p>
             <input style='margin-right: 2em;' type="date" (keyup.enter)='approveproj(x.id, $event)'>
+            <button class='delete small' (click)='approveproj(x.id, $event)'>Approve</button>
             <button class='delete small' (click)='cancel()'>Cancel</button>
           </div>
           <div *ngIf='denytoggle===true'>
