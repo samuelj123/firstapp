@@ -1,10 +1,10 @@
 {
     "type": "postgres",
-    "host": "twr.cgcazops4k03.ap-southeast-1.rds.amazonaws.com",
+    "host": "twrsa.cgcazops4k03.ap-southeast-1.rds.amazonaws.com",
     "port": 5432,
     "username": "postgres",
     "password": "87654321",
-    "synchronize": false,
+    "synchronize": true,
     "logging": true,
     "entities": ["./dist/**/*.entity.js", "./dist/**/**/*.entity.js", "./src/**/*.entity.ts", "./src/**/**/*.entity.ts"]
 }

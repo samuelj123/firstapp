@@ -1,0 +1,21 @@
+[
+    {"Bangladesh": "Bengali"},
+    {"Bangladesh": "Muslimi Bengali"},
+    {"Nepal": "Bhojpuri"},
+    {"Nepal": "Kham-Western Parbate"},
+    {"Nepal": "Limbu"},
+    {"Nepal": "Maithili"},
+    {"Nepal": "Nepali"},
+    {"Nepal": "Tamang, Eastern"},
+    {"Nepal": "Tharu"},
+    {"Afghanistan": "Dari"},
+    {"Afghanistan": "Pashto Northern"},
+    {"Afghanistan": "Pashto Southern"},
+    {"Bhutan": "Dzongkha"},
+    {"Pakistan": "Kashmiri"},
+    {"Pakistan": "Pahari Kangri"},
+    {"Pakistan": "Punjabi"},
+    {"Pakistan": "Punjabi, Western"},
+    {"Pakistan": "Urdu"},
+    {"Srilanka": "Tamil"}
+]
