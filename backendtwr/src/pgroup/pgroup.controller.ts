@@ -37,9 +37,9 @@ export class PgroupController {
         return this.pgservice.update({ id, ...data });
     }
 
-    @Get()
+    @Get('country/:country')
     @UseGuards(new AuthGuard())
-    findbycountry(@Query('name') country: string) {
+    findbycountry(@Param('country') country: string) {
         return this.pgservice.countryfiltered(country);
     }
 

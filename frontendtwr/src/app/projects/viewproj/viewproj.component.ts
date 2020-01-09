@@ -48,6 +48,11 @@ export class ViewprojComponent implements OnInit {
   }
 
   async submitproject() {
+    const val = { approvallevel: 1 }
+    const val2 = { denialmsg: null };
+    this.projservice.updateproj({...val, ...val2}, this.projid).subscribe();
+    this.router.navigate(['/projects']);
+    this.ngOnInit();
     //OpenDialog
   //   const dialogRef = this.dialog.open(SavedialogueComponent, {
   //     width: '250px',

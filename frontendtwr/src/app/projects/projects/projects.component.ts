@@ -44,7 +44,7 @@ export class ProjectsComponent implements OnInit {
   async approveproj(id, e) {
     const day = e.target.value.split("-", 3);
     const date: Date = new Date(day[0], day[1], day[2])
-    const object = { approvallevel: 2, startdate: date };
+    const object = { approvallevel: 2, startdate: e.target.value };
     await this.projservice.updateproj(object, id).subscribe();
     this.ngOnInit();
   }

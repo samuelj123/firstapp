@@ -108,9 +108,11 @@
     </div>
 
     <div class="submline">
-      <button *ngIf="userrole.includes('CEO')" class='submit' (click)="submitproject()">Submit Project</button>
-      <button *ngIf="userrole.includes('CEO')" class='secondary' (click)="goback()">Save as
-        Draft</button>
+      <button *ngIf="userrole.includes('CEO') && project.approvallevel===0" class='submit' (click)="submitproject()">Submit Project</button>
+      <button *ngIf="userrole.includes('ID') && project.approvallevel===1" class='submit' (click)="approveproject()">Approve Project</button>
+      <!-- <button *ngIf="userrole.includes('ID') && project.approvallevel===1" class='submit' (click)="denyproject()">Deny Project</button>
+      <button *ngIf="userrole.includes('CEO') && project.approvallevel===0" class='secondary' (click)="goback()">Save as 
+        Draft</button> -->
       <button *ngIf="userrole.includes('ID')" class='secondary' (click)="goback()">Go Back</button></div>
 
 

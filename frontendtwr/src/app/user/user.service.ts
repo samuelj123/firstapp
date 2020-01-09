@@ -22,7 +22,7 @@ export class UserService {
   }
 
   getallbyfilter(id) {
-    return this.http.get(this.api + '?p=' + id);
+    return this.http.get(this.api + '/pplfilt/' + id);
   }
 
   delete(id: string) {

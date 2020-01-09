@@ -45,7 +45,7 @@ export class ProjectsService {
   }
 
   getfilteredpg(country: string) {
-    return this.http.get(this.pgroup + '?name=' + country);
+    return this.http.get(this.pgroup + '/country/' + country);
   }
 
   getonepg(id: string) {

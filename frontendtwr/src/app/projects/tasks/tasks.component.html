@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor='let x of tasks'>
+        <tr *ngFor="let x of tasks | sort:tasks.duration">
             <td><input type="checkbox" [(ngModel)]='x.complete' (click)='tick(x.id, $event)'></td>
             <td [class.complete]='x.complete'>{{x.task}}</td>
             <td [class.complete]='x.complete'>{{x.kpi.project.name}}</td>

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 import { ProjectEntity } from '../project/project.entity';
 import { LanguageEntity } from 'pgroup/language/language.entity';
 import { TaskEntity } from 'project/task/task.entity';
+import { KpiEntity } from 'project/kpi/kpi.entity';
 
 export type Country= 'India' | 'Pakistan' | 'Bangladesh' | 'Srilanka' | 'Nepal';
 export type Position= 'ADMIN' | 'Donor' | 'ID' | 'CEO' | 'RO' | 'COORDINATOR' | 'MANAGER' | 'EXECUTIVE';
@@ -59,5 +60,6 @@ export class UserEntity {
 
     @OneToMany(type => ProjectEntity, project => project.creator) projects: ProjectEntity[];
     @OneToMany(type => TaskEntity, tasks => tasks.taskhandler) tasks: TaskEntity[];
+    // @OneToMany(type => KpiEntity, kpis => kpis.pointperson) kpis: KpiEntity[];
     @ManyToOne(type => LanguageEntity, language => language.users) language: LanguageEntity;
 }

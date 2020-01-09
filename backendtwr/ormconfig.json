@@ -1,6 +1,6 @@
 {
     "type": "postgres",
-    "host": "twrsa.cgcazops4k03.ap-southeast-1.rds.amazonaws.com",
+    "host": "database-1.cgcazops4k03.ap-southeast-1.rds.amazonaws.com",
     "port": 5432,
     "username": "postgres",
     "password": "87654321",

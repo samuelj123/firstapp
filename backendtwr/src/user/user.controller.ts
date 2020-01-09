@@ -27,9 +27,9 @@ export class UserController {
         return this.uservice.userProfile(id);
     }
 
-    @Get('userid')
+    @Get('/pplfilt/:p')
     // @UseGuards(new AuthGuard())
-    usersbyfilter(@Query('p') userid: string) {
+    usersbyfilter(@Param ('p') userid: string) {
         return this.uservice.subordinates(userid);
     }
 
