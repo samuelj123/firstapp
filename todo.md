@@ -1,10 +1,15 @@
 # To Be Done
+
   * Clean up the API (Make more sensible paths and names)
   * Document the API properly 
 
-# BugFixes
-  * None of the @Query's are working in their current avatars
-  * Pf6Tasks: Doesn't refresh after saving/deleting. 
+# Dashboard
+  * Number of Projects vs Active Projects
+  * Number of Staff and the amount of tasks for each staff
+  * Number of People Groups Set up 
+  * Number of Needs per people group
+  * Number of Projects used per people group
+
 
 
 <!---
@@ -118,3 +123,4 @@
 * Make sure the component re-loads when DELETE is done 
 * Give a PUT somewhere in the user-component
 -->
+h

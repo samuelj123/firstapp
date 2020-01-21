@@ -17,10 +17,18 @@
             <input type='text' formControlName="taskname" placeholder="Task Name" >
 
             <div class="grid">
-              <div><label class="startdate">Start Date</label>
-                <input type='number' formControlName="duration" placeholder="Starting Day" ></div>
-              <div><label class="enddate">End Date</label>
-                <input type='number' formControlName="enddate" placeholder="Ending Day" ></div>
+              <div><label class="startdate">Start Date (years)</label>
+                <input type='number' formControlName="durationy" placeholder="Starting Day" ></div>
+              <div><label class="startdate">Start Date (months)</label>
+                <input type='number' formControlName="durationm" placeholder="Starting Day" ></div>
+              <div><label class="startdate">Start Date (days)</label>
+                <input type='number' formControlName="durationd" placeholder="Starting Day" ></div>
+              <div><label class="enddate">End Date (years)</label>
+                <input type='number' formControlName="enddatey" placeholder="Ending Day" ></div>
+              <div><label class="enddate">End Date (months)</label>
+                <input type='number' formControlName="enddatem" placeholder="Ending Day" ></div>
+              <div><label class="enddate">End Date (days)</label>
+                <input type='number' formControlName="enddated" placeholder="Ending Day" ></div>
               <div><label class="taskhandler">Person Responsible for Task</label>
                 <select formControlName="taskhandler" >
                   <option *ngFor="let y of pplresponsible" value="{{y.id}}">{{y.firstname}}</option>

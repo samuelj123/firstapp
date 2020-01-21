@@ -3,7 +3,12 @@ import { ProjectEntity } from '../project.entity';
 import { TaskEntity } from './../task/task.entity';
 import { UserEntity } from 'user/user.entity';
 
-export type KPI = ['Content Creation', 'Content Delivery', 'Marketing', 'Audience Relations'];
+export type KPI = ['Content Creation',
+    'Content Delivery',
+    'Marketing',
+    'Audience Relations',
+    'Fundraising'
+];
 @Entity('kpi')
 export class KpiEntity {
     @PrimaryGeneratedColumn('uuid') id: string;

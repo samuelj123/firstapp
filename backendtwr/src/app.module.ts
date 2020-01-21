@@ -8,7 +8,6 @@ import { HttpErrorFilter } from './shared/http-error.filter';
 import { ProjectModule } from './project/project.module';
 import { PgroupModule } from './pgroup/pgroup.module';
 import { FinanceService } from './finance/finance.service';
-import { FundraisingController } from './finance/fundraising/fundraising.controller';
 // import { FundraisingService } from './finance/fundraising/fundraising.service';
 
 @Module({

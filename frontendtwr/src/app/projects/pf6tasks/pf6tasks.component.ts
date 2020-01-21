@@ -52,7 +52,7 @@ export class Pf6tasksComponent implements OnInit {
     });
     this.tasks = this.taskform.get('task') as FormArray;
     this.taskform.setControl('task', this.settasks(this.alltasks));
-    console.log(this.alltasks)
+    console.log(this.indays(1,0,10));
   }
 
 
@@ -61,12 +61,27 @@ export class Pf6tasksComponent implements OnInit {
       taskname: '',
       category: '',
       taskhandler: '',
-      duration: '',
-      enddate: '',
+      durationy: '',
+      durationm: '',
+      durationd: '',
+      enddatey: '',
+      enddatem: '',
+      enddated: '',
       kpiid: ''
     });
   }
 
+  inyears(x:number): Array<number>{
+    let a=[];
+    a[0] = Math.floor(x/365);
+    a[1]=Math.floor((x%365)/12);
+    a[2]=Math.floor((x%365)%12);
+    return a;
+  }
+
+  indays(a:number, b: number, c: number) {
+    return a*365+b*12+c;
+  }
   settasks(tasks: Task[]):FormArray {
     const fa = new FormArray([]);
     tasks.forEach(k => {
@@ -74,8 +89,12 @@ export class Pf6tasksComponent implements OnInit {
         taskname: k.task, 
         category: k.kpi.type, 
         taskhandler: k.taskhandler.id, 
-        duration: k.duration, 
-        enddate: k.enddate,
+        durationy: this.inyears(k.duration)[0], 
+        durationm: this.inyears(k.duration)[1], 
+        durationd: this.inyears(k.duration)[2], 
+        enddatey: this.inyears(k.enddate)[0],
+        enddatem: this.inyears(k.enddate)[1],
+        enddated: this.inyears(k.enddate)[2],
         kpiid: k.kpi.id
       }))
     });
@@ -105,8 +124,8 @@ export class Pf6tasksComponent implements OnInit {
     fv2.forEach(async x => {
       const obj = {
         task: x.value.taskname as string,
-        duration: x.value.duration as number,
-        enddate: x.value.enddate as number,
+        duration: this.indays(x.value.durationy, x.value.durationm, x.value.durationd) as number,
+        enddate: this.indays(x.value.enddatey, x.value.enddatem, x.value.enddated) as number,
         taskhandler: x.value.taskhandler as string,
       };
       console.log(x.value.kpiid);

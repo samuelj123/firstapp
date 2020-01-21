@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   pgroups: PGroup[];
   country: string;
   userrole: string;
+  countri = ['Srilanka', 'Nepal', 'Bangladesh', 'Pakistan'];
   countryusers: User[];
   usertasks: Task[];
   alltasks: Task[];

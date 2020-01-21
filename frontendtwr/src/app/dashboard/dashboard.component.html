@@ -1,10 +1,15 @@
 <div class="container">
   <h2 class='title'>Dashboard</h2>
-  <h3>Immediate Attention</h3>
   <div *ngIf='userrole!==undefined'>
     <div *ngIf='userrole.includes("ID")||userrole.includes("CEO")'>
+      <div class="grid">
+        <div class="card" *ngFor='let x of countri'>
+          <h2>{{x}}</h2>
+        </div>
+      </div>
     </div>
-
+    
+    <h3 *ngIf='userrole.includes("CEO")'>Immediate Attention</h3>
     <div class='grid' *ngIf='userrole.includes("CEO")'>
       <div class='card' *ngIf='latetasks!==null'>
         <h2>Late Reports</h2>
@@ -14,6 +19,7 @@
         </div>
       </div>
       <div class='card activeprojects' *ngIf='activeprojects!==undefined'>
+        
         <h2>Active Projects</h2>
         <h2><strong>{{activeprojects.length}}</strong>/{{projects.length}}</h2>
         <!-- <p>Progress of Each Active Project wrt tasks</p>
