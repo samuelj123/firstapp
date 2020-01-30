@@ -1,0 +1,11 @@
+
+PORT=8080
+SECRET=mySuperSecretPassword
+
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=87654321
+POSTGRES_DB=twr
+POSTGRES_HOST=twr.cgcazops4k03.ap-southeast-1.rds.amazonaws.com
+ENVIRONMENT=production
+ORMCONFIGDEVNAME=development
+ORMCONFIGPRODNAME=default

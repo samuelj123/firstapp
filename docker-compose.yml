@@ -8,14 +8,20 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
   frontend:
-    build: ./frontendtwr
+    container_name: 'frontend'
+    build: 
+      context: ./frontendtwr
+      dockerfile: Dockerfile.dev
     ports:
       - 4000:4200
     volumes: 
       - ./frontendtwr:/app
       - /app/node_modules/
   backend: 
-    build: ./backendtwr
+    container_name: 'backend'
+    build: 
+      context: ./backendtwr
+      dockerfile: Dockerfile.dev
     ports: 
       - 8080:8080
     volumes:

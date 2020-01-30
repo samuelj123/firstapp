@@ -17,16 +17,8 @@ I've obviously not perfectly configured it to run solely on Docker; (I'm no mad 
 So, for now, you have to have nodejs and npm installed. 
 
 
-Clone this repository download dependencies using 
-``` bash
-cd frontendtwr && npm install
-cd ..
-cd backendtwr %% npm install
-cd ..
+Clone this repository download dependencies, cd into the directory and run
 ```
-Then run the Docker-compose file
-
-``` bash
 sudo docker-compose up --build
 ```
 
@@ -38,3 +30,37 @@ sudo docker-compose up --build
 ## License
 
   This app is [MIT licensed](LICENSE).
+
+
+
+
+
+# FrontEnd for TWR App
+
+## Setting up a Development Environment
+
+```bash
+$ npm install
+
+$ ng serve
+```
+and run it on localhost:4200
+
+
+## Running it on a server
+
+```bash 
+$ npm install
+
+$ ng build
+
+$ ng serve --prod
+```
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).

@@ -42,6 +42,10 @@
         <div><label for='avginc'> Average Income in Rs. &#8377;</label>
           <input id='avginc' placeholder="Average Income" type="number" formControlName="averageincome" tabindex="9"
             required></div>
+        <div><label for='maccess'> Media Accessibility</label>
+          <select id='ltype' tabindex="8">
+            <option *ngFor="let x of maccessibility" [value]="x">{{x}}</option>
+          </select></div>
       </div>
 
       <div formArrayName="needs">

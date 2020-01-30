@@ -1,27 +1,17 @@
 version: "3"
 services:
   frontend:
-    build: ./frontendtwr
-    ports:
-      - 80:4200
-    links: 
-      - backend
-    volumes: 
-      - ./frontendtwr:/app
-      - /app/node_modules/
-    depends_on: 
-      - backend
-  backend: 
-    build: ./backendtwr
-    ports: 
-      - 4000:8080
-    volumes:
-      - ./backendtwr:/app
-      - /app/node_modules/
+    build: frontendtwr/.
     env_file:
       - .env
-  networks:
-    default:
-      external:
-        name: myNetwork
-
+    networks:
+      - myNetwork
+  backend: 
+    build: backendtwr/.
+    env_file:
+      - .env
+    networks:
+      - myNetwork
+networks:
+  myNetwork:
+     external: true

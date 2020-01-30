@@ -14,6 +14,7 @@ export interface PGroup {
     location: string;
     needs: Need[];
     projectnos: number;
+    maccess: string;
 }
 
 interface Need {

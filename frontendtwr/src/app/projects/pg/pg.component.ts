@@ -16,6 +16,7 @@ export class PGComponent implements OnInit {
   mypg: PGroup;
   pgid: string;
   needds: string[] = [];
+  maccessibility = ['Radio', 'TV', 'Media players', 'SW/Radio']
 
   constructor(
     private projservice: ProjectsService,
@@ -29,7 +30,7 @@ export class PGComponent implements OnInit {
   async ngOnInit() {
     this.route.params.subscribe(params => this.pgid = (params.id));
     this.pgForm = this.fb.group({
-      pgroup: ['', Validators.required],
+	  pgroup: ['', Validators.required],
       description: ['', Validators.required],
       agegrouplow: ['', Validators.required],
       agegrouphigh: ['', Validators.required],
@@ -39,6 +40,7 @@ export class PGComponent implements OnInit {
       literacyrate: ['', Validators.required],
       location: ['', Validators.required],
       averageincome: ['', Validators.required],
+      maccess:['', Validators.required]
     });
 
     if (this.pgid !== undefined) {
@@ -53,6 +55,7 @@ export class PGComponent implements OnInit {
         literacyrate: this.mypg.literacyrate,
         location: this.mypg.location,
         averageincome: this.mypg.averageincome,
+				maccess: this.mypg.maccess,
       });
       console.log(this.mypg.needs[0].need);
       this.mypg.needs.forEach(val => {

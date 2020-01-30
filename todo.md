@@ -1,7 +1,54 @@
-# To Be Done
+# First Tasks
+	* Make sure Migration works
+	* Make all cosmetic Changes
+		* ActiveProj Make over-due Tasks Red
+		* Dashboard-CEO Profile of Projects with completed/incomplete tasks
+		* Dashboard-CEO Profile of Staff with their upcoming tasks
+		* PGComponent Don't allow to submit without 'Needs'
+		* PgsComponent Connect Projects to People Groups, not needs
+  	* PgComponent Change 'Submit' Button to 'Save' 
+		* PgComponent Add Media Accessibility <Radio, TV, Media players, SW/Radio>
+		* PgComponent Add % to access to electricity, education, etc.
+		* PgComponent Add 'Both' in 'Urban'/'Rural'/'Unknown'
+		* PgComponent Average Annual Income 
+		* PgComponent Avoid Creating Duplicates 
+		* PgComponent Change Everything to USD
+		* PgComponent Put Needs in Text-Area
+		* PgComponent Put a text-area for "Needs"
+		* PgComponent Remove Unknown
+		* pf1intro Add a Launch Date 
+		* pf2-pf4 All KPIs -> KPIs don't list in order after saving (Delete from DB on command)
+		* pf2contentcreation 6 month review - Next 6 months changes in format
+		* pf2contentcreation Add Content Format Description
+		* pf2contentcreation Add Minutes in duration
+		* pf2contentcreation Add a Schedule "Daily/Weekly/Monthly"
+		* pf2contentcreation add content-description in text-area instead of text-box
+		* pf3contentdelivery Add 'App' to Distributon Drop-down
+		* pf3contentdelivery Make First Drop-Down 'Default'
+		* pf3contentdelivery Put KPI in Second Column (if Possible)
+		* pf3contentdelivery Save as Draft Button Not working
+		* pf4Marketing Make the List more user-friendly
+		* pf6fundraising Add drop-down for fund-raising method 
+		* pf6fundraising Change Everything to USD
+		* pf6fundraising Next-button Not working
+		* pf6fundraising say 'Committed' not 'planned'
+		* pf7tasks Hardcode the Last task
+		* pf7tasks Put dates instead of 'days' for tasks
+		* pf9budget Budget areas include 'Content Creation', 'Content Distribution', 'Marketing', 'Audience Relations', 'Reporting', 'Staff', 'FundRaising'
+		* pf9budget Change Everything to USD
+		* proposalnav Change the mouse-pointer to 'finger'
+		* proposalnav Highlight the place where you have reached
+		* viewproj fix the tables that are sticking out
+	* Make the entity-changes according to the cosmetic changes and connect apis
+	* Make all Entity edits until api. 
+	* Write unit-tests
+	* Write a Manual for the App < Consultant Hat> 
+# To Be Done Later
 
   * Clean up the API (Make more sensible paths and names)
   * Document the API properly 
+	* Bring Emails to the workflow
+	* Add Monthly Listeners to Dashboard
 
 # Dashboard
   * Number of Projects vs Active Projects

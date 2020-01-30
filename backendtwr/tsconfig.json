@@ -18,7 +18,8 @@
      "baseUrl":"src/",
      "listFiles":false,
      "importHelpers": true,
-     "noEmitHelpers":true
+     "noEmitHelpers":true,
+		 "lib":["es2015","dom"]
   },
   "include":[
      "src/**/*"
