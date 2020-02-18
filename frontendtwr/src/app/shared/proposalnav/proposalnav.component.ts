@@ -30,8 +30,8 @@ export class ProposalnavComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => this.projid = (params.id));
-    this.locus = this.location.path();
-    console.log(this.locus);
+    this.locus = this.location.path().slice(0,4);
+		console.log(this.locus==='/pf6');
   }
   async apf1() {
     await this.router.navigateByUrl('/pf1intro/' + this.projid);

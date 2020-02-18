@@ -10,3 +10,9 @@ li {
     padding: 0 2em;
     font-size: 0.80em;
 }
+li:hover {
+	cursor: pointer;
+}
+.active {
+	font-weight: 900;
+}
