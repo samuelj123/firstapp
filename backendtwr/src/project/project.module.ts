@@ -14,18 +14,16 @@ import { KpiEntity } from './kpi/kpi.entity';
 import { FundraisingEntity } from '../finance/fundraising/fundraising.entity';
 import { FundraisingController } from '../finance/fundraising/fundraising.controller';
 import { FundraisingService } from '../finance/fundraising/fundraising.service';
+import { PgroupModule } from 'pgroup/pgroup.module';
+import { PgroupEntity } from 'pgroup/pgroup.entity';
+import { BudgetController } from '../finance/budget/budget.controller';
+import { BudgetEntity } from '../finance/budget/budget.entity';
+import { BudgetService } from '../finance/budget/budget.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([
-    ProjectEntity, 
-    NeedEntity, 
-    TaskEntity, 
-    UserEntity, 
-    KpiEntity, 
-    FundraisingEntity
-  ])],
-  controllers: [ProjectController, TaskController, KpiController, FundraisingController],
-  providers: [ProjectService, TaskService, KpiService, FundraisingService],
+  imports: [PgroupModule, TypeOrmModule.forFeature([ProjectEntity, NeedEntity, TaskEntity, UserEntity, KpiEntity, FundraisingEntity, PgroupEntity, BudgetEntity])],
+  controllers: [ProjectController, TaskController, KpiController, FundraisingController, BudgetController],
+  providers: [ProjectService, TaskService, KpiService, FundraisingService, BudgetService],
   // exports: [FundraisingController]
 })
 export class ProjectModule { }

@@ -12,5 +12,6 @@ import { LanguageEntity } from './language/language.entity';
   imports: [TypeOrmModule.forFeature([PgroupEntity, NeedEntity, LanguageEntity])],
   providers: [PgroupService, LanguageService],
   controllers: [PgroupController, LanguageController],
+  exports: [PgroupService]
 })
 export class PgroupModule {}

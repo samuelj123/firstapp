@@ -8,7 +8,6 @@ import { HttpErrorFilter } from './shared/http-error.filter';
 import { ProjectModule } from './project/project.module';
 import { PgroupModule } from './pgroup/pgroup.module';
 import { FinanceService } from './finance/finance.service';
-// import { FundraisingService } from './finance/fundraising/fundraising.service';
 
 @Module({
   imports: [
@@ -22,8 +21,7 @@ import { FinanceService } from './finance/finance.service';
     {provide: APP_FILTER,
     useClass: HttpErrorFilter,
   },
-    FinanceService,
-    // FundraisingService
+    FinanceService
   ],
 })
 

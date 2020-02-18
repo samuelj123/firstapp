@@ -24,7 +24,7 @@ export class GanttComponent implements OnInit {
   //       .attr('x', d3.event.x)
   //   })
   //   .on('end', async () => {
-  //     const updatedtask = { id: d3.event.subject.id, duration: this.rx(d3.event.x), enddate: this.rx(d3.event.subject.enddate + d3.event.x) };
+  //     const updatedtask = { id: d3.event.subject.id, startdate: this.rx(d3.event.x), enddate: this.rx(d3.event.subject.enddate + d3.event.x) };
   //     this.newtask = updatedtask;
   //     if (this.newtask !== undefined) {
   //       // await this.projservice.updatetask(this.newtask.id, this.newtask).toPromise();
@@ -92,8 +92,8 @@ export class GanttComponent implements OnInit {
     .append("rect")
       .attr('class', 'bar')
       .attr('id', d => { return d.id })
-      .attr('x', d => { return x(d.duration) + 'px' })
-      .attr('width', d => { return x(d.enddate - d.duration) + 'px' })
+      .attr('x', d => { return x(d.startdate) + 'px' })
+      .attr('width', d => { return x(d.enddate - d.startdate) + 'px' })
       .attr("y", (d, i) => { return y(i+1)+ 'px' })
       .attr('height', height/length - 1 + 'px')
       .style("fill", d => {return "rgb(179, 77, "+ (d.enddate) + 252+")";})
@@ -103,8 +103,8 @@ export class GanttComponent implements OnInit {
     .append('text')
       .attr('class', 'bar')
       .attr('id', d => { return d.id })
-      .attr('x', d => { return x(d.duration) + 3 + 'px' })
-      // .attr('width', d => { return y(d.enddate - d.duration) + 'px' })
+      .attr('x', d => { return x(d.startdate) + 3 + 'px' })
+      // .attr('width', d => { return y(d.enddate - d.startdate) + 'px' })
       .attr("y", (d, i) => { return y(i+1)+(height/length+1)/2+ 'px' })
       .style('fill', 'white')
       .text(d => {return d.task});
@@ -137,10 +137,10 @@ export class GanttComponent implements OnInit {
 
       // update bar and text positions acc.. the new Scale
       bar
-        .attr('x', d => { return newX(d.duration) })
-        .attr('width', d => { return newX(d.enddate) - newX(d.duration)})
+        .attr('x', d => { return newX(d.startdate) })
+        .attr('width', d => { return newX(d.enddate) - newX(d.startdate)})
       txt
-        .attr('x', d => { return newX(d.duration) + 3 + 'px' })
+        .attr('x', d => { return newX(d.startdate) + 3 + 'px' })
     }
   }
 }

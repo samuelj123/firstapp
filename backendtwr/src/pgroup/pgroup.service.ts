@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { PgroupEntity } from './pgroup.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { NeedEntity } from './need.entity';
+import { PgroupModule } from './pgroup.module';
 
 @Injectable()
 export class PgroupService {
@@ -27,7 +28,8 @@ export class PgroupService {
         return await this.pgrouprepository
             .createQueryBuilder('pgroup')
             .leftJoinAndSelect('pgroup.needs', 'needs')
-            .leftJoinAndSelect('needs.project', 'project')
+            .leftJoinAndSelect('pgroup.language', 'language')
+            .leftJoinAndSelect('pgroup.projects', 'projects')
             .getMany();
     }
 
@@ -41,14 +43,34 @@ export class PgroupService {
             .createQueryBuilder('pgroup')
             .where('pgroup.id = :id', { id })
             .leftJoinAndSelect('pgroup.needs', 'needs')
+            .leftJoinAndSelect('pgroup.language', 'language')
             .getOne();
     }
 
-    async update(data: PgroupEntity) {
-        let pgroup = await this.pgrouprepository.findOne({ where: ['id'], relations: ['needs'] });
-        await this.pgrouprepository.update({ id: data.id }, data);
-        pgroup = await this.pgrouprepository.findOne({ where: ['id'], relations: ['needs'] });
-        return pgroup;
+    async update(id:string, data: PgroupEntity) {
+        // let pgroup = await this.pgrouprepository.findOne({ where: ['id'] });
+        // await this.pgrouprepository.update({ id: data.id }, data);
+        // pgroup = await this.pgrouprepository.findOne({ where: ['id'] });
+        // return pgroup;
+        const pgp = await this.pgrouprepository.findOne(id);
+        await this.needrepository
+            .createQueryBuilder()
+            .delete()
+            .from(NeedEntity)
+            .where('pgroup.id=:id',{id})
+            .execute();
+        data.needs.forEach(item => {
+            const need = this.needrepository.create({ ...item, pgroup: pgp });
+            this.needrepository.save(need);
+            return need;
+        });
+        const {needs,...npgp} = data;
+        await this.pgrouprepository
+            .createQueryBuilder()
+            .update(PgroupEntity)
+            .set(npgp)
+            .where("id = :id", { id })
+            .execute();
     }
 
     async countryfiltered(country: string) {

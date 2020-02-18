@@ -28,13 +28,7 @@ export class PGsComponent implements OnInit {
       this.allpgs = await this.projservice.getfilteredpg(country).toPromise() as PGroup[];
     }
     this.userrole = await this.uservice.currentuserrole();
-    this.allpgs.map(x => x.projectnos = x.needs.map(y => y.project.length).reduce((a, b) => a + b, 0))
   }
-
-  // // Tackling the "Add New People Group bit...
-  // toggleChild() {
-  //   this.showVar = !this.showVar;
-  // }
 
   addpg() {
     this.router.navigateByUrl('/addpg');

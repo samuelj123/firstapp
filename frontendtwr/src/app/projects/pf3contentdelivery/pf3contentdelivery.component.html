@@ -24,7 +24,7 @@
               </select>
             </div>
 
-            <div class=dmethod>
+            <div class=dmethod *ngIf='dmethod!==undefined'>
               <label>Distribution Method</label>
               <select [formControlName]="i">
                 <option *ngFor="let z of dmethod[i]" [value]="z">{{z}}</option>

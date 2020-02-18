@@ -49,13 +49,13 @@ export class ProposalnavComponent implements OnInit {
     await this.router.navigateByUrl('/pf5audiencerelations/' + this.projid);
   }
   async apf6() {
-    await this.router.navigateByUrl('/pf6tasks/' + this.projid);
-  }
-  async apf7() {
     await this.router.navigateByUrl('/pf6fundraising/' + this.projid);
   }
-  async apf8() {
+  async apf7() {
     await this.router.navigateByUrl('/pf7reporting/' + this.projid);
+  }
+  async apf8() {
+    await this.router.navigateByUrl('/pf6tasks/' + this.projid);
   }
   async apf9() {
     await this.router.navigateByUrl('/pf8budget/' + this.projid);

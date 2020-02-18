@@ -19,6 +19,6 @@ export class NeedEntity {
     @ManyToOne(type => PgroupEntity, pgroup => pgroup.needs, {onDelete: 'CASCADE'})
     pgroup: PgroupEntity;
 
-    @OneToMany(type => ProjectEntity, project => project.need, {onDelete: 'CASCADE'})
-    project: ProjectEntity[];
+    // @OneToMany(type => ProjectEntity, project => project.need, {onDelete: 'CASCADE'})
+    // project: ProjectEntity[];
 }

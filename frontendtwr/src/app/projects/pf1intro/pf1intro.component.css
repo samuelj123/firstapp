@@ -7,7 +7,7 @@ small {
     margin-top: 0;
 }
 
-.onrightintro, .onrightpg, .onrightneeds, .onrightpjname, .onrightpjvision, .onrightpjmission {
+ .onrightintro, .onrightpg, .onrightneeds, .onrightpjname, .onrightpjvision, .onrightpjmission, .onrightstartdate  {
     position: absolute;
     left: 70%;
     margin-right: 10%;
@@ -36,9 +36,15 @@ small {
 .pjmission:hover .onrightpjmission {
     display: block;
 }
+.pjstartdate:hover .onrightstartdate {
+    display: block;
+}
 button.primary {
     float: right;
 }
 button.secondary {
     float: left;
+}
+.buttonrow {
+		margin-top: 100px;
 }

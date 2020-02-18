@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProjectsService } from '../projects.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { UserService } from '../../user/user.service';
-import { PGroup } from '../project.model';
+import { PGroup, Language } from '../project.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,11 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PGComponent implements OnInit {
   pgForm: FormGroup;
-  location = ['Urban', 'Rural', 'Unknown'];
+  location = ['Urban', 'Rural', 'Both'];
   mypg: PGroup;
   pgid: string;
   needds: string[] = [];
-  maccessibility = ['Radio', 'TV', 'Media players', 'SW/Radio']
+  maccessibility = ['Radio', 'TV', 'Media players', 'SW/Radio'];
+  languages: Language[];
 
   constructor(
     private projservice: ProjectsService,
@@ -29,18 +30,20 @@ export class PGComponent implements OnInit {
 
   async ngOnInit() {
     this.route.params.subscribe(params => this.pgid = (params.id));
+    this.languages = await this.projservice.getlanguages().toPromise() as Language[];
     this.pgForm = this.fb.group({
-	  pgroup: ['', Validators.required],
+			pgroup: ['', Validators.required],
       description: ['', Validators.required],
-      agegrouplow: ['', Validators.required],
-      agegrouphigh: ['', Validators.required],
-      needs: this.fb.array([this.fb.group({ need: this.fb.control('') })]),
       population: ['', Validators.required],
       electricityaccess: ['', Validators.required],
+      agegrouplow: ['', Validators.required],
+      agegrouphigh: ['', Validators.required],
       literacyrate: ['', Validators.required],
       location: ['', Validators.required],
       averageincome: ['', Validators.required],
-      maccess:['', Validators.required]
+      mediaaccess:['', Validators.required],
+			language: ['', Validators.required],
+      needs: this.fb.array([this.fb.group({ need: this.fb.control('') })])
     });
 
     if (this.pgid !== undefined) {
@@ -53,34 +56,33 @@ export class PGComponent implements OnInit {
         population: this.mypg.population,
         electricityaccess: this.mypg.electricityaccess,
         literacyrate: this.mypg.literacyrate,
-        location: this.mypg.location,
         averageincome: this.mypg.averageincome,
-				maccess: this.mypg.maccess,
       });
-      console.log(this.mypg.needs[0].need);
       this.mypg.needs.forEach(val => {
         this.needds.push(val.need);
-        this.pgForm.setControl('needs[i].need', this.setneeds(this.needds))
+        this.pgForm.setControl('needs', this.setneeds(this.needds))
       })
+      this.pgForm.get('mediaaccess').setValue(this.mypg.mediaaccess);
+      this.pgForm.get('language').setValue(this.mypg.language.id);
+      this.pgForm.get('location').setValue(this.mypg.location);
     }
+
   }
 
   setneeds(needs: string[]): FormArray {
     const fa = new FormArray([]);
-    console.log(needs);
     needs.forEach(k => fa.push(this.fb.group({need: k})));
     return fa;
-
   }
-
   get needs() {
     return this.pgForm.get('needs') as FormArray;
   }
+
   addNeed() {
     this.needs.push(this.fb.group({ need: [''] }));
   }
   delNeed(i: number) {
-    return this.needs.controls.splice(i, 1);
+    return this.needs.removeAt(i);
   }
 
 
@@ -88,7 +90,12 @@ export class PGComponent implements OnInit {
     const data = await this.uservice.currentusercountry();
     this.pgForm.value.country = data;
     const value: PGroup = this.pgForm.value;
-    this.projservice.addpg(value).subscribe();
+		value.needs = value.needs.filter(x => {return x.need!==''} )
+		if(!this.pgid){
+			this.projservice.addpg(value).subscribe();
+		}else{
+			this.projservice.updatepg(this.pgid, value).subscribe();
+		}
     this.router.navigateByUrl('/pgroup')
   }
 

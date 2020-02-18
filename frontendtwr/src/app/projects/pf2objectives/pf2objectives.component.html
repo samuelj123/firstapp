@@ -14,26 +14,26 @@
 					</div>
 					<div class="seccontainer">
 						<label class="pgname">Program Name <p class="rightpgname">This is the Name of the Program that
-								will be aired/broadcast/published. Try and make it as catchy and relevant as possible
-								for the Target Audience. This Program name is different from the entire Project</p>
+							will be aired/broadcast/published. Try and make it as catchy and relevant as possible
+							for the Target Audience. This Program name is different from the entire Project</p>
 						</label>
 						<input placeholder="Program Name" type="text" formControlName="programname">
 
-						<label class="duration">Duration of the Program <p class="rightduration">Mention how long each
-								Episode/program/youtube video will last. An usual radio broadcast would go for around
-								22minutes. </p></label>
+						<label class="duration">Duration of the Program (in minutes)<p class="rightduration">Mention how long each
+							Episode/program/youtube video will last. An usual radio broadcast would go for around
+							22minutes. </p></label>
 						<input placeholder="Duration in Minutes" type="number" formControlName="duration">
 
 						<label class="no">Number of Episodes<p class="rightno">How many episodes/programs are you
-								planning to record and produce for this project? Usually, one would require 52 programs
-								if it's your intention to produce a weekly program for a full year. </p></label>
+							planning to record and produce for this project? Usually, one would require 52 programs
+							if it's your intention to produce a weekly program for a full year. </p></label>
 						<input placeholder="Number of Programs" type="number" formControlName="programsno">
 
 
 						<div>
 							<label class="cformat">Content Format<p class="rightcformat">This should be well thought
-									through with the Creative Team before deciding. If you can't find one that fits your
-									format, please click on Drama.</p>
+								through with the Creative Team before deciding. If you can't find one that fits your
+								format, please click on Drama.</p>
 							</label>
 							<select formControlName="contentformat">
 								<option *ngFor="let x of contentformat" [value]="x">{{x}}</option>
@@ -41,8 +41,27 @@
 						</div>
 
 						<div>
+							<label class="cschedule">Content Schedule<p class="rightcschedule">Here is where you decide
+								whether your program will be a daily program, or a weekly program or a monthy or a 
+								yearly one. If "Other", please elaborate in the Content Description </p>
+							</label>
+							<select formControlName="contentschedule">
+								<option *ngFor="let x of contentschedule" [value]="x">{{x}}</option>
+							</select>
+						</div>
+
+						<div>
+							<label class="cdesc">Content Description<p class="rightcdesc">Here, please go into a detailed 
+								description about the program you're trying to create. It would be good to speak in detail 
+								about the nature of your content, who your producer is, and your reasons for choosing the 
+								content he provides, and the overall style of the program. Anyone who reads this should be 
+								able to have a clear picture of what your final content product will look like </p>
+							</label>
+							<textarea type="text" placeholder="Content Description" formControlName="contentdescription"></textarea>
+						</div>
+						<div>
 							<label class='pformat'>Production Format <p class="rightpformat">There are only two options.
-									A third will not be provided</p></label>
+								A third will not be provided</p></label>
 							<select formControlName="productionformat">
 								<option *ngFor="let y of productionformat" [value]="y">{{y}}</option>
 							</select>
@@ -50,16 +69,16 @@
 
 
 						<div class='cckpi'><h3>
-							Content Creation KPI
-						</h3> <p class="rightcckpi">KPI, or Key Performance Index, is a
-								very important part
-								of any Project Strategy. <br>Your KPI informs you, your staff, and your partners what
-								you consider as the measurement of success. <br> For example. If my Vision Statement 
-								'to lose weight', and my Mission is 'to diet and exercise everyday', My KPIs would look something like this. 
-								<br> '1. Eat less than 1500 calories every day' <br> '2. To do Low Intensity Aerobic Workouts
-								4 days a week'. <br>Once the project starts, 'losing weight' will not motivate me to eat
-								right and exercise, but my KPIs will show me whether I am working toward my vision. <br> 
-								Writing excellent KPIs are the bread-and-butter of all upper-management.
+								Content Creation KPI
+							</h3> <p class="rightcckpi">KPI, or Key Performance Index, is a
+							very important part
+							of any Project Strategy. <br>Your KPI informs you, your staff, and your partners what
+							you consider as the measurement of success. <br> For example. If my Vision Statement 
+							'to lose weight', and my Mission is 'to diet and exercise everyday', My KPIs would look something like this. 
+							<br> '1. Eat less than 1500 calories every day' <br> '2. To do Low Intensity Aerobic Workouts
+							4 days a week'. <br>Once the project starts, 'losing weight' will not motivate me to eat
+							right and exercise, but my KPIs will show me whether I am working toward my vision. <br> 
+							Writing excellent KPIs are the bread-and-butter of all upper-management.
 							</p>
 						</div>
 						<div formArrayName="productionkpis">
@@ -68,7 +87,7 @@
 								<div class='prodkpi'>
 									<textarea type="text" placeholder="Production KPI" [formControlName]="i"></textarea>
 									<button (click)="deleteproductionkpi(i)" class='delete' tabindex="2"><i
-											class='material-icons'>delete</i></button>
+																																					class='material-icons'>delete</i></button>
 								</div>
 							</div>
 							<button class='secondary' (click)="addProductionkpi()" tabindex="0">Add Content Creation

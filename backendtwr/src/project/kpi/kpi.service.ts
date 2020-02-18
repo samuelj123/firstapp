@@ -3,43 +3,38 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProjectEntity } from '../../project/project.entity';
 import { Repository } from 'typeorm';
 import { KpiEntity } from './kpi.entity';
+import { UserEntity } from 'user/user.entity';
+import { KpiDTO } from './kpi.dto';
 
 @Injectable()
 export class KpiService {
     constructor(
-        // @InjectRepository(ProjectEntity) private projrepository: Repository<ProjectEntity>,
+        @InjectRepository(ProjectEntity) private projrepository: Repository<ProjectEntity>,
         // @InjectRepository(TaskEntity) private taskrepository: Repository<TaskEntity>,
         @InjectRepository(KpiEntity) private kpirepository: Repository<KpiEntity>,
+        @InjectRepository(UserEntity) private userepository: Repository<UserEntity>,
+
     ) { }
 
     getone(id: string) {
         return this.kpirepository.findOne({ where: { id } });
     }
 
-    getbyproj(projid: string, t: string) {
-        // return this.kpirepository.find({relations: ['project']});
-        if (t !== 'true') {
-            Logger.log('used where t doesn')
-            return this.kpirepository
-                .createQueryBuilder('kpi')
-                .leftJoin('kpi.project', 'project')
-                .where('kpi.project = :projid', { projid })
-                .getMany();
-            } else {
-                Logger.log('used t=true');
-                return this.kpirepository
-                    .createQueryBuilder('kpi')
-                    .leftJoin('kpi.project', 'project')
-                    .leftJoinAndSelect('kpi.tasks', 'task')
-                    .where('kpi.project = :projid', { projid })
-                    .getMany();
-        }
+    getbyproj(projid: string) {
+			return this.kpirepository
+					.createQueryBuilder('kpi')
+					.leftJoin('kpi.project', 'project')
+					.where('kpi.project = :projid', { projid })
+					.leftJoinAndSelect('kpi.pointperson', 'pointperson')
+					.getMany();
     }
 
-    async addone(data: KpiEntity[]) {
+    async addone(data: KpiDTO[]) {
         data.forEach(async (value) => {
-            const kpi = this.kpirepository.create(value);
-            return await this.kpirepository.save(kpi);
+					const pointperson = await this.userepository.findOne( { where: { id: value.pointperson } });
+					const project = await this.projrepository.findOne({ where: { id: value.project } });
+					const kpi = await this.kpirepository.create({...value, pointperson, project});
+					await this.kpirepository.save(kpi);
         });
     }
 

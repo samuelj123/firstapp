@@ -7,7 +7,10 @@
     </div>
     <div class="pgcontainer">
       <div class='card' *ngFor="let x of allpgs">
-        <div [class.deletediag]='deletediag.length===0' [class.activedel]='deletediag.includes(x.id)'><p>Are you sure you want to Delete this? You will delete <strong>{{x.projectnos}} Projects </strong> along with this People Group</p>
+        <div [class.deletediag]='deletediag.length===0' [class.activedel]='deletediag.includes(x.id)'>
+					<p>Are you sure you want to Delete this? You will delete 
+						<strong>{{x.projectnos}} Projects </strong> along with this People Group
+					</p>
           <button class='smalldelete' (click)='deleter(x.id)'>Yes</button>
           <button class='smalldelete' (click)='close()'>No</button>
         </div>
@@ -44,12 +47,12 @@
             <p>Literacy Rate</p>
           </div>
           <div>
-            <h2><strong>&#8377;{{x.averageincome}}</strong></h2>
+            <h2><strong>{{x.averageincome}}</strong></h2>
             <p>Average Income</p>
           </div>
           <div>
-            <h2><strong>&#8377;{{x.</strong> </h2>
-            <p></p>
+						<h2><strong>{{x.mediaaccess}}</strong> </h2>
+            <p>Media Access</p>
           </div>
         </div>
         <h3><strong>About</strong></h3>

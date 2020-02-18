@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule} from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Pf2objectivesComponent } from './pf2objectives.component';
+import { ProjectsService } from '../projects.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('Pf2objectivesComponent', () => {
   let component: Pf2objectivesComponent;
@@ -8,7 +11,7 @@ describe('Pf2objectivesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Pf2objectivesComponent ]
+      declarations: [ Pf2objectivesComponent ],
     })
     .compileComponents();
   }));
@@ -19,7 +22,8 @@ describe('Pf2objectivesComponent', () => {
     fixture.detectChanges();
   });
 
-	//  it('should create', () => {
-	//    expect(component).toBeTruthy();
-	//  });
+  //it('should create pf2', () => {
+    //expect(component).toBeTruthy();
+  //});
 });
+

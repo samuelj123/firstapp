@@ -37,7 +37,7 @@ export class LanguageController {
         return this.lservice.update({ id, ...data });
     }
 
-    @Get()
+    @Get('/country')
     @UseGuards(new AuthGuard())
     findbycountry(@Query('name') country: string) {
         return this.lservice.countryfiltered(country);

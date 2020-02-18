@@ -5,7 +5,9 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class LanguageService {
-    constructor(@InjectRepository(LanguageEntity) private lrepository: Repository<LanguageEntity>) { }
+    constructor(
+        @InjectRepository(LanguageEntity) private lrepository: Repository<LanguageEntity>,
+        ) { }
 
     async new(data: LanguageEntity) {
         const lang = await this.lrepository.create(data);
@@ -35,8 +37,7 @@ export class LanguageService {
     async countryfiltered(country: string) {
         return this.lrepository
             .createQueryBuilder('lang')
-            .leftJoinAndSelect('lang.needs', 'needs')
-            .where('lang.country = :country', { country })
+            .where('lang.country has :country', { country:country })
             .getMany();
     }
     

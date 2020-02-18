@@ -1,7 +1,7 @@
 <div class="container">
   <app-proposalnav></app-proposalnav>
   <div class="seccontainer">
-    <app-gantt class='onside'></app-gantt>
+    <!--<app-gantt class='onside'></app-gantt>-->
     <div *ngIf="kpi!==undefined && project!==undefined && taskform!==undefined">
       <h1>Tasks</h1>
       <p>{{project.name}}</p>
@@ -15,28 +15,23 @@
 
             <label class="taskname">Task Name</label>
             <input type='text' formControlName="taskname" placeholder="Task Name" >
-
             <div class="grid">
-              <div><label class="startdate">Start Date (years)</label>
-                <input type='number' formControlName="durationy" placeholder="Starting Day" ></div>
-              <div><label class="startdate">Start Date (months)</label>
-                <input type='number' formControlName="durationm" placeholder="Starting Day" ></div>
-              <div><label class="startdate">Start Date (days)</label>
-                <input type='number' formControlName="durationd" placeholder="Starting Day" ></div>
-              <div><label class="enddate">End Date (years)</label>
-                <input type='number' formControlName="enddatey" placeholder="Ending Day" ></div>
-              <div><label class="enddate">End Date (months)</label>
-                <input type='number' formControlName="enddatem" placeholder="Ending Day" ></div>
-              <div><label class="enddate">End Date (days)</label>
-                <input type='number' formControlName="enddated" placeholder="Ending Day" ></div>
+              <div><label class="startdate">Start Date</label>
+                <input type='date' formControlName="startdate" placeholder="Starting Day" >
+							</div>
+              <div><label class="enddate">End Date</label>
+                <input type='date' formControlName="enddate" placeholder="Ending Day" >
+							</div>
               <div><label class="taskhandler">Person Responsible for Task</label>
                 <select formControlName="taskhandler" >
                   <option *ngFor="let y of pplresponsible" value="{{y.id}}">{{y.firstname}}</option>
-                </select></div>
-              <div><label for="" class="kpis">Kpi that this task seeks to fulfill</label>
-                <select formControlName="kpiid" >
-                  <option *ngFor="let kpi of kpi" value="{{kpi.id}}"> {{kpi.kpi}}</option>
-                </select></div>
+                </select>
+							</div>
+              <div><label class="taskhandler">Category</label>
+                <select formControlName="category" >
+                  <option *ngFor="let y of ctgry" value="{{y}}">{{y}}</option>
+                </select>
+							</div>
             </div>
             <button class='delete' (click)="deletetask(i)"><i class="material-icons">delete</i></button>
           </div>

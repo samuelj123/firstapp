@@ -1,7 +1,8 @@
+type Category = ['Content Creation', 'Content Delivery', 'Marketing', 'Audience Relations']
 export interface KpiDTO {
     kpi: string;
-    budget: number;
-    type: ['Content Creation', 'Content Delivery', 'Marketing', 'Audience Relations'];
+    type: string;
     pointperson: string;
     report: string;
+    project: string;
 }

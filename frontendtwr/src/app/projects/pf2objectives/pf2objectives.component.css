@@ -8,7 +8,7 @@
 strong {
     font-weight: 400;
 }
-.rightpgname, .rightduration, .rightno, .rightcformat, .rightpformat, .rightcckpi {
+.rightpgname, .rightduration, .rightno, .rightcformat, .rightpformat, .rightcckpi, .rightcdesc, .rightcschedule {
     position: absolute;
     left: 70%;
     margin-right: 10%;
@@ -18,7 +18,7 @@ strong {
     top: 40%;
 }
 
-.pgname:hover, .duration:hover .no:hover, .cformat:hover, .cckpi:hover, .cckpi:hover {
+.pgname:hover, .duration:hover .no:hover, .cformat:hover, .cckpi:hover, .cckpi:hover, .cdesc:hover, .cschedule:hover{
     cursor: pointer;
 }
 
@@ -39,6 +39,12 @@ strong {
     display: block;
 }
 .cckpi:hover .rightcckpi {
+    display: block;
+}
+.cdesc:hover .rightcdesc {
+    display: block;
+}
+.cschedule:hover .rightcschedule {
     display: block;
 }
 .prodkpi {

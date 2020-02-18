@@ -9,9 +9,8 @@
         <label for="" class="report">Title and Contents of Report</label>
         <input type="text" placeholder="Report" [(ngModel)]="x.report" [attr.name]="x.id" (keydown)="uploadr($event)"
           (blur)="uploadblr($event)">
-          <label class="pperson">Point person for Report generation and Submission</label>
-        <input type="text" placeholder="Point Person" [(ngModel)]="x.pointperson" [attr.name]="x.id"
-          (keydown)="uploadpp($event)" (blur)="uploadblpp($event)">
+					<label class="pperson">Point person for Report generation and Submission</label>
+					<select id="" [(ngModel)]='x.pointperson' [attr.name]='x.id'(keydown)="uploadpp($event)" (blur)="uploadblpp($event)"><option *ngFor='let y of staff' value="{{y.id}}">{{y.firstname}} {{y.lastname}}</option></select>
       </div>
       <button class='submit' (click)="submit()">Next</button>
       <button class="secondary" (click)="draft()">Save as Draft</button>

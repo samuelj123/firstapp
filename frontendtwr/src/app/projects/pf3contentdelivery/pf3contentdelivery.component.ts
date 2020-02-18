@@ -22,13 +22,13 @@ export class Pf3contentdeliveryComponent implements OnInit {
 
   // Content Distribution Specific
   disttype = ['Radio', 'Digital', 'Analogue'];
-  dmethod = [['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'],
-  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'],
-  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'],
-  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'],
-  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'],
-  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'],
-  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging']]
+  dmethod = [['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'],
+  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'],
+  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'],
+  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'],
+  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'],
+  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'],
+  ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App']]
 
   // Content Distribution Select 
   public onChange(e, i: number): void {
@@ -37,7 +37,7 @@ export class Pf3contentdeliveryComponent implements OnInit {
     } else if (e.value === 'Analogue') {
       this.dmethod[i] = ['SD Card', 'CD', 'Media Player'];
     } else if (e.value === 'Digital') {
-      this.dmethod[i] = ['TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'];
+      this.dmethod[i] = ['TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging', 'App'];
     } else {
       this.dmethod[i] = ['SW', 'FM', 'MW', 'SD Card', 'CD', 'Media Player', 'TWR 360', 'Local Website', 'Youtube', 'Facebook', 'Instant Messaging'];
     }
@@ -53,8 +53,9 @@ export class Pf3contentdeliveryComponent implements OnInit {
     });
 
     this.diskpis = this.diskpis.filter(val => val.type === 'Content Delivery')
+		this.diskpis.sort((a,b)=>(a.updated>b.updated)?1:-1)
     this.myForm.setControl('distributionkpis', this.setkpis(this.diskpis));
-    this.myForm.setControl('distmethod', this.setdmethod(this.project.distmethod));
+		this.myForm.setControl('distmethod', this.setdmethod(this.project.distmethod));
   }
 
   get distmethod() {
@@ -125,6 +126,6 @@ export class Pf3contentdeliveryComponent implements OnInit {
   }
   async onDraft() {
     await this.savefile();
-    // await this.router.navigateByUrl('/projects');
+		await this.router.navigateByUrl('/projects');
   }
 }

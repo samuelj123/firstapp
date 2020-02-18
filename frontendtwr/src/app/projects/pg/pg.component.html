@@ -1,23 +1,22 @@
 <div class="container">
-  <div class="seccontainer">
+  <div class="seccontainer" *ngIf="pgForm!==undefined">
+    <h1>Add a New People Group</h1>
+    <p>{{pgForm.value|json}}</p>
     <form [formGroup]="pgForm" class="formsection">
-      <div class="flag"></div>
-      <h1 class="mat-h1">Add a New People Group</h1>
-      <label for="name">Name of People Group</label>
-      <textarea id='name' placeholder="Name of People Group" type="text" formControlName="pgroup" required tabindex="1">
-  </textarea>
+      <div><label for="pgroup">Name of People Group</label>
+        <textarea formControlName="pgroup" id='pgroup' placeholder="Name of People Group" type="text" required
+          tabindex="1"></textarea></div>
 
-      <label for="desc">People Group Description</label>
-      <textarea id='desc' placeholder="People Group Description" type="text" formControlName="description" required
-        tabindex="2">
-  </textarea>
+      <div><label for="description">People Group Description</label>
+        <textarea formControlName="description" id='description' placeholder="People Group Description" type="text" 
+        required tabindex="2"></textarea></div>
+        <div class="grid">
 
-      <div class="grid">
         <div><label for="population">Population</label>
           <input id='population' placeholder="Population" type="number" formControlName="population" required
             tabindex="3"></div>
 
-        <div><label for="electricity">Access to Electricity</label>
+        <div><label for="electricity">Access to Electricity (%)</label>
           <input id='electricity' placeholder="Access to Electricity" type="number" formControlName="electricityaccess"
             required tabindex="4"></div>
 
@@ -30,21 +29,30 @@
             tabindex="6"></div>
 
 
-        <div><label for="lrate">Literacy Rate</label>
+        <div><label for="lrate">Literacy Rate (%)</label>
           <input id='lrate' placeholder="Literacy Rate" type="number" formControlName="literacyrate" required
             tabindex="7"></div>
 
-        <div><label for='ltype'>Location Type</label>
-          <select id='ltype' tabindex="8">
+        <!-- <div><label for='ltype'>Location Type</label>
+          <select id='ltype' tabindex="8" fromControlName='location'>
             <option *ngFor="let x of location" [value]="x">{{x}}</option>
+          </select></div> -->
+          <div><label for='location'> Location</label>
+            <select id='location' tabindex="8" formControlName='location'>
+              <option *ngFor="let x of location" [value]="x">{{x}}</option>
+            </select></div>
+          
+          <div><label for='avginc'>Average Monthly Income in $</label>
+            <input id='avginc' placeholder="Average Monthly Income" type="number" formControlName="averageincome"
+              tabindex="9" required></div>
+        <div><label for='mediaaccess'> Media Accessibility</label>
+          <select id='mediaaccess' tabindex="8" formControlName='mediaaccess'>
+            <option *ngFor="let x of maccessibility" [value]="x">{{x}}</option>
           </select></div>
 
-        <div><label for='avginc'> Average Income in Rs. &#8377;</label>
-          <input id='avginc' placeholder="Average Income" type="number" formControlName="averageincome" tabindex="9"
-            required></div>
-        <div><label for='maccess'> Media Accessibility</label>
-          <select id='ltype' tabindex="8">
-            <option *ngFor="let x of maccessibility" [value]="x">{{x}}</option>
+        <div><label for='language'>Language</label>
+          <select id='ltype' tabindex="9" formControlName='language'>
+            <option *ngFor="let x of languages" [value]="x.id">{{x.name}}</option>
           </select></div>
       </div>
 
@@ -54,14 +62,14 @@
           <!-- The repeated alias template -->
           <div class='need'>
             <div [formGroupName]="i" style="width: 80%">
-              <input placeholder="needs" type="text" formControlName="need" tabindex="10">
+              <textarea placeholder="needs" type="text" formControlName="need" tabindex="10"></textarea>
             </div>
             <button (click)="delNeed(i)" class="delete"><i class="material-icons">delete</i></button>
           </div>
         </div>
         <button class="secondary" color="primary" (click)="addNeed()" tabindex="11">Add Need</button>
       </div>
-      <button class="submit" (click)="onSubmit()" tabindex="12">Submit</button>
+      <button class="submit" (click)="onSubmit()" tabindex="12">Save</button>
     </form>
   </div>
   <!-- Values: {{pgForm.value | json }} -->

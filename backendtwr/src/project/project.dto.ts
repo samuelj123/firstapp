@@ -13,6 +13,6 @@ export interface ProjectDTO {
     marketingmethod: string[];
     marketingkpis: string[];
     audiencerelationskpis: string[];
-    need: string;
+    pgroup: string;
     creator: string;
 }

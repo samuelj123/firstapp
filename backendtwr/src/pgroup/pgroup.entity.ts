@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, OneToMany, ManyToOne } from 'typeorm';
 import { NeedEntity } from './need.entity';
 import { LanguageEntity } from './language/language.entity';
+import { ProjectEntity } from '../project/project.entity';
 
 @Entity('pgroup')
 export class PgroupEntity {
@@ -14,10 +15,10 @@ export class PgroupEntity {
     @Column('text')
     pgroup: string;
 
-    @Column('text')
+    @Column('int')
     agegrouplow: number;
 
-    @Column('text')
+    @Column('int')
     agegrouphigh: number;
 
     @Column('text')
@@ -26,20 +27,28 @@ export class PgroupEntity {
     @Column({type: 'text', nullable: true})
     description?: string;
 
-    @Column('text')
+    @Column('int')
     population: number;
 
-    @Column('text')
+    @Column('int')
     electricityaccess: number;
-
+    
     @Column('text')
+    mediaaccess: string;
+
+    @Column('int')
     literacyrate: number;
 
-    @Column('text')
+    @Column('int')
     averageincome: number;
+
+    @Column({type:'text', nullable:true})
+    location: string;
 
     @OneToMany(type => NeedEntity, need => need.pgroup, {onDelete: 'CASCADE'})
     needs: NeedEntity[];
+    @OneToMany(type => ProjectEntity, projects => projects.pgroup, {onDelete: 'CASCADE'})
+    projects: ProjectEntity[];
     @ManyToOne(type => LanguageEntity, language => language.pgroups, {onDelete: 'CASCADE'})
     language: LanguageEntity[];
 }

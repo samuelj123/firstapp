@@ -38,15 +38,14 @@ export class ActiveprojComponent implements OnInit {
     await this.route.params.subscribe(params => this.projid = (params.id));
     this.project = await this.projservice.getoneproj(this.projid).toPromise() as Project;
     this.userrole = await this.uservice.currentuserrole();
-    this.project.kpis.map(x => this.toadd.push(x.budget));
+    //this.project.kpis.map(x => this.toadd.push(x.budget));
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
     this.project.fundraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
     this.tasks=await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
-    this.tasks.sort((a,b)=>{return a.duration - b.duration})
+    this.tasks.sort((a,b)=>{return a.startdate - b.startdate})
     this.taskscompleted=this.tasks.filter(x=>x.complete===true);
     this.getenddate();
-    console.log(this.project.startdate);
   }
 
   getenddate() {

@@ -2,6 +2,7 @@ import { Controller, Get, Query, Post, Body, Delete, Param, Put, UseGuards } fro
 import { KpiService } from './kpi.service';
 import { KpiEntity } from './kpi.entity';
 import { AuthGuard } from '../../shared/auth.guard';
+import { KpiDTO } from './kpi.dto';
 
 @Controller('api/kpi')
 export class KpiController {
@@ -9,13 +10,13 @@ export class KpiController {
 
     @Get()
     @UseGuards(new AuthGuard())
-    KpisByProject(@Query('p') projid: string, @Query('t') task?: string) {
-        return this.kservice.getbyproj(projid, task);
+    KpisByProject(@Query('p') projid: string) {
+        return this.kservice.getbyproj(projid);
     }
 
     @Post()
     @UseGuards(new AuthGuard())
-    newKpi(@Body() data: KpiEntity[]) {
+    newKpi(@Body() data: KpiDTO[]) {
         return this.kservice.addone(data);
     }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PGroup, Task } from './project.model';
+import { PGroup, Task, Budget } from './project.model';
 import { HttpClient } from '@angular/common/http';
 import { Project } from './project.model';
 import { environment } from 'src/environments/environment';
@@ -11,31 +11,15 @@ import { environment } from 'src/environments/environment';
 export class ProjectsService {
 
   constructor(private http: HttpClient) { }
-  // project = 'https://mighty-waters-64457.herokuapp.com/api/project';
-  // project = 'http://localhost:4000/api/project';
   project = environment.API_PROJECTSERVICE
-
-  // Task CRUD
-  // task = 'https://mighty-waters-64457.herokuapp.com/api/task';
-  // task = 'http://localhost:4000/api/task';
   task = environment.API_TASKSERVICE
-
-  // People Group CRUD
-  // pgroup = 'https://mighty-waters-64457.herokuapp.com/api/pgroup';
-  // pgroup = 'http://localhost:4000/api/pgroup';
   pgroup = environment.API_PGROUPSERVICE
-
-  // KPI Group CRUD
-  // kpi = 'https://mighty-waters-64457.herokuapp.com/api/kpi';
-  // kpi = 'http://localhost:4000/api/kpi';
   kpi = environment.API_KPISERVICE
-
-  // Fundraising Group CRUD
-  // fundraising = 'https://mighty-waters-64457.herokuapp.com/api/fundraising';
-  // fundraising = 'http://localhost:4000/api/fundraising';
   fundraising = environment.API_FUNDRAISINGSERVICE
+  language = environment.API_LANGUAGE
+	budget = environment.API_BUDGET
 
-
+  // PEOPLEGROUP CRUD
   getallpg() {
     return this.http.get(this.pgroup);
   }
@@ -51,6 +35,10 @@ export class ProjectsService {
   getonepg(id: string) {
     return this.http.get(this.pgroup + '/' + id);
   }
+
+	updatepg(pgid: string, data) {
+		return this.http.put(this.pgroup+'/'+pgid, data);
+	}
 
   addpg(value: PGroup) {
     return this.http.post(this.pgroup, value);
@@ -147,23 +135,47 @@ export class ProjectsService {
       }
 
     // FUNDRAISING CRUD
-    getfraisingbyproj(projid: string) {
-      return this.http.get(this.fundraising + '?p=' + projid);
+		getfraisingbyproj(projid: string) {
+			return this.http.get(this.fundraising + '/project/' + projid);
+		}
+
+		getfraisingbyid(kpiid: string) {
+			return this.http.get(this.fundraising + '/' + kpiid);
+		}
+
+		newfundraising(value) {
+			return this.http.post(this.fundraising, value);
+		}
+
+		updatefundraising(id, value) {
+			return this.http.put(this.fundraising + '/' + id, value);
+		}
+
+		deletefundraising(id) {
+			return this.http.delete(this.fundraising + '/' + id);
+		}
+
+    // LANGUAGE CRUD
+    getlanguages() {
+      return this.http.get(this.language);
     }
-
-    getfraisingbyid(kpiid: string) {
-          return this.http.get(this.fundraising + '/' + kpiid);
-        }
-
-    newfundraising(value) {
-          return this.http.post(this.fundraising, value);
-        }
-
-    updatefundraising(id, value) {
-          return this.http.put(this.fundraising + '/' + id, value);
-        }
-
-    deletefundraising(id) {
-          return this.http.delete(this.fundraising + '/' + id);
-        }
+		// BUDGET CRUD
+		getbudget() {
+			return this.http.get(this.budget)
+		}
+		getbudgetbycountry(country:string) {
+			return this.http.get(this.budget + '/country/' + country)
+		}
+		postbudget(value: Budget) {
+			return this.http.post(this.budget, value)
+		}
+		getbudgetbyproject(id: string) {
+			return this.http.get(this.budget+ '/' + id)
+		}
+		deletebudget(id: string) {
+			return this.http.delete(this.budget+ '/' + id)
+		}
+    updatebudget(id, value) {
+			return this.http.put(this.budget + '/' + id, value);
+		}
 }

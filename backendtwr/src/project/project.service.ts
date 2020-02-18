@@ -6,6 +6,7 @@ import { ProjectDTO } from './project.dto';
 import { NeedEntity } from '../pgroup/need.entity';
 import { UserEntity } from '../user/user.entity';
 import { FundraisingEntity } from '../finance/fundraising/fundraising.entity';
+import { PgroupEntity } from 'pgroup/pgroup.entity';
 
 @Injectable()
 export class ProjectService {
@@ -14,22 +15,24 @@ export class ProjectService {
         @InjectRepository(UserEntity) private userepository: Repository<NeedEntity>,
         @InjectRepository(NeedEntity) private needrepository: Repository<NeedEntity>,
         @InjectRepository(FundraisingEntity) private frepository: Repository<FundraisingEntity>,
+        @InjectRepository(PgroupEntity) private pgrepository: Repository<PgroupEntity>,
     ) { }
     async getall() {
         // return this.projrepository.find({ relations: ['need', 'creator'] });
         return this.projrepository
             .createQueryBuilder('project')
-            .leftJoinAndSelect('project.need','need')
-            .leftJoinAndSelect('need.pgroup','pgroup')
+						.leftJoinAndSelect('project.fraising', 'fraising')
+            .leftJoinAndSelect('project.pgroup','pgroup')
             .getMany();
     }
     async new(data: ProjectDTO) {
-        const nd = await this.needrepository.findOne({ where: { id: data.need } });
+        const pg = await this.pgrepository.findOne({ where: { id: data.pgroup } });
         const user = await this.userepository.findOne({ where: { id: data.creator } });
-        const project = await this.projrepository.create({ ...data, need: nd, creator: user });
+        const project = await this.projrepository.create({ ...data, pgroup: pg, creator: user });
         await this.projrepository.save(project);
-        return { ...project, need: project.need };
+        return { ...project, pgroup: project.pgroup };
     }
+    // {"name": "My Lovely Project","needs": "My Lovely Project","vision": "My Lovely Project","mission": "My Lovely Project","projectduration": 28,"programname": "My Lovely Project","duration": 28,"contentformat": "My Lovely Project","productionformat": "My Lovely Project","productionkpis": ["First Production KPI", "Second Production KPI", "Third Production KPI"],"distributionkpis": ["First Distribution KPI", "Second Distribution KPI", "Third Distribution KPI"],"marketingmethod": ["First Marketing Method", "Second Mmethod", "Third mmethod"],"marketingkpis": ["First Marketing KPI", "Second Marketing KPI", "Third Marketing KPI"],"audiencerelationskpis": ["First AR KPI", "Second AR KPI", "Third AR KPI"],"pgroup": "My Lovely Project","creator": "My Lovely Project"}
 
     async delete(id: string) {
         await this.projrepository.delete(id);
@@ -47,12 +50,12 @@ export class ProjectService {
         // return this.projrepository.findOne({ where: { id }, relations: ['need'] });
         return this.projrepository.createQueryBuilder('project')
         .where('project.id = :id', {id})
-        .leftJoinAndSelect('project.need', 'need')
-        .leftJoinAndSelect('need.pgroup', 'pgroup')
-        .leftJoinAndSelect('project.kpis', 'kpi')
-        .leftJoinAndSelect('kpi.tasks', 'tasks')
+        .leftJoinAndSelect('project.pgroup', 'pgroup')
+				.leftJoinAndSelect('project.kpis', 'kpis')
+        .leftJoinAndSelect('project.tasks', 'tasks')
         .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
-        .leftJoinAndSelect('project.fundraising', 'fundraising')
+        .leftJoinAndSelect('project.fraising', 'fundraising')
+				.leftJoinAndSelect('project.budget', 'budget')
         .getOne();
     }
 
@@ -61,11 +64,10 @@ export class ProjectService {
             .createQueryBuilder('project')
             .leftJoin('project.creator', 'user')
             .where('user.country = :country', { country })
-            .leftJoinAndSelect('project.need', 'need')
+            .leftJoinAndSelect('project.pgroup', 'pgroup')
             .leftJoinAndSelect('project.kpis', 'kpis')
-            .leftJoinAndSelect('kpis.tasks', 'tasks')
+            .leftJoinAndSelect('project.tasks', 'tasks')
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
-            .leftJoinAndSelect('need.pgroup', 'pgroup')
             .getMany();
     }
 }

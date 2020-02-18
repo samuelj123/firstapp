@@ -2,8 +2,9 @@ import { PrimaryGeneratedColumn, Entity, CreateDateColumn, UpdateDateColumn, Col
 import { ProjectEntity } from '../project.entity';
 import { TaskEntity } from './../task/task.entity';
 import { UserEntity } from 'user/user.entity';
+import { User } from 'user/user.decorator';
 
-export type KPI = ['Content Creation',
+export type Category = ['Content Creation',
     'Content Delivery',
     'Marketing',
     'Audience Relations',
@@ -16,11 +17,9 @@ export class KpiEntity {
     @UpdateDateColumn() updated: Date;
 
     @Column({ type: 'text' }) kpi: string;
-    @Column({ type: 'int', nullable: true }) budget: number;
-    @Column({ type: 'text' }) type: KPI;
-    @Column({ type: 'text', nullable: true }) pointperson: string;
+    @Column({ type: 'text' }) type: string;
     @Column({ type: 'text', nullable: true }) report: string;
-    // @ManyToOne(type => UserEntity, pointperson => pointperson.kpis) pointperson: UserEntity;
-    @OneToMany(type => TaskEntity, task => task.kpi, {onDelete: 'CASCADE'}) tasks?: TaskEntity[];
+    @Column({ type: 'text', nullable: true }) reportdescription: string;
+    @ManyToOne(type => UserEntity, pointperson => pointperson.kpis, {onDelete: 'CASCADE'}) pointperson: UserEntity;
     @ManyToOne(type => ProjectEntity, project => project.kpis, { onDelete: 'CASCADE' }) project: ProjectEntity;
 }

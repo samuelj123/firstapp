@@ -26,7 +26,6 @@ export class Pf4marketingComponent implements OnInit {
   markpis: KPI[];
 
   // Content Marketing Variables
-  marketingtypes = ['Print', 'Event', 'Digital', 'Cross-Promotion'];
   mmethods: string[] = ['Flyers', 'Posters', 'Advertisements', 'Calendars', 'Church Meetings', 'Public Meetings', 'Radio Home Network', 'Trainings', 'Facebook Ads', 'Google Ads', 'Cross-Promotion on Radio', 'Cross-Promotion online'];
 
   async ngOnInit() {
@@ -41,7 +40,9 @@ export class Pf4marketingComponent implements OnInit {
     this.myeditedproj = await this.projservice.getoneproj(this.projid).toPromise() as Project;
     this.myForm.patchValue({marketingmethod: this.project.marketingmethod})
     this.markpis = this.markpis.filter(val => val.type==='Marketing')
+		this.markpis.sort((a,b)=>(a.created>b.created)?1:-1)
     this.myForm.setControl('marketingkpis', this.setkpis(this.markpis));
+
   }
 
 

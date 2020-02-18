@@ -2,6 +2,7 @@ import { FundraisingEntity } from './fundraising.entity';
 import { Controller, Body, Put, Param, Get, Delete, Post, UseGuards, Query } from '@nestjs/common';
 import { FundraisingService } from './fundraising.service';
 import { AuthGuard } from '../../shared/auth.guard';
+import {FundraisingDTO} from './fundraising.dto';
 
 @Controller('api/fundraising')
 export class FundraisingController {
@@ -9,9 +10,9 @@ export class FundraisingController {
     constructor(private fservice: FundraisingService) { }
 
 
-    @Get()
+	@Get('/project/:id')
     @UseGuards(new AuthGuard())
-    FundraisingByProject(@Query('p') projid: string) {
+    FundraisingByProject(@Param('id') projid: string) {
         return this.fservice.getbyproj(projid);
     }
 
@@ -29,7 +30,7 @@ export class FundraisingController {
 
     @Post()
     @UseGuards(new AuthGuard())
-    newFundraising(@Body() data: FundraisingEntity[]) {
+    newFundraising(@Body() data: FundraisingDTO[]) {
         return this.fservice.newfundraising(data);
     }
 

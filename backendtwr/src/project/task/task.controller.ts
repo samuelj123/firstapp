@@ -9,37 +9,25 @@ export class TaskController {
     
     @Get()
     @UseGuards(new AuthGuard())
-    TaskbyProject(@Query('p') projid: string) {
-        return this.taskservice.getbyproj(projid);
-    }
-
-    @Get('/user')
-    @UseGuards(new AuthGuard())
-    TaskbyUser(@Query('u') userid: string) {
-        return this.taskservice.getbyuser(userid);
-    }
-
-    @Get()
-    @UseGuards(new AuthGuard())
     AllTasks() {
         return this.taskservice.getall();
     }
 
     @Get(':id')
     @UseGuards(new AuthGuard())
-    allTasks(@Param('id') kpiid: string) {
-        return this.taskservice.getallbykpi(kpiid);
+    allTasks(@Param('id') projid: string) {
+        return this.taskservice.getallbyproject(projid);
     }
 
     @Post(':id')
     @UseGuards(new AuthGuard())
-    newTask(@Body() data: TaskEntity, @Param('id') kpiid: string) {
-        return this.taskservice.newtask(data, kpiid);
+    newTask(@Body() data: TaskEntity, @Param('id') projid: string) {
+        return this.taskservice.newtask(data, projid);
     }
 
     @Put(':taskid')
     @UseGuards(new AuthGuard())
-    updateTask(@Body() data: TaskEntity, @Param('taskid') taskid: string) {
+    updateTask(@Body() data: Partial<TaskEntity>, @Param('taskid') taskid: string) {
         return this.taskservice.updatetask(data, taskid);
     }
 
@@ -50,4 +38,9 @@ export class TaskController {
         return this.taskservice.deltask(id);
     }
 
+		@Get('/user/:id')
+    @UseGuards(new AuthGuard())
+    TaskbyUser(@Param('id') userid: string) {
+        return this.taskservice.getbyuser(userid);
+    }
 }

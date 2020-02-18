@@ -2,70 +2,58 @@ import { Injectable } from '@nestjs/common';
 import { TaskEntity } from './task.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { KpiEntity } from '../kpi/kpi.entity';
-import { UserEntity } from 'user/user.entity';
+import { UserEntity } from '../../user/user.entity';
+import { ProjectEntity } from '../project.entity';
 
 @Injectable()
 export class TaskService {
 
     constructor(
         @InjectRepository(TaskEntity) private trepository: Repository<TaskEntity>,
-        @InjectRepository(KpiEntity) private kpirepository: Repository<KpiEntity>,
+        @InjectRepository(ProjectEntity) private projrepository: Repository<ProjectEntity>,
         @InjectRepository(UserEntity) private userepository: Repository<UserEntity>
     ) { }
 
     async getall() {
         return await this.trepository
             .createQueryBuilder('tasks')
-            .leftJoinAndSelect('tasks.kpi', 'kpi')
+            .leftJoinAndSelect('tasks.project', 'project')
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
             .getMany();
     }
 
-    async getallbykpi(kpiid: string) {
-        const kpi = await this.kpirepository.findOne(kpiid);
-        return await this.trepository.find({ where: { kpi } });
+    async getallbyproject(projid: string) {
+        //const proj = await this.projrepository.findOne(projid);
+        //return await this.trepository.find({ where: { projid } });
+				return await this.trepository
+						.createQueryBuilder('tasks')
+						.leftJoinAndSelect('tasks.project', 'project')
+						.where('project.id = :id', {id: projid})
+						.getMany();
     }
 
-    async newtask(data: TaskEntity, kpiid: string) {
-        const kpi = await this.kpirepository.findOne(kpiid);
+    async newtask(data: TaskEntity, projid: string) {
+        const project = await this.projrepository.findOne(projid);
         const taskhandler = await this.userepository.findOne(data.taskhandler)
-        const task = await this.trepository.create({ ...data, kpi, taskhandler });
+        const task = await this.trepository.create({ ...data, project, taskhandler });
         await this.trepository.save(task);
-        return { ...task, project: task.kpi };
+        return { task };
     }
-    async updatetask(data: TaskEntity, taskid: string) {
-        if (!data.taskhandler && !data.kpi) {
-            await this.trepository.update(taskid, data);
-        } else if (data.taskhandler && !data.kpi) {
+    async updatetask(data: Partial<TaskEntity>, taskid: string) {
+        let task;
+        const project = await this.projrepository
+                .createQueryBuilder('project')
+                .where('project.id = :id', {id: data.project})
+                .getOne();
+        if (!data.taskhandler) {
+            task = await this.trepository.update(taskid, {...data, project});
+        } else if (data.taskhandler) {
             const taskhandler = await this.userepository
                 .createQueryBuilder('user')
                 .where('user.id = :id', { id: data.taskhandler })
                 .getOne();
-        } else if (!data.taskhandler && data.kpi) {
-            const taskhandler = await this.userepository
-                .createQueryBuilder('user')
-                .where('user.id = :id', { id: data.taskhandler })
-                .getOne();
-            const kpi = await this.kpirepository
-                .createQueryBuilder('kpi')
-                .where('kpi.id = :id', { id: data.kpi })
-                .getOne();
-            await this.trepository.update(taskid, { ...data, taskhandler, kpi })
-        } else if (!data.taskhandler && data.kpi) {
-            const kpi = await this.kpirepository
-                .createQueryBuilder('kpi')
-                .where('kpi.id = :id', { id: data.kpi })
-                .getOne();
-            await this.trepository.update(taskid, { ...data, kpi })
-
+            task = await this.trepository.update(taskid, {...data, project, taskhandler})   
         }
-        let task = await this.trepository
-            .createQueryBuilder('task')
-            .where('task.id = :id', { id: taskid })
-            .leftJoinAndSelect('task.taskhandler', 'taskhandler')
-            .leftJoinAndSelect('task.kpi', 'kpi')
-            .getOne();
         return task;
     }
     async deltask(id: string) {
@@ -75,9 +63,8 @@ export class TaskService {
     async getbyproj(id: string) {
         return this.trepository
             .createQueryBuilder('tasks')
-            .leftJoinAndSelect('tasks.kpi', 'kpi')
-            .leftJoin('kpi.project', 'project')
-            .where('kpi.project = :id', { id })
+            .leftJoinAndSelect('tasks.project', 'project')
+            .where('project = :id', { id })
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
             .getMany();
     }
@@ -85,10 +72,9 @@ export class TaskService {
         return this.trepository
             .createQueryBuilder('tasks')
             .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
-            .where('tasks.taskhandler = :id', { id })
-            .leftJoinAndSelect('tasks.kpi', 'kpi')
-            .leftJoinAndSelect('kpi.project', 'project')
-            .andWhere('project.approvallevel = 2')
+            .where('taskhandler.id = :id', { id })
+						.leftJoinAndSelect('tasks.project', 'project')
+						.andWhere('project.approvallevel = 2')
             .getMany();
     }
 }

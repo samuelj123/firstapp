@@ -12,19 +12,20 @@
         <div formArrayName="fundraising">
           <div *ngFor="let X of fraisingform['controls'].fundraising['controls']; let ix=index">
             <div formGroupName="{{ix}}">
-              <label class="amount">Amount Promised</label>
+              <label class="amount">Amount Committed (in USD)</label>
               <input type="number" placeholder="Amount" formControlName="amount" (keyup)="total()">
-              <label class="pperson">Person in-charge</label>
-              <input type="text" placeholder="Point Person" formControlName="pointperson">
-              <label class="name">Fundraising Method <p class="rightname">In this field, please mention clearly HOW  you would raise the amount promised</p></label>
+							<button class='delete' (click)="deletefraiser(ix)" tabindex="2"><i class='material-icons'>delete</i></button>
+							<label class="pperson">Person in-charge</label>
+							<select placeholder='Point Person' formControlName='pointperson'><option  *ngFor='let x of staff' value="{{x.id}}">{{x.firstname}} {{x.lastname}}</option></select>
+              <label class="name">Fundraising Method <p class="rightname">In this field, please mention clearly HOW  you would raise the amount committed</p></label>
               <input type="text" placeholder="Fundraising Method" formControlName="method">
             </div>
           </div>
         </div>
         <button class='addfrmethod' (click)="addX()">"Add Fundraising Method"</button>
-        <p>Total Money Raised: {{totalfunds}}</p>
+        <p>Total Money Raised: ${{totalfunds}}</p>
       </form>
       <button class='submit' (click)="submit()">Next</button>
-      <button class='secondary' (click)="onDraft()">Save as Draft</button>
+      <button class='secondary' (click)="savefile()">Save as Draft</button>
     </div>
   </div>

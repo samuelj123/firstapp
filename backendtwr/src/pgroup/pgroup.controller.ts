@@ -34,7 +34,7 @@ export class PgroupController {
     @Put(':id')
     @UseGuards(new AuthGuard())
     putone(@Param('id') id: string, @Body() data: PgroupEntity) {
-        return this.pgservice.update({ id, ...data });
+        return this.pgservice.update(id, data);
     }
 
     @Get('country/:country')

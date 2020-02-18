@@ -2,9 +2,10 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, CreateDateColumn, Column, U
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 import { ProjectEntity } from '../project/project.entity';
-import { LanguageEntity } from 'pgroup/language/language.entity';
-import { TaskEntity } from 'project/task/task.entity';
+import { LanguageEntity } from '../pgroup/language/language.entity';
+import { TaskEntity } from '../project/task/task.entity';
 import { KpiEntity } from 'project/kpi/kpi.entity';
+import { FundraisingEntity } from 'finance/fundraising/fundraising.entity';
 
 export type Country= 'India' | 'Pakistan' | 'Bangladesh' | 'Srilanka' | 'Nepal';
 export type Position= 'ADMIN' | 'Donor' | 'ID' | 'CEO' | 'RO' | 'COORDINATOR' | 'MANAGER' | 'EXECUTIVE';
@@ -60,6 +61,10 @@ export class UserEntity {
 
     @OneToMany(type => ProjectEntity, project => project.creator) projects: ProjectEntity[];
     @OneToMany(type => TaskEntity, tasks => tasks.taskhandler) tasks: TaskEntity[];
-    // @OneToMany(type => KpiEntity, kpis => kpis.pointperson) kpis: KpiEntity[];
+    @OneToMany(type => KpiEntity, kpis => kpis.pointperson) kpis: KpiEntity[];
+    @OneToMany(type => FundraisingEntity, fundraising => fundraising.pointperson) fundraising: FundraisingEntity[];
     @ManyToOne(type => LanguageEntity, language => language.users) language: LanguageEntity;
 }
+
+
+//[{ "email": "rphilip@twr.org", "firstname": "Rufus", "lastname": "Philip", "password": "Ps@lm23:1RP", "country": "Singapore", "position": ["ID", "CEO", "ADMIN"], "language": "2e79a4ad-88b1-462b-9aad-a96e24dae82d"}, { "email": "sjoseph@twr.org", "firstname": "Samuel", "lastname": "Joseph", "password": "1", "country": "Singapore", "position": ["ID", "CEO", "ADMIN"], "language": "2e79a4ad-88b1-462b-9aad-a96e24dae82d"}, { "email": "sjoseph@twr.org", "firstname": "Samuel", "lastname": "Joseph", "password": "1", "country": "Singapore", "position": ["ID", "CEO", "ADMIN"], "language": "2e79a4ad-88b1-462b-9aad-a96e24dae82d"}, ]

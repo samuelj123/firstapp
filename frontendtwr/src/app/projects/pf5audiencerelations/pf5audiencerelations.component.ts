@@ -37,6 +37,7 @@ export class Pf5audiencerelationsComponent implements OnInit {
       audiencerelationskpis: this.fb.array([this.fb.control('')]),
     });
     this.markpis = this.markpis.filter(val => val.type==='Audience Relations');
+		this.markpis.sort((a,b)=>(a.created<b.created)?1:-1)
     this.myForm.setControl('audiencerelationskpis', this.setkpis(this.markpis));
   }
 
@@ -83,6 +84,6 @@ export class Pf5audiencerelationsComponent implements OnInit {
   }
   async onSubmit() {
     await this.savefile();
-    await this.router.navigateByUrl('/pf6tasks/' + this.projid);
+    await this.router.navigateByUrl('/pf6fundraising/' + this.projid);
   }
 }

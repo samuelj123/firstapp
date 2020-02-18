@@ -29,8 +29,9 @@ export class DashboardComponent implements OnInit {
   user: User;
   latetasks: Task[] = [];
 
-
-  async ngOnInit() {
+	// THE SPREADSHEET DATA TO PLAY WITH
+	// https://spreadsheets.google.com/feeds/cells/1aNeq6jdyheizfmCuefEukNv4HvlWgO5O7_I1sKzmKys/1/public/full?alt=json
+	async ngOnInit() {
     // Determine Who the User IS
     this.user = await this.uservice.currentuser().toPromise() as User;
     // Get All Colleagues in Users' Country
@@ -68,12 +69,11 @@ export class DashboardComponent implements OnInit {
     // Determine Draft Projects And Pending Projects
     this.draftprojects = this.projects.filter(x => x.approvallevel === 0);
     this.pendingprojects = this.projects.filter(x => x.approvallevel === 1);
-    this.usertasks = this.user.tasks.filter(x => x.kpi.project.approvallevel === 2);
-    this.usertasks.forEach(x=>{x.realdeadline=new Date(x.kpi.project.startdate).getTime()+x.enddate})
+    this.usertasks = this.user.tasks.filter(x => x.project.approvallevel === 2);
+    this.usertasks.forEach(x=>{x.realdeadline=new Date(x.project.startdate).getTime()+x.enddate})
     const el = this.usertasks.map(x => { return x.enddate }); // el em en oo to make latetasks
-    const em = this.usertasks.map(x => { return x.kpi })
-    const en = em.map(x => { return x.project.startdate })
-    const oo = en.map(x => { return new Date(x).getTime(); })
+    const em = this.usertasks.map(x => { return x.project.startdate })
+    const oo = em.map(x => { return new Date(x).getTime(); })
     let today = Date.now();
     for (var i; i === this.usertasks.length; i++) {
       let deadline = oo[i - 1] + (el[i - 1] * 1000 * 24 * 365);

@@ -1,28 +1,37 @@
 <div class="container">
-  <app-proposalnav></app-proposalnav>
-  <div class="seccontainer">
-    <div *ngIf="project!==undefined">
-      <div>
-        <h2>Budget Entry</h2>
-        <p><strong>Vision:</strong> {{project.vision}}</p>
-        <p><strong>Mission:</strong> {{project.mission}}</p>
+	<app-proposalnav></app-proposalnav>
+	<div class="seccontainer">
+		<div *ngIf="project!==undefined">
+			<div>
+				<h2>Budget Entry</h2>
+				<p><strong>Vision:</strong> {{project.vision}}</p>
+				<p><strong>Mission:</strong> {{project.mission}}</p>
 
-        <div *ngFor="let x of project.kpis">
-          <h3>{{x.kpi}}</h3>
-          <div *ngFor="let y of x.tasks">
-            {{y.task}}
-          </div>
-          <p>Amount required</p>
-          <div>
-            <input type="text" placeholder="Budget Required: &#8377;" [(ngModel)]="x.budget" [attr.name]="x.id"
-              (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
-          </div>
-        </div>
-        <div class="submline"><button class='submit' (click)="submit()">Submit</button>
-          <button class='secondary' (click)="save()">Save as Draft</button>
-          <button class='secondary' (click)="reviewproject()">Review Project</button></div>
-      </div>
+				<div *ngIf="content_creation!==undefined">
+					<h3>Content Creation</h3>
+					<p>Amount required</p>
+						<input type="text" placeholder="Budget Required: (in USD) " [(ngModel)]="content_creation[0].amount" name="Content Creation" [attr.id]="content_creation[0].id" (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+					<h3>Content Delivery</h3>
+					<p>Amount required</p>
+						<input type="text" placeholder="Budget Required: (in USD) " [(ngModel)]="content_delivery[0].amount" name="Content Delivery"[attr.id]="content_delivery[0].id" (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+					<h3>Marketing</h3>
+					<p>Amount required</p>
+						<input type="text" placeholder="Budget Required: (in USD) " [(ngModel)]="marketing[0].amount" name="Marketing"[attr.id]="marketing[0].id" (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+					<h3>Audience Relations</h3>
+					<p>Amount required</p>
+						<input type="text" placeholder="Budget Required: (in USD) " [(ngModel)]="audience_relations[0].amount" name="Audience Relations" [attr.id]="audience_relations[0].id" (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+					<h3>Fundraising</h3>
+					<p>Amount required</p>
+						<input type="text" placeholder="Budget Required: (in USD) " [(ngModel)]="fundraising[0].amount" name="Fundraising" [attr.id]="fundraising[0].id" (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+					<h3>Reporting</h3>
+					<p>Amount required</p>
+						<input type="text" placeholder="Budget Required: (in USD) " [(ngModel)]="reporting[0].amount" name="Reporting"[attr.id]="reporting[0].id" (keydown)="uploadbud($event)" (blur)="uploadblbud($event)">
+				</div>
+				<div class="submline"><button class='submit' (click)="submit()">Submit</button>
+					<button class='secondary' (click)="save()">Save as Draft</button>
+					<button class='secondary' (click)="reviewproject()">Review Project</button></div>
+			</div>
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
