@@ -3,13 +3,13 @@ services:
   frontend:
     build: frontendtwr/.
     env_file:
-      - .env
+      - prod-env
     networks:
       - myNetwork
   backend: 
     build: backendtwr/.
     env_file:
-      - .env
+      - prod-env
     networks:
       - myNetwork
 networks:
