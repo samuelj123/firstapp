@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Language } from './project.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Language } from './project.model';
 export class LanguageService {
   constructor(private http: HttpClient) { }
    // project = 'https://mighty-waters-64457.herokuapp.com/api/language';
-   language = 'http://localhost:4000/api/language';
+   language = environment.API_LANGUAGE
 
   getalllang() {
     return this.http.get(this.language);
