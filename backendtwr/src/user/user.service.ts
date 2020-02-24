@@ -69,6 +69,7 @@ export class UserService {
         return await this.userRepository
             .createQueryBuilder('users')
             .where('users.country = :country',{country})
+            .leftJoinAndSelect('users.tasks', 'tasks')
             // .having('users.position = :position', {position: 'RO' })
             // .orHaving('users.position = :position',{position: 'COORDINATOR'})
             // .orHaving('users.position = :position',{position: 'MANAGER'})

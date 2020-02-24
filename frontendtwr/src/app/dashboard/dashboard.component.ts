@@ -51,14 +51,9 @@ export class DashboardComponent implements OnInit {
     // Determine all Active Projects in Users' country
     this.activeprojects = this.projects.filter(x => x.approvallevel === 2);
     // Determine all Tasks in Users' Purview
-    let atask = this.activeprojects.map(async x => {
-      let task = await this.projservice.gettasksinproj(x.id).toPromise() as Task[];
-      let projstartdate = new Date(x.startdate).getTime();
-      task.forEach(x => { x.projstartdate = projstartdate})
-      return [...task]
-    })
-    let alltasks = await Promise.all(atask);
-    this.alltasks = [].concat.apply([], alltasks);
+		this.alltasks = await this.projservice.getalltasks().toPromise() as Task[];
+    // let alltasks = await Promise.all(atask);
+    // this.alltasks = [].concat.apply([], alltasks);
     // Determine upcoming Tasks
     this.upcomingtasks = this.alltasks.filter(x=>{
       const today = Date.now();
@@ -71,6 +66,7 @@ export class DashboardComponent implements OnInit {
     this.pendingprojects = this.projects.filter(x => x.approvallevel === 1);
     this.usertasks = this.user.tasks.filter(x => x.project.approvallevel === 2);
     this.usertasks.forEach(x=>{x.realdeadline=new Date(x.project.startdate).getTime()+x.enddate})
+		console.log(this.countryusers)
     const el = this.usertasks.map(x => { return x.enddate }); // el em en oo to make latetasks
     const em = this.usertasks.map(x => { return x.project.startdate })
     const oo = em.map(x => { return new Date(x).getTime(); })
