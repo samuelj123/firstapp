@@ -8,29 +8,31 @@
     <div class="grid card">
       <div>
         <p>Total Budget</p>
-        <h1>&#8377; {{budget}}</h1>
+        <h1>${{budget}}</h1>
       </div>
       <div>
         <p>Amount Raised Locally</p>
-        <h1>&#8377; {{fundsraised}}</h1>
+        <h1>${{fundsraised}}</h1>
       </div>
       <div>
         <p>Amount Requested</p>
-        <h1>&#8377; {{budget - fundsraised}}</h1>
+        <h1>${{budget - fundsraised}}</h1>
       </div>
     </div>
     <div class='grid card'>
       <div>
         <h3>People Group:</h3>
-        <p>{{project.need.pgroup.pgroup}}</p>
+        <p>{{project.pgroup.pgroup}}</p>
       </div>
       <div>
         <h3>Need</h3>
-        <p>{{project.need.need}}</p>
+					<div *ngFor="let y of project.pgroup.needs">
+						<p>{{y.need}}</p>
+					</div>
       </div>
       <div>
         <h3>People Group Description </h3>
-        <p>{{project.need.pgroup.description}}</p>
+        <p>{{project.pgroup.description}}</p>
       </div>
     </div>
     <div class='grid card'>
@@ -72,7 +74,6 @@
             <tr>
               <th>KPI Name</th>
               <th>KPI Category</th>
-              <th>Budget</th>
               <th>Report</th>
             </tr>
           </thead>
@@ -80,7 +81,6 @@
             <tr *ngFor='let x of kpis'>
               <td>{{x.kpi}}</td>
               <td>{{x.type}}</td>
-              <td>{{x.budget}}</td>
               <td>{{x.report | slice:0:15}}</td>
             </tr>
           </tbody>
@@ -100,7 +100,7 @@
         <tbody>
           <tr *ngFor='let x of tasks'>
             <td>{{x.task}}</td>
-            <td>{{x.duration }}</td>
+            <td>{{x.startdate }}</td>
             <td>{{x.enddate}}</td>
           </tr>
         <tbody>

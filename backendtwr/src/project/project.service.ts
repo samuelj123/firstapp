@@ -23,6 +23,7 @@ export class ProjectService {
             .createQueryBuilder('project')
 						.leftJoinAndSelect('project.fraising', 'fraising')
             .leftJoinAndSelect('project.pgroup','pgroup')
+            .leftJoinAndSelect('pgroup.needs','needs')
             .getMany();
     }
     async new(data: ProjectDTO) {
@@ -56,6 +57,7 @@ export class ProjectService {
         .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
         .leftJoinAndSelect('project.fraising', 'fundraising')
 				.leftJoinAndSelect('project.budget', 'budget')
+				.leftJoinAndSelect('pgroup.needs', 'needs')
         .getOne();
     }
 

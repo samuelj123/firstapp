@@ -2,12 +2,7 @@
   <h2 class='title'>Dashboard</h2>
   <div *ngIf='userrole!==undefined'>
     <div *ngIf='userrole.includes("ID")||userrole.includes("CEO")'>
-      <div class="grid">
-        <div class="card" *ngFor='let x of countri'>
-          <h2>{{x}}</h2>
-        </div>
-      </div>
-    </div>
+    <iframe width="600" height="450" src="https://datastudio.google.com/embed/reporting/9a3ce824-c52b-4bd1-85a8-49beeee824e5/page/VdsGB" frameborder="0" style="border:0" allowfullscreen></iframe></div>
     
     <h3 *ngIf='userrole.includes("CEO")'>Immediate Attention</h3>
     <div class='grid' *ngIf='userrole.includes("CEO")'>
@@ -20,17 +15,15 @@
       </div>
       <div class='card activeprojects' *ngIf='activeprojects!==undefined'>
         
-        <h2>Active Projects</h2>
-        <h2><strong>{{activeprojects.length}}</strong>/{{projects.length}}</h2>
-        <!-- <p>Progress of Each Active Project wrt tasks</p>
-        <div *ngFor='let x of activeprojects'>
-          <p>{{x.name}}</p>
-          <div *ngFor='let y of x.kpis'>
-            <div *ngFor='let z of y.tasks'>
-              <p>{{z.task}}</p>
-            </div>
-          </div>
-        </div> -->
+			<h2>Active Projects</h2>
+			<h2><strong>{{activeprojects.length}}</strong>/{{projects.length}}</h2>
+			<p>Progress of Each Active Project wrt tasks</p>
+				<div *ngFor='let x of activeprojects'>
+					<p>{{x.name}}</p>
+					<div *ngFor='let z of x.tasks'>
+						<p>{{z.task}}</p>
+					</div>
+				</div>
       </div>
       <div class='card registeredusers' *ngIf='activeprojects!==undefined'>
         <h2>Staff Overview</h2>
@@ -87,10 +80,7 @@
     <div class="longcard" *ngIf='userrole.includes("CEO")'></div>
     <div class="longcard" *ngIf='userrole.includes("EXECUTIVE")'></div>
 
-    <div *ngIf='userrole.includes("ID")'>
-      <h3>Planned Projects</h3>
-e    </div>
-    <div *ngIf='userrole.includes("CEO")'>
+    <div *ngIf='userrole.includes("CEO") || userrole.includes("ID")'>
       <h3>Planned Projects</h3>
       <div *ngFor='let x of pendingprojects'>
         <p>{{x.name}}</p>

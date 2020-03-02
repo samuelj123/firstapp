@@ -40,7 +40,7 @@ export class ActiveprojComponent implements OnInit {
     this.userrole = await this.uservice.currentuserrole();
     //this.project.kpis.map(x => this.toadd.push(x.budget));
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
-    this.project.fundraising.map(x => this.toadd2.push(x.amount));
+    this.project.fraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
     this.tasks=await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
     this.tasks.sort((a,b)=>{return a.startdate - b.startdate})

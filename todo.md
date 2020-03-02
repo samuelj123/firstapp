@@ -1,25 +1,13 @@
 # First Tasks
-	* Make sure Migration works
-	* Make all cosmetic Changes
-		* ActiveProj Make over-due Tasks Red
-		* Dashboard-CEO Profile of Projects with completed/incomplete tasks
-		* Dashboard-CEO Profile of Staff with their upcoming tasks
-		* pf2contentcreation 6 month review - Next 6 months changes in format
-		* pf4Marketing Make the List more user-friendly
-		* pf6fundraising Add delete buttons for fundraising method
-		* pf7tasks Hardcode the Last task
-		* pf7tasks Put dates instead of 'days' for tasks
-		* proposalnav Change the mouse-pointer to 'finger'
-		* proposalnav Highlight the place where you have reached
-		* viewproj fix the tables that are sticking out
-	* Write unit-tests
 	* Write a Manual for the App < Consultant Hat> 
+	* viewproj.component > Tasks for Projects Table > Make it show dates instead of numbers 
 # To Be Done Later
 
   * Clean up the API (Make more sensible paths and names)
   * Document the API properly 
 	* Bring Emails to the workflow
 	* Add Monthly Listeners to Dashboard
+	* Write unit-tests
 
 # Dashboard
   * Number of Projects vs Active Projects

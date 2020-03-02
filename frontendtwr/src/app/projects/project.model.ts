@@ -55,7 +55,7 @@ export interface Project {
     marketingmethod: string[];
     marketingkpis: string[];
     description: string;
-    fundraising: Fundraising[];
+    fraising: Fundraising[];
     audiencerelationskpis: string[];
     pgroup: PGroup;
     approvallevel: number;

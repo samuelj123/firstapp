@@ -13,7 +13,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(private projservice: ProjectsService, private uservice: UserService, private router: Router) { }
 
-  projects: any;
+  projects: Project[];
   userrole: string;
   approvetoggle: boolean = false;
   denytoggle: boolean = false;
@@ -22,11 +22,12 @@ export class ProjectsComponent implements OnInit {
   async ngOnInit() {
     const country = await this.uservice.currentusercountry() as string;
     if (country === 'Singapore') {
-      this.projservice.getallproj().subscribe(val => this.projects = val);
+			this.projects = await this.projservice.getallproj().toPromise() as Project[];
     } else {
-      this.projservice.getfilteredproj(country).subscribe(val => this.projects = val);
+      this.projects = await this.projservice.getfilteredproj(country).toPromise() as Project[];
     }
     this.userrole = await this.uservice.currentuserrole();
+		console.log(this.projects);
   }
 
   deleteproj(id) {

@@ -39,24 +39,27 @@
         <p>{{x.vision}}</p>
       </div>
     </div>
-    <div class='card' *ngIf="userrole.includes('CEO')">
-      <h1><strong>Draft Projects</strong></h1>
-      <div *ngFor="let x of projects | approval0">
-        <hr>
-        <p class='denied' *ngIf="x.denialmsg!==null">Project Denied: {{x.denialmsg}}</p>
-        <h2 (click)="viewproj(x.id)">{{x.name}}</h2>
-        <p>{{x.need.need}}</p>
-        <p>{{x.need.pgroup.pgroup}}</p>
-        <p>{{x.vision}}</p>
-
-        <div class="relative">
-          <div class='buttonline'>
-            <button (click)="deleteproj(x.id)" class='delete'><i class='material-icons'>delete</i></button>
-            <button (click)="editproj(x.id)" class='delete'><i class='material-icons'>edit</i></button>
-          </div>
-        </div>
-      </div>
-    </div>
+		<div class='card' *ngIf="userrole.includes('CEO')">
+			<h1><strong>Draft Projects</strong></h1>
+			<div>
+				<div *ngFor="let x of projects | approval0">
+					<hr>
+					<p class='denied' *ngIf="x.denialmsg!==null">Project Denied: {{x.denialmsg}}</p>
+					<h2 (click)="viewproj(x.id)">{{x.name}}</h2>
+					<p>{{x.pgroup.pgroup}}</p>
+					<div *ngFor="let y of x.pgroup.needs">
+						<p>{{y.need}}</p>
+					</div>
+					<p>{{x.vision}}</p>
+					<div class="relative">
+						<div class='buttonline'>
+							<button (click)="deleteproj(x.id)" class='delete'><i class='material-icons'>delete</i></button>
+							<button (click)="editproj(x.id)" class='delete'><i class='material-icons'>edit</i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
   </div>

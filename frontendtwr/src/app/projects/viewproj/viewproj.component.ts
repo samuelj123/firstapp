@@ -36,11 +36,12 @@ export class ViewprojComponent implements OnInit {
     this.project = await this.projservice.getoneproj(this.projid).toPromise() as Project;
     this.kpis = this.project.kpis;
     this.userrole = await this.uservice.currentuserrole();
-    //this.project.budget.forEach(x => this.toadd.push(x.amount));
+    this.project.budget.forEach(x => this.toadd.push(x.amount));
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
-    this.project.fundraising.map(x => this.toadd2.push(x.amount));
+    this.project.fraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
     this.tasks = await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
+		console.log(this.project)
   }
 
   goback() {

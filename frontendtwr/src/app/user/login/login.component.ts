@@ -31,6 +31,6 @@ export class LoginComponent implements OnInit {
         }
         return;
       }, error => {this.error = error.error.text});
-    this.router.navigateByUrl('/projects');
+    this.router.navigateByUrl('/dashboard');
   }
 }

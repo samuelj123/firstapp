@@ -47,6 +47,7 @@ const routes = [
   { path: 'activeproj/:id', component: ActiveprojComponent, canActivate: [LoggedinGuard] },
   { path: 'tasks', component: TasksComponent, canActivate: [LoggedinGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [LoggedinGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [LoggedinGuard] },
 ];
 
 @NgModule({
