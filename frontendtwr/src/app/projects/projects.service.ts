@@ -88,7 +88,7 @@ export class ProjectsService {
   }
 
   gettasksinproj(id: string) {
-    return this.http.get(this.task + '?p=' + id)
+		return this.http.get(this.task + '/' + id)
   }
 
   newtask(kpiid: string, value: any) {
