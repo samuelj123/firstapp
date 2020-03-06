@@ -1,4 +1,5 @@
 # First Tasks
+	* Viewproj.component. > Marketing not showing
 	* Write a Manual for the App < Consultant Hat> 
 	* viewproj.component > Tasks for Projects Table > Make it show dates instead of numbers 
 # To Be Done Later
