@@ -79,8 +79,8 @@ export interface Task {
     projstartdate?: number;
     id?: string;
     task: string;
-    startdate: number; // The back-end name for Start-Date
-    enddate: number;
+    startdate: any; 
+    enddate: any;
     complete?: boolean;
     deadline?: Date;
     taskhandler: User;

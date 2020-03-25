@@ -28,6 +28,7 @@ export class ViewprojComponent implements OnInit {
   toadd2: number[] =[];
   fundsraised: number;
   tasks: Task[];
+	dte: Date;
 
 
 
@@ -35,14 +36,20 @@ export class ViewprojComponent implements OnInit {
     await this.route.params.subscribe(params => this.projid = (params.id));
     this.project = await this.projservice.getoneproj(this.projid).toPromise() as Project;
     this.kpis = this.project.kpis;
+		this.dte = new Date(this.project.startdate);
     this.userrole = await this.uservice.currentuserrole();
     this.project.budget.forEach(x => this.toadd.push(x.amount));
     this.budget = this.toadd.reduce((a, b) => a + b, 0)
     this.project.fraising.map(x => this.toadd2.push(x.amount));
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
     this.tasks = await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
-		console.log(this.project)
+		this.modifytasks(this.tasks);
   }
+
+	modifytasks(tasks:Task[]) {
+		tasks.forEach(x=> {return x.startdate = new Date(this.dte.getTime() + (x.startdate*1000*60*60*24)).toISOString().substring(0,10)})
+		tasks.forEach(x=> {return x.enddate = new Date(this.dte.getTime() + (x.enddate*1000*60*60*24)).toISOString().substring(0,10)})
+	}
 
   goback() {
     this.router.navigateByUrl('/projects');
