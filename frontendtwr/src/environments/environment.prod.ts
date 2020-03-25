@@ -10,5 +10,5 @@ export const environment = {
   API_KPISERVICE: x + "kpi",
   API_FUNDRAISINGSERVICE: x + "fundraising",
   API_LANGUAGE: x + "language",
-  API_BUDGET: x + "/api/budget"
+  API_BUDGET: x + "budget"
 };

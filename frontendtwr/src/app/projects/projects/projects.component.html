@@ -6,7 +6,6 @@
       <h1><strong>Projects Pending Approval</strong></h1>
       <div *ngFor="let x of projects | approval1">
         <hr>
-        <div></div>
         <h2 *ngIf="userrole.includes('ID')" (click)="viewproj(x.id)">{{x.country}}</h2>
         <h2 *ngIf="userrole.includes('CEO')" (click)="viewproj(x.id)">{{x.name}}</h2>
         <p>{{x.lastupdated | date }}</p>
