@@ -11,7 +11,7 @@
         <i class="material-icons">assignment</i>
         Dashboard
       </li>
-      <li class="clickable" (click)="pplgrp()">
+      <li class="clickable" (click)="pplgrp()" *ngIf="cuser.position.includes('CEO') || cuser.position.includes('MANAGER') || cuser.position.includes('COORDINATOR') || cuser.position.includes('COORDINATOR')">
         <i class="material-icons">supervisor_account</i>
         People Groups
       </li>
@@ -23,7 +23,7 @@
         <i class="material-icons">face</i>
         Users
       </li>
-      <li class="clickable" (click)="task()">
+      <li class="clickable" (click)="task()" *ngIf="cuser.position.includes('CEO') || cuser.position.includes('MANAGER') || cuser.position.includes('COORDINATOR') || cuser.position.includes('COORDINATOR')">
         <i class="material-icons">people</i>
         Tasks
       </li>
