@@ -29,6 +29,7 @@ export class ViewprojComponent implements OnInit {
   fundsraised: number;
   tasks: Task[];
 	dte: Date;
+	approvetoggle:boolean = false;
 
 
 
@@ -51,6 +52,20 @@ export class ViewprojComponent implements OnInit {
 		tasks.forEach(x=> {return x.enddate = new Date(this.dte.getTime() + (x.enddate*1000*60*60*24)).toISOString().substring(0,10)})
 	}
 
+  starttoggle(id) {
+    this.approvetoggle = true;
+  }
+	cancel() {
+		this.approvetoggle = false;
+	}
+  async approveproj(e) {
+    const day = e.target.value.split("-", 3);
+    const date: Date = new Date(day[0], day[1], day[2])
+    const object = { approvallevel: 2, startdate: e.target.value };
+		console.log(day);
+    await this.projservice.updateproj(object, this.projid).subscribe();
+    this.router.navigateByUrl('/projects');
+  }
   goback() {
     this.router.navigateByUrl('/projects');
   }

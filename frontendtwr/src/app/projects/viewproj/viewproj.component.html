@@ -109,7 +109,12 @@
 
     <div class="submline">
       <button *ngIf="userrole.includes('CEO') && project.approvallevel===0" class='submit' (click)="submitproject()">Submit Project</button>
-      <button *ngIf="userrole.includes('ID') && project.approvallevel===1" class='submit' (click)="approveproject()">Approve Project</button>
+      <button *ngIf="userrole.includes('ID') && project.approvallevel===1" class='submit' (click)="starttoggle()">Approve Project</button>
+					<div *ngIf="approvetoggle===true">
+						<p>Provide a Start Date and Hit Enter to confirm</p>
+						<input style='margin-right: 2em;' type="date" (keyup.enter)='approveproj($event)'>
+						<button class='delete small' (click)='cancel()'>Cancel</button>
+					</div>
       <!-- <button *ngIf="userrole.includes('ID') && project.approvallevel===1" class='submit' (click)="denyproject()">Deny Project</button>
       <button *ngIf="userrole.includes('CEO') && project.approvallevel===0" class='secondary' (click)="goback()">Save as 
         Draft</button> -->
