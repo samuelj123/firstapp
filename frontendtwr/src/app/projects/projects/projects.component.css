@@ -1,6 +1,13 @@
 .seccontainer {
     margin-right: 20%;
 }
+h2 {
+	color: var(--s);
+}
+
+h2:hover {
+		font-weight: 500;
+}
 button.newproject{width: 100%;}
 strong {
     font-weight: 500;
