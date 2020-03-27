@@ -28,6 +28,7 @@ export class TaskService {
 				return await this.trepository
 						.createQueryBuilder('tasks')
 						.leftJoinAndSelect('tasks.project', 'project')
+						.leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
 						.where('project.id = :id', {id: projid})
 						.getMany();
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import { ProjectsService } from '../projects.service';
 import { Project, Task, KPI } from '../project.model';
@@ -28,9 +28,14 @@ export class Pf6tasksComponent implements OnInit {
   pplresponsible: User[];
   taskform: FormGroup;
   tasks: FormArray
-  alltasks: Task[];
+	atasks: Task[]; //all tasks in Project
+	alltasks: Task[]; //all tasks in Category
 	dte: Date;
 
+	@Input() 
+	nextpage: string;
+	@Input()
+	category: string;
 
   async ngOnInit() {
     this.route.params.subscribe(params => this.projid = (params.id));
@@ -38,7 +43,8 @@ export class Pf6tasksComponent implements OnInit {
     this.kpi = await this.projservice.getkpibyprojwithtasks(this.projid).toPromise() as KPI[];
     this.project = await this.projservice.getoneproj(this.projid).toPromise() as Project;
 		this.dte = new Date(this.project.startdate);
-    this.alltasks = await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
+    this.atasks = await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
+		this.alltasks = this.atasks.filter(x=> {return x.category ===this.category});
     this.pplresponsible = await this.uservice.getallbyfilter(this.cuid.id).toPromise() as User[];
     this.taskform = this.fb.group({
       task: this.fb.array([this.atask()])
@@ -54,7 +60,6 @@ export class Pf6tasksComponent implements OnInit {
       startdate: '',
       enddate: '',
       taskhandler: '',
-      category: ''
     });
   }
 
@@ -70,7 +75,7 @@ export class Pf6tasksComponent implements OnInit {
         taskhandler: k.taskhandler.id, 
         startdate: this.getdate(k.startdate),
         enddate: this.getdate(k.enddate),
-        category: k.category
+        category: this.category
       }))
     });
     return fa;
@@ -94,13 +99,13 @@ export class Pf6tasksComponent implements OnInit {
 		return ddd
 	}
   async savetasks() {
-		this.alltasks.forEach(x => {
+		this.atasks.forEach(x => {
 			this.projservice.deletetask(x.id)
 		})
 		this.taskform.value.task.forEach(x=>{
 			const obj = {
 				task: x.taskname,
-				category: x.category, 
+				category: this.category, 
 				startdate: this.getdatenumber(x.startdate),
 				enddate: this.getdatenumber(x.enddate),
 				taskhandler: x.taskhandler
@@ -110,8 +115,8 @@ export class Pf6tasksComponent implements OnInit {
   }
 
   async next() {
-    await this.savetasks();
-    await this.router.navigateByUrl('pf6fundraising/' + this.projid);
+    // await this.savetasks();
+    await this.router.navigateByUrl(this.nextpage);
   }
 
   async draft() {

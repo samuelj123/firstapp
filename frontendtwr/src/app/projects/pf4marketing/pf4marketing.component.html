@@ -31,15 +31,17 @@
             </div>
             <button class='secondary' (click)="addMarketingkpi()">Add Marketing KPI</button>
           </div>
-          <div class='submline'>
-            <button class='secondary' (click)="onSubmit()">Next</button>
-            <button class='secondary' (click)="onDraft()">Save as Draft</button>
-            <button class='submit' (click)="onSubmit()">Next</button>
-          </div>
+          <!-- <div class='submline'> -->
+          <!--   <button class='secondary' (click)="onSubmit()">Next</button> -->
+          <!--   <button class='secondary' (click)="onDraft()">Save as Draft</button> -->
+          <!--   <button class='submit' (click)="onSubmit()">Next</button> -->
+          <!-- </div> -->
         </div>
 
       </form>
       <!-- End of Marketing -->
     </div>
   </div>
+	<app-pf6tasks [nextpage]='"/pf5audiencerelations/" + projid' [category]='"Marketing"'>
+	</app-pf6tasks>
 </div>

@@ -24,12 +24,10 @@
           <button class='secondary' (click)="addAudiencerelationskpi()">Add Audience Relations
             KPI</button>
         </div>
-        <div class='submline'>
-          <button class='submit' (click)="onSubmit()">Next</button>
-          <button class='secondary' (click)="onDraft()">Save as Draft</button>
-        </div>
       </div>
 
     </form>
   </div>
+	<app-pf6tasks [nextpage]='"/pf6fundraising/" + projid' [category]='"Audience Relations"'>
+	</app-pf6tasks>
 </div>

@@ -94,15 +94,16 @@
 								KPI</button>
 						</div>
 					</div>
-					<div class='lastbuttons'>
-						<button class="secondary" (click)="onDraft()">Save asDraft</button>
-						<button class='submit' (click)="onSubmit()">Next</button>
-					</div>
+					<!-- <div class='lastbuttons'> -->
+					<!-- 	<button class="secondary" (click)="onDraft()">Save asDraft</button> -->
+					<!-- 	<button class='submit' (click)="onSubmit()">Next</button> -->
+					<!-- </div> -->
 				</div>
-
 				<!-- End of Content Production-->
 
 			</form>
 		</div>
 	</div>
+	<app-pf6tasks [nextpage]='"/pf3contentdelivery/" + projid' [category]='"Content Creation"'>
+	</app-pf6tasks>
 </div>

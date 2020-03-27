@@ -47,14 +47,12 @@
             </div>
           </div>
           <button class="secondary" (click)="addDistributionkpi()">Add Distribution KPI</button>
-          <div class='submline'>
-            <button class='submit' (click)="onSubmit()">Next</button>
-            <button class='secondary' (click)="onDraft()">Save as Draft</button>
-          </div>
         </div>
       </div>
 
     </form>
     <!-- End of Content Distribution -->
   </div>
+	<app-pf6tasks [nextpage]='"/pf4marketing/" + projid' [category]='"Content Distribution"'>
+	</app-pf6tasks>
 </div>

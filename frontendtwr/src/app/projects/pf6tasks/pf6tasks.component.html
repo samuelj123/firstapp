@@ -1,48 +1,43 @@
-<div class="container">
-  <app-proposalnav></app-proposalnav>
-  <div class="seccontainer">
-    <!--<app-gantt class='onside'></app-gantt>-->
-    <div *ngIf="kpi!==undefined && project!==undefined && taskform!==undefined">
-      <h1>Tasks</h1>
-      <p>{{project.name}}</p>
-      <div>
-        <p><strong>Vision: </strong>{{project.vision}}</p>
-        <p><strong>Mission: </strong>{{project.mission}}</p>
-      </div>
-      <div [formGroup]="taskform">
-        <div formArrayName="task" *ngFor="let x of taskform.get('task').controls; let i = index;">
-          <div class='task' [formGroupName]="i">
+<div style='margin-top: 20%'>
+<hr>
+	<div class="seccontainer">
+		<!--<app-gantt class='onside'></app-gantt>-->
+		<div *ngIf="kpi!==undefined && project!==undefined && taskform!==undefined">
+			<h1>Tasks</h1>
+			<div [formGroup]="taskform">
+				<div formArrayName="task" *ngFor="let x of taskform.get('task').controls; let i = index;">
+					<div class='task' [formGroupName]="i">
 
-            <label class="taskname">Task Name</label>
-            <input type='text' formControlName="taskname" placeholder="Task Name" >
-            <div class="grid">
-              <div><label class="startdate">Start Date</label>
-                <input type='date' formControlName="startdate" placeholder="Starting Day" >
+						<label class="taskname">Task Name</label>
+						<input type='text' formControlName="taskname" placeholder="Task Name" >
+						<div class="grid">
+							<div><label class="startdate">Start Date</label>
+								<input type='date' formControlName="startdate" placeholder="Starting Day" >
 							</div>
-              <div><label class="enddate">End Date</label>
-                <input type='date' formControlName="enddate" placeholder="Ending Day" >
-							</div>
-              <div><label class="taskhandler">Person Responsible for Task</label>
-                <select formControlName="taskhandler" >
-                  <option *ngFor="let y of pplresponsible" value="{{y.id}}">{{y.firstname}}</option>
-                </select>
-							</div>
-              <div><label class="taskhandler">Category</label>
-                <select formControlName="category" >
-                  <option *ngFor="let y of ctgry" value="{{y}}">{{y}}</option>
-                </select>
-							</div>
-            </div>
-            <button class='delete' (click)="deletetask(i)"><i class="material-icons">delete</i></button>
-          </div>
-        </div>
-      </div>
-      <button class='addtask secondary' (click)="addtask()" >Add Task</button>
-      <div class='submline'>
-        <button class=' secondary savetask' (click)="savetasks()">Save Tasks</button>
-        <button class='submit' (click)="next()" >Next</button>
-        <button class='secondary' (click)="onDraft()" >Save as Draft</button>
-      </div>
-    </div>
-  </div>
+								<div><label class="enddate">End Date</label>
+									<input type='date' formControlName="enddate" placeholder="Ending Day" >
+								</div>
+						</div>
+						<div><label class="taskhandler">Person Responsible for Task</label>
+							<select formControlName="taskhandler" >
+								<option *ngFor="let y of pplresponsible" value="{{y.id}}">{{y.firstname}}</option>
+							</select>
+						</div>
+						<!-- <div><label class="taskhandler">Category</label> -->
+						<!--   <select formControlName="category" > -->
+						<!--     <option *ngFor="let y of ctgry" value="{{y}}">{{y}}</option> -->
+						<!--   </select> -->
+						<!-- </div> -->
+						<button class='delete' (click)="deletetask(i)"><i class="material-icons">delete</i></button>
+					</div>
+				</div>
+			</div>
+			<button class='addtask secondary' (click)="addtask()" >Add Task</button>
+			<div class='submline'>
+				<!-- <button class=' secondary savetask' (click)="savetasks()">Save Tasks</button> -->
+				<button class='submit' (click)="next()" >Next</button>
+				<button class='secondary' (click)="onDraft()" >Save as Draft</button>
+			</div>
+		</div>
+	</div>
 </div>
