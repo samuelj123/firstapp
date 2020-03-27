@@ -1,31 +1,34 @@
 <div class="container">
-  <app-proposalnav></app-proposalnav>
-  <div class="seccontainer">
-    <div *ngIf="fraisingform!=undefined">
-      <h1>Fundraising</h1>
-      <p>{{project.name}}</p>
-      <div>
-        <p><strong>Vision: </strong>{{project.vision}}</p>
-        <p><strong>Mission: </strong>{{project.mission}}</p>
-      </div>
-      <form [formGroup]="fraisingform">
-        <div formArrayName="fundraising">
-          <div *ngFor="let X of fraisingform['controls'].fundraising['controls']; let ix=index">
-            <div formGroupName="{{ix}}">
-              <label class="amount">Amount Committed (in USD)</label>
-              <input type="number" placeholder="Amount" formControlName="amount" (keyup)="total()">
+	<app-proposalnav></app-proposalnav>
+	<div class="seccontainer">
+		<div *ngIf="fraisingform!=undefined">
+			<h1>Fundraising</h1>
+			<p>{{project.name}}</p>
+			<div>
+				<p><strong>Vision: </strong>{{project.vision}}</p>
+				<p><strong>Mission: </strong>{{project.mission}}</p>
+			</div>
+			<form [formGroup]="fraisingform">
+				<div formArrayName="fundraising">
+					<div *ngFor="let X of fraisingform['controls'].fundraising['controls']; let ix=index">
+						<div formGroupName="{{ix}}">
+							<label class="amount">Amount Committed (in USD)</label>
+							<input type="number" placeholder="Amount" formControlName="amount" (keyup)="total()">
 							<button class='delete' (click)="deletefraiser(ix)" tabindex="2"><i class='material-icons'>delete</i></button>
 							<label class="pperson">Person in-charge</label>
 							<select placeholder='Point Person' formControlName='pointperson'><option  *ngFor='let x of staff' value="{{x.id}}">{{x.firstname}} {{x.lastname}}</option></select>
-              <label class="name">Fundraising Method <p class="rightname">In this field, please mention clearly HOW  you would raise the amount committed</p></label>
-              <input type="text" placeholder="Fundraising Method" formControlName="method">
-            </div>
-          </div>
-        </div>
-        <button class='addfrmethod' (click)="addX()">"Add Fundraising Method"</button>
-        <p>Total Money Raised: ${{totalfunds}}</p>
-      </form>
-      <button class='submit' (click)="submit()">Next</button>
-      <button class='secondary' (click)="savefile()">Save as Draft</button>
-    </div>
-  </div>
+							<label class="name">Fundraising Method <p class="rightname">In this field, please mention clearly HOW  you would raise the amount committed</p></label>
+							<input type="text" placeholder="Fundraising Method" formControlName="method">
+						</div>
+					</div>
+				</div>
+				<button class='addfrmethod' (click)="addX()">"Add Fundraising Method"</button>
+				<p>Total Money Raised: ${{totalfunds}}</p>
+			</form>
+			<!-- <button class='submit' (click)="submit()">Next</button> -->
+			<!-- <button class='secondary' (click)="savefile()">Save as Draft</button> -->
+		</div>
+	</div>
+	<app-pf6tasks [nextpage]='"/pf7reporting/" + projid' [category]='"Fundraising"' (saveParentComponent)="savefile()">
+	</app-pf6tasks>
+</div>

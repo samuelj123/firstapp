@@ -88,7 +88,6 @@ export class Pf2objectivesComponent implements OnInit {
 
 
 
-
 	async savefile() {
 		let fv = this.myForm.value;
 		let fv2 = this.myForm.value.productionkpis;
@@ -109,13 +108,13 @@ export class Pf2objectivesComponent implements OnInit {
 		this.projservice.newkpi(vl).subscribe();
 	}
 
-	async onSubmit() {
-		await this.savefile();
-		await this.router.navigateByUrl('/pf3contentdelivery/' + this.projid);
-	}
+	// async onSubmit() {
+	// 	await this.savefile();
+	// 	await this.router.navigateByUrl('/pf3contentdelivery/' + this.projid);
+	// }
 
-	async onDraft() {
-		await this.savefile();
-		await this.router.navigateByUrl('/projects');
-	}
+	// async onDraft() {
+	// 	await this.savefile();
+	// 	await this.router.navigateByUrl('/projects');
+	// }
 }

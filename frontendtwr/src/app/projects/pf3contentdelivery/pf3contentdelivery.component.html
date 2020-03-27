@@ -53,6 +53,6 @@
     </form>
     <!-- End of Content Distribution -->
   </div>
-	<app-pf6tasks [nextpage]='"/pf4marketing/" + projid' [category]='"Content Distribution"'>
+	<app-pf6tasks [nextpage]='"/pf4marketing/" + projid' [category]='"Content Distribution"' (saveParentComponent)="savefile()">
 	</app-pf6tasks>
 </div>

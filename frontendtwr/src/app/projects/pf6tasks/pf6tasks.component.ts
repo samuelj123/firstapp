@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import { ProjectsService } from '../projects.service';
 import { Project, Task, KPI } from '../project.model';
@@ -36,6 +36,9 @@ export class Pf6tasksComponent implements OnInit {
 	nextpage: string;
 	@Input()
 	category: string;
+
+	@Output()
+	saveParentComponent = new EventEmitter();
 
   async ngOnInit() {
     this.route.params.subscribe(params => this.projid = (params.id));
@@ -99,8 +102,9 @@ export class Pf6tasksComponent implements OnInit {
 		return ddd
 	}
   async savetasks() {
-		this.atasks.forEach(x => {
-			this.projservice.deletetask(x.id)
+		this.alltasks.forEach(x => {
+			console.log(x.id);
+			this.projservice.deletetask(x.id).subscribe();
 		})
 		this.taskform.value.task.forEach(x=>{
 			const obj = {
@@ -115,12 +119,14 @@ export class Pf6tasksComponent implements OnInit {
   }
 
   async next() {
-    // await this.savetasks();
+		this.saveParentComponent.emit();
+		this.savetasks()
     await this.router.navigateByUrl(this.nextpage);
   }
 
   async draft() {
-    this.savetasks();
+		this.saveParentComponent.emit();
+		this.savetasks();
     await this.router.navigateByUrl('/projects');
   }
 }

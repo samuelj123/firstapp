@@ -42,6 +42,6 @@
       <!-- End of Marketing -->
     </div>
   </div>
-	<app-pf6tasks [nextpage]='"/pf5audiencerelations/" + projid' [category]='"Marketing"'>
+	<app-pf6tasks [nextpage]='"/pf5audiencerelations/" + projid' [category]='"Marketing"' (saveParentComponent)="savefile()">
 	</app-pf6tasks>
 </div>

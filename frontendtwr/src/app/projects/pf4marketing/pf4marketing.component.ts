@@ -88,13 +88,13 @@ export class Pf4marketingComponent implements OnInit {
     }
     this.projservice.newkpi(vl).subscribe();
   }
-  async onSubmit() {
-    await this.savefile();
-    await this.router.navigateByUrl('/pf5audiencerelations/' + this.projid);
-  }
-  async onDraft() {
-    await this.savefile();
-    await this.router.navigateByUrl('/projects');
-  }
+  // async onSubmit() {
+  //   await this.savefile();
+  //   await this.router.navigateByUrl('/pf5audiencerelations/' + this.projid);
+  // }
+  // async onDraft() {
+  //   await this.savefile();
+  //   await this.router.navigateByUrl('/projects');
+  // }
 }
 

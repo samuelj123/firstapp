@@ -28,6 +28,6 @@
 
     </form>
   </div>
-	<app-pf6tasks [nextpage]='"/pf6fundraising/" + projid' [category]='"Audience Relations"'>
+	<app-pf6tasks [nextpage]='"/pf6fundraising/" + projid' [category]='"Audience Relations"' (saveParentComponent)="savefile()">
 	</app-pf6tasks>
 </div>

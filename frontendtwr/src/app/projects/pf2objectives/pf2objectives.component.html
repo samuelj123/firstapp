@@ -104,6 +104,6 @@
 			</form>
 		</div>
 	</div>
-	<app-pf6tasks [nextpage]='"/pf3contentdelivery/" + projid' [category]='"Content Creation"'>
+	<app-pf6tasks [nextpage]='"/pf3contentdelivery/" + projid' [category]='"Content Creation"' (saveParentComponent)="savefile()">
 	</app-pf6tasks>
 </div>
