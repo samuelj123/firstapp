@@ -12,21 +12,21 @@
 				<p *ngIf="userrole.includes('ID')">{{x.needs}}</p>
 				<p *ngIf="userrole.includes('ID')"><strong>Vision: </strong>{{x.vision}}</p>
 				<p *ngIf="userrole.includes('ID')"><strong>Mission: </strong>{{x.mission}}</p>
-				<div>
-					<button *ngIf="userrole.includes('ID')" (click)="starttoggle(x.id)" class='delete small'>Approve</button>
-					<button *ngIf="userrole.includes('ID')" (click)="denyproj(x.id)" class='delete small'>Deny</button>
-					<div *ngIf="approvetoggle===true">
-						<p>Provide a Start Date and Hit Enter to confirm</p>
-						<input style='margin-right: 2em;' type="date" (keyup.enter)='approveproj(x.id, $event)'>
-						<button class='delete small' (click)='cancel()'>Cancel</button>
-					</div>
-					<div *ngIf='denytoggle===true'>
-						<p>Please add a message, pointing to areas for improvement for this Proposal, along with reasons for Denial
-						</p>
-						<input type="text" [(ngModel)]='denymessage' (keyup.enter)='denyproj2()'>
-						<button class='delete small' (click)='cancel()'>Cancel</button>
-					</div>
-				</div>
+				<!-- <div> -->
+				<!-- 	<button *ngIf="userrole.includes('ID')" (click)="starttoggle(x.id)" class='delete small'>Approve</button> -->
+				<!-- 	<button *ngIf="userrole.includes('ID')" (click)="denyproj(x.id)" class='delete small'>Deny</button> -->
+				<!-- 	<div *ngIf="approvetoggle===true"> -->
+				<!-- 		<p>Provide a Start Date and Hit Enter to confirm</p> -->
+				<!-- 		<input style='margin-right: 2em;' type="date" (keyup.enter)='approveproj(x.id, $event)'> -->
+				<!-- 		<button class='delete small' (click)='cancel()'>Cancel</button> -->
+				<!-- 	</div> -->
+				<!-- 	<div *ngIf='denytoggle===true'> -->
+				<!-- 		<p>Please add a message, pointing to areas for improvement for this Proposal, along with reasons for Denial -->
+				<!-- 		</p> -->
+				<!-- 		<input type="text" [(ngModel)]='denymessage' (keyup.enter)='denyproj2()'> -->
+				<!-- 		<button class='delete small' (click)='cancel()'>Cancel</button> -->
+				<!-- 	</div> -->
+				<!-- </div> -->
 			</div>
 		</div>
 		<div class='card'>
