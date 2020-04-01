@@ -33,7 +33,7 @@
 			<h1><strong>Active Projects</strong></h1>
 			<div *ngFor="let x of projects | approval2">
 				<hr>
-				<h2 *ngIf="userrole.includes('ID')" (click)="viewproj(x.id)">{{x.country}}</h2>
+				<h2 *ngIf="userrole.includes('ID')" (click)="activeproj(x.id)">{{x.country}}</h2>
 				<h3 (click)="activeproj(x.id)">{{x.name}}</h3>
 				<p>{{x.vision}}</p>
 			</div>

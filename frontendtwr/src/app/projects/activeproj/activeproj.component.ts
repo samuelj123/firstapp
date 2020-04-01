@@ -46,6 +46,7 @@ export class ActiveprojComponent implements OnInit {
     this.tasks.sort((a,b)=>{return a.startdate - b.startdate})
     this.taskscompleted=this.tasks.filter(x=>x.complete===true);
     this.getenddate();
+		console.log(this.tasks)
   }
 
   getenddate() {

@@ -80,7 +80,7 @@ export class ProjectsService {
   }
 
   gettasksbyuser(id) {
-    return this.http.get(this.task + '/user?u=' + id)
+		return this.http.get(this.task + '/user/' + id)
   }
 
   gettasksinkpi(id: string) {

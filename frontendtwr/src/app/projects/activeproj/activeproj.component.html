@@ -57,10 +57,10 @@
             </tr>
           </thead>
           <tr *ngFor="let y of tasks | sort:tasks.duration">
-            <td *ngIf='y.complete' ><i class="material-icons" style='color:var(--s)'>check_box</i></td>
-            <td *ngIf='!y.complete'><i class="material-icons" style='color:var(--s)'>check_box_outline_blank</i></td>
+            <td *ngIf='y.complete === true' ><i class="material-icons" style='color:var(--s)'>check_box</i></td>
+            <td *ngIf='y.complete === false || y.complete === null'><i class="material-icons" style='color:var(--s)'>check_box_outline_blank</i></td>
             <td>{{y.task | slice:0:15}}...</td>
-            <td>{{project.startdate | dateadd2: y.duration | date }}</td>
+            <td>{{project.startdate | dateadd2: y.startdate | date }}</td>
             <td>{{project.startdate | dateadd2: y.enddate | date }}</td>
             <td>{{y.taskhandler.firstname}} {{y.taskhandler.lastname}}</td>
           </tr>

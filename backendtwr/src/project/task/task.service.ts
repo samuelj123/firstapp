@@ -47,13 +47,13 @@ export class TaskService {
                 .where('project.id = :id', {id: data.project})
                 .getOne();
         if (!data.taskhandler) {
-            task = await this.trepository.update(taskid, {...data, project});
+            task = await this.trepository.update(taskid, {...data});
         } else if (data.taskhandler) {
             const taskhandler = await this.userepository
                 .createQueryBuilder('user')
                 .where('user.id = :id', { id: data.taskhandler })
                 .getOne();
-            task = await this.trepository.update(taskid, {...data, project, taskhandler})   
+            task = await this.trepository.update(taskid, {...data,  taskhandler})   
         }
         return task;
     }
@@ -61,14 +61,14 @@ export class TaskService {
         await this.trepository.delete(id);
         return { deleted: true };
     }
-    async getbyproj(id: string) {
-        return this.trepository
-            .createQueryBuilder('tasks')
-            .leftJoinAndSelect('tasks.project', 'project')
-            .where('project = :id', { id })
-            .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
-            .getMany();
-    }
+    // async getbyproj(id: string) {
+    //     return this.trepository
+    //         .createQueryBuilder('tasks')
+    //         .leftJoinAndSelect('tasks.project', 'project')
+    //         .where('project = :id', { id })
+    //         .leftJoinAndSelect('tasks.taskhandler', 'taskhandler')
+    //         .getMany();
+    // }
     async getbyuser(id: string) {
         return this.trepository
             .createQueryBuilder('tasks')
