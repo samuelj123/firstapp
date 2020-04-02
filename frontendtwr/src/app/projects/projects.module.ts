@@ -16,6 +16,7 @@ import { Dateadd } from '../pipes/dateadd.pipe';
 import { Dateadd2 } from '../pipes/dateadd2.pipe';
 import { FirstLetter } from '../pipes/firstletter.pipe';
 import { sortPipe } from '../pipes/sort.pipe';
+import { inYears } from '../pipes/inyears.pipe';
 import { ViewprojComponent } from './viewproj/viewproj.component';
 import { ActiveprojComponent } from './activeproj/activeproj.component';
 import { Pf3contentdeliveryComponent } from './pf3contentdelivery/pf3contentdelivery.component';
@@ -43,6 +44,7 @@ import { GanttComponent } from '../shared/gantt/gantt.component';
     Dateadd,
     Dateadd2,
     FirstLetter,
+    inYears,
     sortPipe,
     ViewprojComponent,
     ActiveprojComponent,

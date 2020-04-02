@@ -45,6 +45,7 @@ export class ViewprojComponent implements OnInit {
     this.fundsraised = this.toadd2.reduce((a, b) => a + b, 0)
     this.tasks = await this.projservice.gettasksinproj(this.projid).toPromise() as Task[];
 		this.modifytasks(this.tasks);
+		console.log(this.project);
   }
 
 	modifytasks(tasks:Task[]) {

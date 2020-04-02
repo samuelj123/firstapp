@@ -49,7 +49,12 @@ export class Pf8budgetComponent implements OnInit {
 
   async submit() {
     const value = { approvallevel: 1 }
+		const array=[]
+		this.project.tasks.forEach(x => {array.push(x.enddate)});
+		const maxnumber = Math.max(...array);
+		const value2 = { projectduration: maxnumber }
     this.projservice.updateproj(value, this.projid).subscribe();
+		this.projservice.updateproj(value2, this.projid).subscribe();
     this.router.navigate(['/projects']);
   }
   

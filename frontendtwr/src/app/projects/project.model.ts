@@ -40,7 +40,7 @@ export interface Project {
     name: string;
     vision: string;
     mission: string;
-    projectduration: number;
+    projectduration: any;
     intendedoutcome: string;
     programname: string;
     duration: number;
@@ -63,6 +63,7 @@ export interface Project {
 		budget: Budget[];
     kpis: KPI[];
     denialmsg: string;
+		tasks: Task[];
     startdate: Date;
 
 }

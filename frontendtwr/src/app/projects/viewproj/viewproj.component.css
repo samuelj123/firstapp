@@ -7,6 +7,13 @@ h1.bold {
 strong{
     font-weight: 500;
 }
+.list {
+	margin-left: 8%;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 7px;
+	padding: 0;
+}
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

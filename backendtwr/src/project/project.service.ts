@@ -58,6 +58,7 @@ export class ProjectService {
         .leftJoinAndSelect('project.fraising', 'fundraising')
 				.leftJoinAndSelect('project.budget', 'budget')
 				.leftJoinAndSelect('pgroup.needs', 'needs')
+				.leftJoinAndSelect('pgroup.language', 'language')
         .getOne();
     }
 
