@@ -30,6 +30,7 @@ export class ViewprojComponent implements OnInit {
   tasks: Task[];
 	dte: Date;
 	approvetoggle:boolean = false;
+	denytoggle:boolean = false;
 
 
 
@@ -58,12 +59,22 @@ export class ViewprojComponent implements OnInit {
   }
 	cancel() {
 		this.approvetoggle = false;
+		this.denytoggle = false;
 	}
   async approveproj(e) {
     const day = e.target.value.split("-", 3);
     const date: Date = new Date(day[0], day[1], day[2])
     const object = { approvallevel: 2, startdate: e.target.value };
 		console.log(day);
+    await this.projservice.updateproj(object, this.projid).subscribe();
+    this.router.navigateByUrl('/projects');
+  }
+
+	deniestoggle(id) {
+		this.denytoggle = true;
+	}
+  async denyproject(e) {
+    const object = { approvallevel: 0, denialmsg: e.target.value };
     await this.projservice.updateproj(object, this.projid).subscribe();
     this.router.navigateByUrl('/projects');
   }
