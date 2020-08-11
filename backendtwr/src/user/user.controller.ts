@@ -11,36 +11,36 @@ export class UserController {
 
     constructor(private uservice: UserService) { }
     @Get()
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     Alluser(@User() user: UserEntity) {
         return this.uservice.Allusers();
     }
 
     @Post()
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     register(@Body() data: UserEntity) {
         return this.uservice.register(data);
     }
     @Get(':id')
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     userProfile(@Param('id') id: string) {
         return this.uservice.userProfile(id);
     }
 
     @Get('/pplfilt/:p')
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     usersbyfilter(@Param ('p') userid: string) {
         return this.uservice.subordinates(userid);
     }
 
 
     @Put(':id')
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     updateUser(@Param('id') id: string, @Body() data: Partial<UserEntity>) {
         return this.uservice.updateUser(id, data);
     }
     @Delete(':id')
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     delete(@Param('id') id: string) {
         return this.uservice.delete(id);
     }

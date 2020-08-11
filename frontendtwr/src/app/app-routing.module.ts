@@ -26,7 +26,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes = [
   { path: '', component: ProjectsComponent, canActivate: [LoggedinGuard]},
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UserComponent, /*canActivate: [LoggedinGuard, AdminGuard]*/},
+  { path: 'users', component: UserComponent, canActivate: [LoggedinGuard, AdminGuard]},
   { path: 'pgroup', component: PGsComponent, canActivate: [LoggedinGuard] },
   { path: 'langlist', component: LanguageComponent, canActivate: [LoggedinGuard] },
   { path: 'addpg', component: PGComponent, canActivate: [LoggedinGuard] },
